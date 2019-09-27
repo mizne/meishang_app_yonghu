@@ -1,0 +1,102 @@
+<ion-header>
+  <!-- <ion-toolbar>
+    <ion-title>everyCateory</ion-title>
+  </ion-toolbar> -->
+  <ion-toolbar class="toolbarback">
+    <!-- <ion-icon style="float:left;width:50px;height:30px;color:#949492;" name="ios-arrow-back" (click)='canGoBack()'>
+    </ion-icon> -->
+    <img style="float:left;width:30px;height:30px;color:#949492;" src="assets/icons/back.png" (click)='canGoBack()'>
+    <ion-title id="animated">分类</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="body-search">
+    <ion-searchbar style="height: 18px;" [(ngModel)]="searchValue" placeholder="输入名称搜索"></ion-searchbar>
+    <div class="btn-search" (click)="goToSearch()">搜索</div>
+  </div>
+  <!-- 搜索到的商品 -->
+
+  <div *ngIf="isSearch">
+    <!-- <div class="title-goods">
+      搜索结果
+    </div> -->
+<div class="bofy-none" *ngIf=(isSearchNull)>
+  <div class="img-none">
+    <img src="assets/img/none1.jpg" alt="">
+  </div>
+  <div class="tips-none">暂未搜索到相关商品</div>
+</div>
+
+<div class="botomo-content" *ngIf=(!isSearchNull)>
+  <div class="body-pics" *ngFor="let item of goodsSearchList;let i=index" (click)="goToDetails(item.RecordId)">
+    <div class="img-con">
+      <!-- <img src="assets/img/red.png" alt=""> -->
+      <img [src]="item.PicList[0].PicPath || 'assets/img/red.png'" alt="">
+    </div>
+    <div class="desc-name">{{item.productTitle}}</div>
+    <!-- <div class="desc">{{item.ProductDescription}}</div> -->
+    <div class="desc-post">包邮</div>
+    <div class="con-botom">
+
+      <div class="body-left">
+        <div class="body-logo">
+          ￥{{item.ProductPrice}}
+        </div>
+
+
+      </div>
+      <div class="body-right">
+        <img src="assets/img/store.png" alt="">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  </div>
+
+<!-- 分类下商品 -->
+  <!-- 暂无内容 -->
+  <div class="title-goods" *ngIf=(!isGoodsNull)>
+    分类下全部商品
+  </div>
+  <div class="bofy-none" *ngIf=(isGoodsNull)>
+    <div class="img-none">
+      <img src="assets/img/none1.jpg" alt="">
+    </div>
+    <div class="tips-none">暂无商品</div>
+  </div>
+  
+  <div class="botomo-content" *ngIf=(!isGoodsNull)>
+    <div class="body-pics" *ngFor="let item of goodsList;let i=index" (click)="goToDetails(item.RecordId)">
+      <div class="img-con">
+        <!-- <img src="assets/img/red.png" alt=""> -->
+        <img [src]="item.PicList[0].PicPath || 'assets/img/red.png'" alt="">
+      </div>
+      <div class="desc-name">{{item.productTitle}}</div>
+      <!-- <div class="desc">{{item.ProductDescription}}</div> -->
+      <div class="desc-post">包邮</div>
+      <div class="con-botom">
+  
+        <div class="body-left">
+          <div class="body-logo">
+            ￥{{item.ProductPrice}}
+          </div>
+        
+  
+        </div>
+        <div class="body-right">
+          <img src="assets/img/store.png" alt="">
+          
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+
+
+</ion-content>

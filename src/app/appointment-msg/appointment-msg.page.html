@@ -1,0 +1,42 @@
+<ion-header>
+  <!-- <ion-toolbar>
+    <ion-title>订阅消息</ion-title>
+  </ion-toolbar> -->
+  <ion-toolbar class="toolbarback">
+    <!-- <ion-icon style="float:left;width:50px;height:30px;color:#949492;" name="ios-arrow-back" (click)='canGoBack()'>
+    </ion-icon> -->
+    <img style="float:left;width:30px;height:30px;color:#949492;" src="assets/icons/back.png" (click)='canGoBack()'>
+    <ion-title id="animated">系统消息</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <div class="bofy-none" *ngIf=(isListEmpty)>
+    <div class="img-none">
+      <img src="assets/img/none.jpg" alt="">
+    </div>
+    <div class="tips-none">暂无系统消息</div>
+  </div>
+  <div class="content-bottom">
+
+    <div class="con-details" *ngFor="let item of promotionsList;let i=index" (click)="goToDetail(item.RecordId)">
+      <div class="con-top">
+        <div class="title-left">{{item?.PromotionId?.name}}</div>
+        <div class="title-right">{{item?.PromotionId?.CreatedAt}}</div>
+
+      </div>
+      <div class="body-left">
+        <div class="body-logo">
+          <img src="assets/img/appointment.png" alt="">
+        </div>
+        <div class="desc">
+          {{item?.PromotionId?.Description}}
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+</ion-content>

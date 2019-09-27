@@ -1,0 +1,37 @@
+<ion-header>
+  <!-- <ion-toolbar>
+    <ion-title>商品详情</ion-title>
+  </ion-toolbar> -->
+  <ion-toolbar class="toolbarback">
+    <!-- <ion-icon style="float:left;width:50px;height:30px;color:#949492;" name="ios-arrow-back" (click)='canGoBack()'>
+    </ion-icon> -->
+    <img style="float:left;width:30px;height:30px;color:#949492;" src="assets/icons/back.png" (click)='canGoBack()'>
+    <ion-title id="animated">课程章节详情</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="body-video" *ngFor="let item of courseDetails;let i=index">
+    <div class="title-video">章节{{i+1}}</div>
+
+    <div class="video-top" *ngIf="item.video">
+      <video id="myVideo" [src]="item.video" style="width: 100%;max-height: 240px;" preload="auto" controls
+        autoplay="autoplay" loop="loop" playsinline webkit-playsinline aria-orientation="horizontal" controlslist="nodownload"></video>
+
+    </div>
+
+    <!-- 课程标题 -->
+    <div class="course-title">
+      {{item.title || '暂无标题' }}
+    </div>
+    <!-- 描述 -->
+    <div class="course-desc">
+      {{item.introduce || '暂无描述信息'}}
+    </div>
+    <!-- 课程图片 -->
+    <div class="course-img" *ngIf="item.image">
+      <img [src]="item.image" alt="">
+    </div>
+  </div>
+
+</ion-content>

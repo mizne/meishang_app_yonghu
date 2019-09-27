@@ -1,0 +1,393 @@
+<ion-header>
+  <header class="toolbar">
+    我的
+  </header>
+</ion-header>
+
+<ion-content color="medium">
+  <!-- 未登录 提示登录-->
+  <div class="bottom-none" *ngIf=(!isLogin)>
+    <div class="top-title1">开始准备变美啦</div>
+    <div class="top-title2">
+      好好用心生活，用心变美，比什么都幸福，收藏里最喜欢的教程，分享你的心得！
+    </div>
+    <div class="bottom-btn">
+      <!-- <div class="btn-login-wechat" (click)="gotoLoginBywechat()">
+        使用微信登录
+      </div> -->
+      <div class="btn-login-phone" (click)="gotoLoginByPhone()">
+        手机号登录
+      </div>
+    </div>
+  </div>
+
+
+  <!-- <div style="height: 125px;background-color: red" *ngIf="VisitorInfo.Logo=='' && isLogin">
+  
+  </div> -->
+
+  <!-- 未登录 提示登录-->
+  <mat-drawer-container class="example-container" autosize *ngIf=(isLogin)>
+    <mat-drawer #drawer class="example-sidenav" mode="over">
+      <mat-list role="list" class="lists">
+        <mat-list-item role="listitem">
+          <h3>设置</h3>
+        </mat-list-item>
+        <mat-list-item role="listitem" (click)="goToBeSeller()">
+          <img src="../../assets/settings/set1.png" alt="" /><span>入驻成为商家</span>
+        </mat-list-item>
+        <mat-divider [ngStyle]="{ width: '90%', margin: '0 auto' }"></mat-divider>
+        <!--  -->
+        <mat-list-item role="listitem" (click)="goToOrders()">
+          <img src="../../assets/settings/set2.png" alt="" /><span>我的订单</span></mat-list-item>
+        <!-- (click)="goToMyAddress()" -->
+        <mat-list-item role="listitem" (click)="goToMyAddress()">
+          <img src="../../assets/settings/set3.png" alt="" /><span>收货地址</span>
+        </mat-list-item>
+        <!-- (click)="goToFootprint()" -->
+        <mat-list-item role="listitem" (click)="goToFootprint()">
+          <img src="../../assets/settings/set4.png" alt="" /><span>互动足迹</span>
+        </mat-list-item>
+        <mat-list-item role="listitem" (click)="goToMyBlackList()">
+          <img src="../../assets/settings/set4.png" alt="" /><span>我的黑名单</span>
+        </mat-list-item>
+        <mat-divider [ngStyle]="{ width: '90%', margin: '0 auto' }"></mat-divider>
+        <!-- <mat-list-item role="listitem" (click)="goToMyWallet()">
+          <img src="../../assets/settings/set5.png" alt="" /><span>我的钱包</span>
+        </mat-list-item> -->
+        <mat-list-item role="listitem" (click)="goToHelpService()">
+          <img src="../../assets/settings/set6.png" alt="" /><span>帮助与客服</span>
+        </mat-list-item>
+        <mat-list-item role="listitem" (click)="goToMyAccount()">
+          <img src="../../assets/settings/set7.png" alt="" /><span>账户与安全</span>
+        </mat-list-item>
+        <mat-list-item role="listitem" (click)="goToRemoveStorage()">
+          <img src="../../assets/settings/set7.png" alt="" /><span>清除缓存</span>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <span style="font-size: 12px;">版本号：V{{ version }}</span>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <button mat-raised-button color="accent" class="btn" (click)="goToAppeal()">投诉</button>
+          <button mat-raised-button color="accent" class="btn" (click)="goToLoginOut()">退出登录</button>
+        </mat-list-item>
+      </mat-list>
+    </mat-drawer>
+
+    <ion-row style="height: 125px">
+
+      <ion-col size="3.5" [ngStyle]="{ paddingTop: '20px' }">
+        <img src="{{ VisitorInfo?.Logo }}" alt="" class="logo" />
+      </ion-col>
+      <ion-col size="8.5" class="myHead">
+        <ion-row>
+          <ion-col size="3.5" (click)="goToMyfollwing()">
+            <p style="margin: 0.2rem 0;font-size:18px">{{numOfFollowing}}</p>
+            <span>关注</span>
+          </ion-col>
+          <ion-col size="3.5" (click)="goToMyfollwer()">
+            <p style="margin: 0.2rem 0;font-size:18px">{{numOFFollowers}}</p>
+            <span>粉丝</span>
+          </ion-col>
+          <ion-col size="3.5" (click)="goToMyPoints()">
+            <p style="margin: 0.2rem 0;font-size:18px">{{mypointnum}}</p>
+            <span>积分</span>
+          </ion-col>
+        </ion-row>
+        <div>
+          <!--   goToMyData-->
+          <button mat-stroked-button (click)="presentModal1()">个人资料</button>
+          <button mat-stroked-button (click)="goToSign()">签到</button>
+          <button mat-stroked-button (click)="drawer.toggle()" style="margin-left: 15px">
+            <!-- <ion-icon name="settings" [ngStyle]="{ fontSize: '25px' }"></ion-icon> -->
+            <img src="assets/icons/settings.png" alt="" class="icon_style">
+          </button>
+
+        </div>
+      </ion-col>
+    </ion-row>
+    <div class="message">
+      <span *ngIf="VisitorInfo?.Sex==2">♀女</span><span style="color: blue" *ngIf="VisitorInfo?.Sex==1">♂男</span> <span
+        class="line">|</span>
+      <span>{{ VisitorInfo?.NickName }}</span><span
+        class="line">|</span><span>{{ VisitorInfo?.Birthday ||'2019-05-20' }}</span><span
+        class="line">|</span><span>{{ VisitorInfo?.CompAddr ||'未知' }}</span>
+      <span class="line">|</span><span>{{ VisitorInfo?.Job ||'未知' }}</span>
+      <!-- <span class="line">|</span><span>江苏 南京</span>
+      <span class="line">|</span><span>UI</span> -->
+      <!-- <ion-item>
+        <ion-label position="floating" style="font-weight: 500;font-size: 20px; "  (press) ="goToPress()">个人简介</ion-label>
+        <ion-textarea   [(ngModel)]="desc" style="border: 1px solid #f5f5f5"></ion-textarea>
+      </ion-item> -->
+      <!-- <button (press) ="goToPress()" class="button">长按我！</button>
+      <ion-button (press)="goToPress()">
+        长按触发的事件
+      </ion-button>
+      <div (press)="goToPress()">hahhaha我是啊哈哈</div> -->
+      <div style="width:90%;margin-top: 10px;padding-top: 5px;padding-left: 10px;">个人简介：{{desc}}</div>
+      <!-- <ion-input  [(ngModel)]="desc"></ion-input> -->
+    </div>
+    <!-- <div class="body-tab">
+      <div [ngClass]="{'clickAlive': isCollect==false}"
+        style="font-size: 18px;  display: flex;justify-content: center;width: 120px;margin-left: 10px"
+        (click)="goToChange()">我发布的教程</div>
+      <div [ngClass]="{'clickAlive': isCollect==true}"
+        style="font-size: 18px;  display: flex;justify-content: center;width: 120px;margin-left: 10px"
+        (click)="goToChange()">我收藏的教程
+      </div>
+    </div> -->
+
+    <div class="body-tab">
+      <div [ngClass]="{'clickAlive': centerType=='0'}"
+        style="font-size: 14px;  display: flex;justify-content: center;width: 90px;margin-left: 5px"
+        (click)="changeType('0')">教程</div>
+      <div [ngClass]="{'clickAlive': centerType=='1'}"
+        style="font-size: 14px;  display: flex;justify-content: center;width: 90px;margin-left: 5px"
+        (click)="changeType('1')">课程</div>
+      <div [ngClass]="{'clickAlive': centerType=='2'}"
+        style="font-size: 14px;  display: flex;justify-content: center;width:90px;margin-left:5px"
+        (click)="changeType('2')">商城</div>
+    </div>
+
+    <div class="body-tab1" *ngIf="centerType=='0'">
+      <div [ngClass]="{'clickAlive': isTeachingType=='0'}"
+        style="font-size: 14px;  display: flex;justify-content: center;width: 90px;margin-left: 5px"
+        (click)="goToChange1('0')">我发布的</div>
+      <div [ngClass]="{'clickAlive': isTeachingType=='1'}"
+        style="font-size: 14px;  display: flex;justify-content: center;width: 90px;margin-left: 5px"
+        (click)="goToChange1('1')">我收藏的</div>
+      <div [ngClass]="{'clickAlive': isTeachingType=='2'}"
+        style="font-size: 14px;  display: flex;justify-content: center;width:90px;margin-left:5px"
+        (click)="goToChange1('2')">我的草稿箱</div>
+    </div>
+
+    <div class="body-tab1" *ngIf="centerType=='2'">
+      <div [ngClass]="{'clickAlive': productType=='0'}"
+        style="font-size: 14px;  display: flex;justify-content: center;width: 90px;margin-left: 5px"
+        (click)="queryList('0')">收藏商品</div>
+      <div [ngClass]="{'clickAlive': productType=='1'}"
+        style="font-size: 14px;  display: flex;justify-content: center;width: 90px;margin-left: 5px"
+        (click)="queryList('1')">收藏店铺</div>
+    </div>
+
+    <!-- {{isTeachingType}} -->
+    <!-- 教程 -->
+    <div class="botomo-content" *ngIf="isTeachingType=='0'">
+      <!-- 暂无内容 -->
+      <div class="bofy-none" *ngIf=(IsFirstList)>
+        <div class="img-none">
+          <img src="assets/img/none.jpg" alt="">
+        </div>
+        <div class="tips-none">暂无教程</div>
+      </div>
+      <div class="masonry">
+        <div class="item" *ngFor="let item of coursesList">
+          <div class="item_content content-lar">
+            <div class="delete" (click)="goToEdit(item.RecordId)" *ngIf="isStore &&  item.IsShow==true">
+              <img src='assets/img/edit.png' alt="">
+            </div>
+            <img [src]="item.PicList[0].PicPath " alt="" (click)="teachingDetailsModal111(item.RecordId,item.IsShow)">
+            <div class="desc">{{item.ProductName}}</div>
+          </div>
+          <div class="bottom-info">
+            <div class="left-logo">
+              <!-- <img [src]="item.VisitorExhibitionInfoId.Logo || 'assets/img/shuang.png' " alt=""
+                *ngIf="item.VisitorExhibitionInfoId"> -->
+              <img src="assets/img/shuang.png" alt=""
+                *ngIf="null==item.VisitorExhibitionInfoId || undefined==item.VisitorExhibitionInfoId">
+
+              <img [src]="item.VisitorExhibitionInfoId.Logo || 'assets/img/shuang.png' "
+                *ngIf="item.VisitorExhibitionInfoId" alt="">
+
+            </div>
+            <div class="right-nickname" *ngIf="item.VisitorExhibitionInfoId">
+              {{ item.VisitorExhibitionInfoId.NickName || item.CreatedBy }}</div>
+            <div class="body-eyes">
+              <!-- <ion-icon name="eye"></ion-icon> -->
+              <img src="assets/icons/eye.png" alt="" class="icon_check_style">
+              浏览{{item.PVNumber}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="botomo-content" *ngIf="isTeachingType=='1'">
+      <div class="bofy-none" *ngIf=(IsSecondList)>
+        <div class="img-none">
+          <img src="assets/img/none.jpg" alt="">
+        </div>
+        <div class="tips-none">暂无收藏教程</div>
+      </div>
+      <!-- 瀑布流 -->
+      <div class="masonry">
+        <div class="item" *ngFor="let item of coursesFollowList"
+          (click)="teachingDetailsModal111(item.ProductId.RecordId, item.ProductId.IsShow)">
+          <div class="item_content content-lar">
+            <img [src]="item.ProductId.PicList[0].PicPath" alt="">
+            <div class="desc">{{item.ProductId.ProductName}}</div>
+          </div>
+          <div class="bottom-info">
+            <div class="left-logo">
+              <img [src]="item.ProductVisitorExhibitionId.Logo" alt="">
+            </div>
+            <div class="body-nickname" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap">
+              {{ item.ProductVisitorExhibitionId.NickName }}</div>
+            <!-- <div class="body-eyes">
+              <ion-icon name="eye"></ion-icon>
+              浏览{{item.ProductId.PVNumber}}
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--草稿箱 -->
+    <div class="botomo-content" *ngIf="isTeachingType=='2'">
+      <!-- 暂无内容 -->
+      <div class="bofy-none" *ngIf=(IsThirdList)>
+        <div class="img-none">
+          <img src="assets/img/none.jpg" alt="">
+        </div>
+        <div class="tips-none">暂无草稿</div>
+      </div>
+
+      <!-- 瀑布流 -->
+      <div class="masonry">
+        <div class="item" *ngFor="let item of unReleaseList" (click)="editMyTeaching(item.RecordId)">
+          <div class="item_content content-lar">
+            <img
+              [src]="item.PicList[0]? item.PicList[0].PicPath || 'https://baizhanke-1253522040.cos.ap-chengdu.myqcloud.com/e63ae311-0ea3-48c6-8bc4-f160c2fe042d.png' :'https://baizhanke-1253522040.cos.ap-chengdu.myqcloud.com/e63ae311-0ea3-48c6-8bc4-f160c2fe042d.png'"
+              alt="">
+            <div class="desc">{{item.ProductName}}</div>
+          </div>
+          <div class="bottom-info">
+            <div class="left-logo">
+              <img [src]="item.VisitorExhibitionInfoId.Logo || 'assets/img/shuang.png' " alt=""
+                *ngIf="item.VisitorExhibitionInfoId">
+            </div>
+            <div class="right-nickname" *ngIf="item.VisitorExhibitionInfoId">
+              {{ item.VisitorExhibitionInfoId.NickName || item.CreatedBy }}</div>
+            <div class="body-eyes">
+              <!-- <ion-icon name="eye"></ion-icon> -->
+              <img src="assets/icons/eye.png" alt="" class="icon_check_style">
+              浏览{{item.PVNumber}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--课程 -->
+    <div class="botomo-content" *ngIf="centerType=='1'">
+      <!-- 暂无内容 -->
+      <div class="bofy-none" *ngIf=(IsFourthList)>
+        <div class="img-none">
+          <img src="assets/img/none.jpg" alt="">
+        </div>
+        <div class="tips-none">暂无收藏课程</div>
+      </div>
+
+      <!-- 瀑布流 -->
+      <div class="masonry">
+        <div class="item" *ngFor="let item of courseList" (click)="courseDetail(item.ProductId.RecordId)">
+          <div class="item_content content-lar">
+            <img [src]="item.ProductId.CourseFirstImage " alt="">
+            <div class="desc">{{item.ProductId.CourseTitle}}</div>
+          </div>
+          <div class="bottom-info">
+            <div class="left-logo">
+              <img [src]="item.CollectedExhibitorExhibitionInfoId.Logo || 'assets/img/shuang.png' " alt=""
+                *ngIf="item.CollectedExhibitorExhibitionInfoId">
+            </div>
+            <div class="right-nickname" *ngIf="item.CollectedExhibitorExhibitionInfoId">
+              {{ item.CollectedExhibitorExhibitionInfoId.StockName || item.CreatedBy }}</div>
+            <div class="body-eyes">
+              <!-- <ion-icon name="eye"></ion-icon> -->
+              <img src="assets/icons/eye.png" alt="" class="icon_check_style">
+              浏览{{item.ProductId.PVNumber}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--商品 -->
+    <div class="botomo-content" *ngIf="centerType=='2' && productType =='0' ">
+      <!-- 暂无内容 -->
+      <div class="bofy-none" *ngIf=(IsFifthList)>
+        <div class="img-none">
+          <img src="assets/img/none.jpg" alt="">
+        </div>
+        <div class="tips-none">暂无商品</div>
+      </div>
+
+      <!-- 瀑布流 -->
+      <div class="masonry">
+        <div class="item" *ngFor="let item of productList" (click)="productDetail(item.ProductId.RecordId)">
+          <div class="item_content content-lar">
+            <img [src]="item.ProductId.PicList[0].PicPath " alt="">
+            <div class="desc">{{item.ProductId.productTitle}}</div>
+          </div>
+          <div class="bottom-info">
+            <div class="left-logo">
+              <img [src]="item.CollectedExhibitorExhibitionInfoId.Logo || 'assets/img/shuang.png' " alt=""
+                *ngIf="item.CollectedExhibitorExhibitionInfoId">
+            </div>
+            <div class="right-nickname" *ngIf="item.CollectedExhibitorExhibitionInfoId">
+              {{ item.CollectedExhibitorExhibitionInfoId.StockName || item.CreatedBy }}</div>
+            <div class="body-eyes">
+              <!-- <ion-icon name="eye"></ion-icon> -->
+              <img src="assets/icons/eye.png" alt="" class="icon_check_style">
+              浏览{{item.ProductId.PVNumber}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--店铺 -->
+    <div class="botomo-content" *ngIf="centerType=='2' && productType =='1' ">
+      <!-- 暂无内容 -->
+      <div class="bofy-none" *ngIf=(IsSixthList)>
+        <div class="img-none">
+          <img src="assets/img/none.jpg" alt="">
+        </div>
+        <div class="tips-none">暂无店铺</div>
+      </div>
+
+      <div class="shop" *ngFor="let item of shopList"
+        (click)="shopDetail(item.CollectedExhibitorExhibitionInfoId.RecordId)">
+        <div class="shopStyle">
+          <img [src]="item.CollectedExhibitorExhibitionInfoId.Logo || 'assets/img/shuang.png' " alt=""
+            *ngIf="item.CollectedExhibitorExhibitionInfoId">
+          <span class="shopNameStyle">{{ item.CollectedExhibitorExhibitionInfoId.StockName || item.CreatedBy }}</span>
+          <!-- <span class="shopNameStyle">{{item.CollectedExhibitorExhibitionInfoId.StockName || item.CreatedBy}}</span> -->
+        </div>
+      </div>
+      <!-- 瀑布流 -->
+      <!-- <div class="masonry">
+        <div class="item" *ngFor="let item of shopList" (click)="editMyTeaching(item.RecordId)">
+          <div class="item_content content-lar">
+            <img [src]="item.CollectedExhibitorExhibitionInfoId.Logo || 'assets/img/shuang.png' " alt=""
+              *ngIf="item.CollectedExhibitorExhibitionInfoId">
+            <div class="desc">{{item.CollectedExhibitorExhibitionInfoId.StockName || item.CreatedBy}}</div>
+          </div>
+          <div class="bottom-info">
+            <div class="left-logo">
+              <img [src]="item.CollectedExhibitorExhibitionInfoId.Logo || 'assets/img/shuang.png' " alt=""
+                *ngIf="item.CollectedExhibitorExhibitionInfoId">
+            </div>
+            <div class="right-nickname" *ngIf="item.CollectedExhibitorExhibitionInfoId">
+              {{item.CollectedExhibitorExhibitionInfoId.StockName || item.CreatedBy}}</div>
+              <div class="body-eyes">
+                <ion-icon name="eye"></ion-icon>
+                {{item.ProductId.PVNumber}}
+              </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+
+  </mat-drawer-container>
+</ion-content>

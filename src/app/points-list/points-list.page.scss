@@ -1,0 +1,216 @@
+.records-body{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+
+    .records-top{
+         width: 100%;
+         display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+   height: 250px;
+     background: url(../../assets/img/back.png) no-repeat  center;
+   background-size: 100%  100%;
+
+        .my-points{
+            height:180px;
+          
+            display: flex;
+            width: 100%;
+             justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+
+            .num-points{
+                color: #fff;
+                font-size: 22px;
+
+
+        }
+        .title-points{
+             color: #fff;
+                font-size: 18px;
+
+        }
+
+        }
+
+        
+        .points-desc{
+           
+
+              color: #fff;
+                font-size: 14px;
+              
+              padding-left: 20px;
+              padding-right: 20px;
+                  width: 100%;
+             justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+
+        }
+
+    }
+
+    //累计收入及支出
+    .points-sum{
+         display: flex;
+        width: 100%;
+        height: 50px;
+        justify-content: space-between;
+        align-items: center;
+        .points-left{
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .title-points{
+                font-size: 16px;
+                color: #5C5C5C;
+
+
+            }
+            .num-in{
+                 font-size: 16px;
+                color: #BDDBD3;
+
+            }
+            
+
+        }
+        .points-right{
+              width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .title-points{
+                 font-size: 16px;
+                color: #5C5C5C;
+
+            }
+            .num-out{
+                 font-size: 16px;
+                color: #BDDBD3
+
+            }
+
+        }
+
+    }
+
+    // 积分来源
+    .records-source{
+        // margin-top: 10px;
+        border-top:  10px solid #f5f5f5;       
+        width: 100%;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        background-color: #f5f5f5;
+
+
+        .record-per{
+            width: 100%;
+             justify-content: center;
+        display: flex;
+        align-items: center;
+     
+
+            .per-left{
+                width:10%;
+                 justify-content: center;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+
+                .top-icon{
+                      justify-content: center;
+        display: flex;
+        align-items: center;
+                    width: 18px;
+                   transform: translateY(10px);
+                    img{
+                        width: 10px;
+                        height: 10px;
+                    }
+
+                }
+                .bottom-icon{
+                      justify-content: center;
+        display: flex;
+        align-items: center;
+        margin-top: 3px;
+                     width: 100%;
+                     height: 90px;;
+                    img{
+                        width:18px;
+                        height:90px;
+                    }
+
+                }
+
+            }
+            .per-right{
+                width:90%;
+                // height: 85px;
+                padding: 5px;
+                border-radius: 5px 5px 5px 5px; 
+
+                  justify-content: center;
+                 display: flex;
+                 align-items: center;
+                 flex-direction: column;
+                 background-color: #fff;
+
+
+
+                .per-date{
+                    width: 100%;
+                      font-size: 16px;
+                        color: #E6668A;
+                        padding: 5px;
+
+                  border-bottom: 1px solid #f5f5f5;
+                }
+                .source{
+                      padding: 5px;
+                      width: 100%;
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: center;
+                      
+
+                      
+                    .per-name{
+                        width: 20%;
+                        font-size: 14px;
+                        color: #5C5C5C;
+
+                    }
+                    .per-num{
+                         width: 20%;
+                        font-size: 14px;
+                        color: #BDDBD3;
+
+                    }
+
+                }
+
+            }
+
+        }
+
+
+    }
+
+
+}

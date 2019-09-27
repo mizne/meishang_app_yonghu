@@ -1,0 +1,77 @@
+.order-head img{
+    vertical-align: bottom;
+    
+}
+.address{
+    font-size: 14px;
+    color: #353535;
+}
+img{
+    border: 0 none
+}
+.order-card-head{
+    font-size: 14px;
+    color: #686868;
+    padding-bottom: 12px;
+
+}
+.order-card-head .pic{
+    margin-right: 6px;
+}
+.email{
+    width: 30px;
+    height: 20px;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    line-height: 20px;
+    font-size: 12px;
+    background: #F3367C;
+    margin-right: 5px;
+}
+.type{
+    font-size: 14px;
+    color: #686868;
+    padding: 16px 0;
+}
+.btn .mat-stroked-button{
+    border-radius:30px;
+    margin-left: 5px;
+    
+}
+.sale-type{
+    font-size: 16px;
+    color: #686868;
+    line-height: 36px;
+}
+.view{
+    padding-top: 20px;
+}
+.price{
+    color: #F3367C;
+    font-size: 20px;
+}
+.list-block {
+    margin: 0rem 0;
+    font-size: 14px;
+    z-index: 1000;
+}
+
+.bottom{
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    .button{
+        margin: 0 15%;
+        border: none;
+        font-size: 20px;
+        padding: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 70%;
+        border-radius: 20px 20px 20px 20px;
+        color: #fff;
+        background-color: #F3367C;
+    }
+}

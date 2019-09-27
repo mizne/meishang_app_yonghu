@@ -1,0 +1,67 @@
+<ion-header>
+  <!-- <ion-toolbar>
+    <ion-title>积分记录</ion-title>
+  </ion-toolbar> -->
+  <ion-toolbar class="toolbarback">
+    <!-- <ion-icon style="float:left;width:50px;height:30px;color:#949492;" name="ios-arrow-back" (click)='canGoBack()'>
+    </ion-icon> -->
+    <img style="float:left;width:30px;height:30px;color:#949492;" src="assets/icons/back.png" (click)='canGoBack()'>
+    <ion-title id="animated">积分记录</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <div class="records-body">
+    <!-- 头部 -->
+    <div class="records-top">
+      <div class="my-points">
+        <div class="num-points">{{mypointnum}}</div>
+        <div class="title-points">我的积分</div>
+
+      </div>
+      <div class="points-desc">
+        积分可用于购买商品，折扣最高25%预约金，积分商城抽奖、兑换精选礼品及红包礼券，或报名参见免费活动等
+      </div>
+
+    </div>
+    <div class="points-sum">
+      <div class="points-left">
+        <div class="title-points">累计收入：</div>
+        <div class="num-in">{{mypointnum}}</div>
+      </div>
+      <div class="points-right">
+        <div class="title-points">累计支出：</div>
+        <div class="num-out">0</div>
+
+      </div>
+
+    </div>
+
+    <!-- 积分来源 -->
+
+    <div class="records-source">
+      <div class="record-per" *ngFor="let item of mypoints;let i=index">
+        <div class="per-left">
+          <div class="top-icon">
+            <img src="assets/img/pot1.png" alt="">
+          </div>
+          <div class="bottom-icon">
+            <img src="assets/img/line3.png" alt="">
+          </div>
+
+        </div>
+        <div class="per-right">
+          <div class="per-date">{{item.CreatedAt}} </div>
+          <div class="source">
+            <div class="per-name">签到 </div>
+            <div class="per-num"> +10</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</ion-content>

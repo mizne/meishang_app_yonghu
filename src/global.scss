@@ -1,0 +1,52 @@
+// https://ionicframework.com/docs/theming/
+@import '~@ionic/angular/css/core.css';
+@import '~@ionic/angular/css/normalize.css';
+@import '~@ionic/angular/css/structure.css';
+@import '~@ionic/angular/css/typography.css';
+// @import '~@ionic/angular/css/display.css';
+@import '~@ionic/angular/css/padding.css';
+@import '~@ionic/angular/css/float-elements.css';
+@import '~@ionic/angular/css/text-alignment.css';
+@import '~@ionic/angular/css/text-transformation.css';
+@import '~@ionic/angular/css/flex-utils.css';
+
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+
+
+.item_color {
+    background-color:red !important;
+}
+
+.addMyCart .modal-wrapper.sc-ion-modal-ios {
+    position: fixed;
+    height: 50%;
+    opacity: 1;
+    transform: translateY(0px);
+    bottom: 0;
+}
+.addMyCart .modal-wrapper.sc-ion-modal-md {
+    position: fixed;
+    height: 50%;
+    opacity: 1;
+    transform: translateY(0px);
+    bottom: 0;
+}
+
+.myShare .modal-wrapper.sc-ion-modal-ios {
+    position: fixed;
+    height: 37%;
+    opacity: 1;
+    transform: translateY(0px);
+    bottom: 0;
+}
+.myShare .modal-wrapper.sc-ion-modal-md {
+    position: fixed;
+    height: 37%;
+    opacity: 1;
+    transform: translateY(0px);
+    bottom: 0;
+}
+.action-sheet-group.sc-ion-action-sheet-ios {
+    overflow-y: auto;
+}

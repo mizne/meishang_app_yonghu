@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar class="toolbarback">
+    <!-- <ion-icon style="float:left;width:50px;height:30px;color:#949492;" name="ios-arrow-back" (click)='canGoBack()'>
+    </ion-icon> -->
+    <img style="float:left;width:30px;height:30px;color:#949492;" src="assets/icons/back.png" (click)='canGoBack()'>
+    <ion-title id="animated">每日签到</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="body-sign">
+    <div style="height: 50px;"></div>
+    <div class="con-turntable">
+      <img src="assets/img/arrow.png" alt="">
+    </div>
+    <div class="points" (click)="goToPointsList()">
+      <div class="points-top">
+        {{mypoints || 0}}
+      </div>
+      <div class="points-bottom">我的积分</div>
+    </div>
+    <div class="btn-sign" (click)="toAddPoints()">签到
+    </div>
+    <div class="desc-sign">
+      坚持签到即可领取积分，每天登录美尚荟APP签到一次即可获取10积分，
+      如想获取更多积分，请期待之后推出的营销活动
+    </div>
+  </div>
+</ion-content>

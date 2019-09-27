@@ -1,0 +1,197 @@
+<ion-header>
+  <!-- <ion-toolbar>
+    <ion-title>搜索</ion-title>
+  </ion-toolbar> -->
+  <ion-toolbar class="toolbarback">
+    <!-- <ion-icon style="float:left;width:50px;height:30px;color:#949492;" name="ios-arrow-back" (click)='canGoBack()'>
+    </ion-icon> -->
+    <img style="float:left;width:30px;height:30px;color:#949492;" src="assets/icons/back.png" (click)='canGoBack()'>
+    <ion-title id="animated">搜索</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <div class="body-search">
+    <!-- <ion-searchbar type="search" style="height: 18px;" [(ngModel)]="searchValue" placeholder="输入关键字搜索"></ion-searchbar> -->
+    <!-- <form action="javascript:return true"> -->
+    <ion-icon name="search" class="icon_style"></ion-icon>
+    <input maxlength="20" placeholder="输入名称或关键字搜索" [(ngModel)]="searchValue" type="search" class="input_style"/>
+    <!-- </form> -->
+    <div class="btn-search" (click)="goToSearch()">搜索</div>
+  </div>
+  <!-- <ion-searchbar (ionInput)="getItems($event)" (ionBlur)="blurInput()" [(ngModel)]="searchValue"></ion-searchbar> -->
+
+  <!-- <div class="botomo-content" *ngIf=(!isSerach)> -->
+  <!-- 暂无内容 -->
+  <div class="bofy-none" *ngIf=(!isSerach)>
+    <div class="img-none">
+      <img src="assets/img/none1.jpg" alt="">
+    </div>
+    <div class="tips-none">暂未搜索到{{searchType}}</div>
+  </div>
+
+  <div class="botomo-content" *ngIf="searchType == '教程'">
+    <div class="body-pics" *ngFor="let item of coursesList" (click)="goToTeachingDetails(item.RecordId)">
+      <div class="img-con">
+        <!-- <img src="assets/img/red.png" alt=""> -->
+        <img [src]="item.PicList[0].PicPath" alt="" />
+      </div>
+      <!-- <div class="desc">你和美妆博主的差距就是这一套美妆教程，赶紧点进来看看吧！</div> -->
+      <div class="desc">{{ item.ProductName }}</div>
+
+      <div class="con-botom">
+        <div class="body-left">
+
+          <div class="body-logo">
+
+            <img [src]="item.VisitorExhibitionInfoId.Logo || 'assets/img/shuang.png' "
+              *ngIf="item.VisitorExhibitionInfoId" alt="">
+          </div>
+          <div class="body-nickname" *ngIf="item.VisitorExhibitionInfoId">
+            {{item.VisitorExhibitionInfoId.NickName  ||item.CreatedBy}}</div>
+          <div class="body-eyes">
+            <ion-icon name="eye"></ion-icon>
+            浏览{{item.PVNumber}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="body-nickname" *ngIf="null==item.VisitorExhibitionInfoId || undefined==item.VisitorExhibitionInfoId">
+              {{item.CreatedBy}}
+            </div> -->
+    <!-- <div class="body-logo">
+            <img src="assets/img/shuang.png" alt="" />
+          </div>
+          <div class="body-nickname">血小板</div>
+        </div> -->
+    <!-- <div class="body-right">
+          <ion-icon name="heart-empty"></ion-icon>
+          <div class="num">325</div>
+        </div> -->
+    <!-- </div> -->
+
+
+    <!-- <div class="body-pics">
+        <div class="img-con">
+          <img src="assets/img/pink.png" alt="">
+        </div>
+        <div class="desc">你和美妆博主的差距就是这一套美妆教程，赶紧点进来看看吧！</div>
+        <div class="con-botom">
+
+          <div class="body-left">
+            <div class="body-logo">
+              <img src="assets/img/shuang.png" alt="">
+            </div>
+            <div class="body-nickname">血小板</div>
+
+          </div>
+          <div class="body-right">
+
+            <ion-icon name="heart-empty"></ion-icon>
+            <div class="num"> 325 </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="body-pics">
+        <div class="img-con">
+          <img src="assets/img/black.jpg" alt="">
+        </div>
+        <div class="desc">你和美妆博主的差距就是这一套美妆教程，赶紧点进来看看吧！</div>
+        <div class="con-botom">
+
+          <div class="body-left">
+            <div class="body-logo">
+              <img src="assets/img/shuang.png" alt="">
+            </div>
+            <div class="body-nickname">血小板</div>
+
+          </div>
+          <div class="body-right">
+
+            <ion-icon name="heart-empty"></ion-icon>
+            <div class="num"> 325 </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="body-pics">
+        <div class="img-con">
+          <img src="assets/img/white.jpg" alt="">
+        </div>
+        <div class="desc">你和美妆博主的差距就是这一套美妆教程，赶紧点进来看看吧！</div>
+        <div class="con-botom">
+
+          <div class="body-left">
+            <div class="body-logo">
+              <img src="assets/img/shuang.png" alt="">
+            </div>
+            <div class="body-nickname">血小板</div>
+
+          </div>
+          <div class="body-right">
+
+            <ion-icon name="heart-empty"></ion-icon>
+            <div class="num"> 325 </div>
+
+          </div>
+        </div>
+      </div> -->
+  </div>
+  <!-- 课程 -->
+  <div class="botomo-content" *ngIf="searchType == '课程'">
+    <div class="body-pics" *ngFor="let item of coursesList" (click)="goToCourseDetails(item.RecordId)">
+      <div class="img-con">
+        <!-- <img src="assets/img/red.png" alt=""> -->
+        <img [src]="item.CourseFirstImage" alt="" />
+      </div>
+      <!-- <div class="desc">你和美妆博主的差距就是这一套美妆教程，赶紧点进来看看吧！</div> -->
+      <div class="desc">{{ item.CourseTitle }}</div>
+
+      <div class="con-botom">
+        <div class="body-left">
+          <div class="body-logo">
+            <img [src]="item.ExhibitorExhibitionInfoId.Logo || 'assets/img/shuang.png' " />
+          </div>
+          <div class="body-nickname">{{item.ExhibitorExhibitionInfoId.StockName}}</div>
+          <div class="body-eyes">
+            <ion-icon name="eye"></ion-icon>
+            浏览{{item.PVNumber}}
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 商品 -->
+
+  <div class="botomo-content" *ngIf="searchType == '商品'">
+    <div class="body-pics" *ngFor="let item of coursesList" (click)="goToGoodsDetails(item.RecordId)">
+      <div class="img-con">
+        <!-- <img src="assets/img/red.png" alt=""> -->
+        <img [src]="item.PicList[0].PicPath" alt="" />
+      </div>
+      <!-- <div class="desc">你和美妆博主的差距就是这一套美妆教程，赶紧点进来看看吧！</div> -->
+      <div class="desc">{{ item.productTitle }}</div>
+
+      <div class="con-botom">
+        <div class="body-left">
+          <div class="body-logo">
+            <img [src]="item.ExhibitorExhibitionInfoId.Logo || 'assets/img/shuang.png' " />
+          </div>
+          <div class="body-nickname">{{item.ExhibitorExhibitionInfoId.StockName}}</div>
+          <div class="body-eyes" style="width: 50%;line-height: 56px;">
+            <ion-icon name="eye"></ion-icon>
+            浏览{{item.PVNumber}}
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</ion-content>

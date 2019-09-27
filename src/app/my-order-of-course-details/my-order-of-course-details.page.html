@@ -1,0 +1,96 @@
+<ion-header>
+  <!-- <ion-toolbar>
+    <ion-title>订单详情</ion-title>
+  </ion-toolbar> -->
+  <ion-toolbar class="toolbarback">
+    <!-- <ion-icon style="float:left;width:50px;height:30px;color:#949492;" name="ios-arrow-back" (click)='canGoBack()'>
+    </ion-icon> -->
+    <img style="float:left;width:30px;height:30px;color:#949492;" src="assets/icons/back.png" (click)='canGoBack()'>
+    <ion-title id="animated">订单详情</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+
+  <div class="card" [ngStyle]="{padding:'10px'}" *ngFor="let item of OrderDetailList;let i = index">
+    <div>
+      <div class="order-card-head">
+        <div>包裹 <span [ngStyle]="{marginLeft: '73%'}"></span></div>
+        <div (click)="goToStore()" class="tore-style">
+          <img [src]='storeLogo' alt="" class="pic">
+          <span class="pic">{{storeName}}</span>
+          <!-- <img src="../../assets/settings/arrow.png" alt=""> -->
+        </div>
+        <!-- <div>
+          <img src='../../assets/settings/store.png' alt="" class="pic">
+          <span class="pic">集合店</span>
+          <img src="../../assets/settings/arrow.png" alt="">
+        </div> -->
+      </div>
+    </div>
+
+    <ion-row>
+      <ion-col size='4'>
+        <!-- <img src="../../assets/settings/food.png" alt=""> -->
+        <img [src]="item?.ProductId?.CourseFirstImage" alt="">
+      </ion-col>
+
+      <ion-col size='8'>
+        <div>
+          <span class="email">包邮</span>{{item?.ProductId.CourseTitle}}
+        </div>
+
+        <div>
+          <div>
+            ￥{{item.ProductId.ProductPrice}}
+          </div>
+          <div text-right class="btn">
+            <!-- <div class="btn-pay">去付款</div>> -->
+            <!-- <button mat-stroked-button color="accent" (click)="comments(item.ProductId.RecordId)">评价</button> -->
+            <div *ngIf="item.OrderId.state == '402'" style="color: #F3367C">订单已关闭</div>
+            <button class="btn-pay" mat-stroked-button (click)="submitOrder()"
+              *ngIf="item.OrderId.state == '101'">付款</button>
+            <button class="btn-pay" mat-stroked-button (click)="goToCancelOrder1()"
+              *ngIf="item.OrderId.state == '101'">取消订单</button>
+          </div>
+
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <div>
+      <p>课程总额：{{calTotalPrice(item.ProductNum, item.Price)}}</p>
+
+
+    </div>
+  </div>
+
+  <div class="card" [ngStyle]="{padding:'12px'}">
+    <ion-row class="total">
+      <ion-col>
+        总计：
+      </ion-col>
+      <ion-col text-right>
+        ￥{{totalPrice}}
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        订单编号：
+      </ion-col>
+      <ion-col text-right>
+        {{orderNumber}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        下单时间：
+      </ion-col>
+      <ion-col text-right>
+        <span>{{orderTime}}</span>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

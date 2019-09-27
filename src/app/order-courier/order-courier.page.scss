@@ -1,0 +1,23 @@
+:host {
+    .help-content {
+        --background: var(--ion-background-color, #F6F7F9) !important;
+
+    }
+    .done{
+        font-size: 20px;
+        padding-bottom: 15px;
+        color: #353535;
+    }
+    .buttons-tab .button {
+        color: #5f646e;
+        font-size: .8rem;
+        width: 51%;
+        height: 2rem;
+        line-height: 2rem;
+        -webkit-box-flex: 1;
+        -ms-flex: 1;
+        border: 0;
+        border-bottom: 2px solid transparent;
+        border-radius: 0;
+    }
+}

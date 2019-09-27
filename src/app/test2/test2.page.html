@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>test2</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-list-header>Interface Options</ion-list-header>
+    <div style="display: flex;width: 100%;">
+      <ion-item style="width: 30%;">
+        <ion-label>省</ion-label>
+        <ion-select [interfaceOptions]="provinceOptions" interface="action-sheet" placeholder="省" cancelText='取消' (ionChange)="provinceOptionChange($event)" [(ngModel)]="province">
+          <ion-select-option *ngFor="let item of provinceList" [value]="item">{{item.text}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    
+      <ion-item style="width: 30%;">
+        <ion-label>市</ion-label>
+        <ion-select [interfaceOptions]="cityOptions" interface="action-sheet" placeholder="市" cancelText='取消' (ionChange)="cityOptionChange($event)" [(ngModel)]="city">
+          <ion-select-option *ngFor="let item of cityList" [value]="item">{{item.text}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    
+      <ion-item style="width: 30%;">
+        <ion-label>区</ion-label>
+        <ion-select [interfaceOptions]="districtOptions" interface="action-sheet" placeholder="区" cancelText='取消' (ionChange)="districtOptionChange($event)" [(ngModel)]="district">
+          <ion-select-option *ngFor="let item of districtList" [value]="item">{{item.text}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+  
+  </ion-list>
+
+  <div (click)="test()" >alert</div>
+</ion-content>

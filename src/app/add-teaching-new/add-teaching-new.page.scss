@@ -1,0 +1,699 @@
+// 发布按钮
+
+.top-btn{
+    margin-top: 15px;
+    width: 100%;
+    display: flex;
+     justify-content: flex-end;
+    align-items: center;
+   padding-right: 10px;
+
+
+.btn-tips{
+    color: #fff;
+    font-size: 16px;
+    width: 20%;
+     display: flex;
+      height: 25px;;
+     align-items: center;
+
+     justify-content: center;
+    background-color: #F3367C;
+    border-radius: 15px 15px  15px  15px ;
+
+
+
+}
+
+}
+
+.top-btn1{
+    margin-top: 15px;
+    width: 100%;
+    height: 80px;;
+    display: flex;
+     justify-content: center;
+    align-items: center;
+//    padding-right: 10px;
+   margin-bottom: 20px;
+.btn-tips1{
+ color: #fff;
+    font-size: 16px;
+    width: 35%;
+     display: flex;
+    height: 35px;
+     align-items: center;
+    margin-left: 3%;
+    margin-right: 3%;
+
+     justify-content: center;
+    background-color: #F3367C;
+    border-radius: 8px 8px  8px  8px ;
+}
+}
+
+// 标题
+.teaching-name{
+    margin-top: 20px;
+     width: 100%;
+    display: flex;
+     justify-content: center;
+    align-items: center;
+    width: 90%;
+    border-bottom: 1px solid #f5f5f5;
+    margin-left: 10px;
+    input{
+          color: #3D3D40;
+        width: 90%;
+        height: 25px;
+        font-size: 16px;
+        border: #fff;
+
+    }
+
+}
+.first-body{
+    width: 100%;
+    padding: 10px;
+    flex-direction: column;
+    justify-content:center;
+    display: flex; 
+    align-items: center;
+
+    .first-title{
+           justify-content:flex-start;
+    display: flex; 
+    align-items: center;
+    padding-left: 20px;
+
+        font-size: 16px;
+        color: #3D3D40;
+        width:100%;
+
+    }
+    .per-mid-first{
+ margin-top: 5px;
+             padding: 10px;
+             width: 100%;
+    display: flex;
+     justify-content: center;
+    align-items: center;
+   
+        
+            img{
+              min-width: 220px;
+               min-height: 220px;
+            }
+    }
+}
+.per-mid-first{
+      
+}
+
+.body-set-first{
+     margin-top: 10px;
+            display: flex;
+            width: 100%;
+            
+            justify-content: center;
+            align-items: center;
+            .isFist{
+                width: 90%;
+                
+                img{
+                   width: 100%;
+               height: 220px;
+                }
+
+            }
+
+
+           .body-upload-img2{
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            // background-color: #FAFAFA;
+            width: 90%;
+            height: 220px;
+            flex-direction: column;
+            img{
+                max-width: 100%;
+                max-height: 220px;
+            }
+           }
+ .body-upload-img1{
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #FAFAFA;
+            width: 90%;
+            height: 220px;
+            flex-direction: column;
+            .tips-img{
+                display: flex;
+            justify-content: center;
+            align-items: center;
+                font-size: 15px;
+                color: #9C9C9C;
+
+
+            }
+            .img-ex{
+                display: flex;
+            justify-content: center;
+            align-items: center;
+                img{
+                    width: 30px;
+                    height: 30px;;
+                }
+            }
+
+        }
+        }
+        .progress{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width:100%;
+        //    margin-top: 200px;
+           z-index: 10000;
+           flex-direction: column;
+           .body-progress
+           {
+                display: flex;
+            justify-content: center;
+            align-items: center;
+            width:100%;
+            .progress2{
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width:70%;
+           
+        }
+        .btn-cancel{
+          
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 20%;
+            padding: 5px;
+            color:#F3367C;
+            font-size: 14px;
+            // background-color: #F3367C;
+        }
+           }
+            
+        .progress1{
+            margin-top:10px;
+              display: flex;
+              text-align: right;
+            width:90%;
+            font-size: 14px;
+            color: #F3367C;
+           
+        }
+        }
+          
+// 步骤内容
+.body-steps{
+    margin-top: 20px;
+     width: 100%;
+    display: flex;
+     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+
+    .per-step{
+        padding:5px;
+        border: 1px solid #f5f5f5;
+        border-radius: 15px 15px 15px 15px;
+
+         width: 95%;
+    display: flex;
+     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    // 删除
+    .delete-steps{
+          width: 100%;
+    display: flex;
+     justify-content: flex-end;
+    //  right: 0;
+    align-items: center;
+    // flex-direction: column;
+    // border-radius: 50%;
+    // border: 1px solid #f5f5f5;
+    .top-img{
+         width: 10%;
+         display: flex;
+     justify-content: center;
+    align-items: center;
+
+        img{
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+        .tips-btn{
+             display: flex;
+     justify-content: center;
+    align-items: center;
+            width: 20%;
+            font-size: 14px;
+            color: #F3367C;
+            // background-color: #f5f5f5;
+
+        }
+
+    }
+
+        .per-top{
+             width: 90%;
+            //  padding: 10px;
+    display: flex;
+     justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid rgba(238,238,238,1);
+           
+            input{
+        color: #3D3D40;
+        width: 90%;
+        height: 25px;
+        font-size: 16px;
+        border: #fff;
+        
+            }
+
+        }
+
+        .body-upload-img{
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #FAFAFA;
+            width: 90%;
+            height: 220px;
+            flex-direction: column;
+            .tips-img{
+                display: flex;
+            justify-content: center;
+            align-items: center;
+                font-size: 15px;
+                color: #9C9C9C;
+
+
+            }
+            .img-ex{
+                display: flex;
+            justify-content: center;
+            align-items: center;
+                img{
+                    width: 30px;
+                    height: 30px;;
+                }
+            }
+
+        }
+        .per-mid{
+            // padding: 10px;
+            margin-top: 10px;
+              width: 90%;
+    display: flex;
+     justify-content: center;
+    align-items: center;
+   
+        
+            img{
+                 max-width:220px;
+               max-height:220px;
+            //   min-width: 220px;
+            //    min-height: 220px;
+            }
+        }
+
+        // 循环显示图片数组
+
+        .img-body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+            width: 100%;
+             flex-direction: column;
+            .per-img-style{
+                margin-bottom: 10px;
+                border: 1px solid #f5f5f5;
+                padding: 5px;
+                width: 90%;
+                
+                // float: left;
+
+                .img-top{
+                    margin-top: 10px;
+                    width: 100%;
+                      display: flex;
+            justify-content: flex-end;
+           align-items: center;
+           right: 0;
+height:30px ;
+            .tips-first{
+                    // margin-top:5px; 
+                    //  margin-left: 90%;
+            display: flex;
+            justify-content: center;
+           align-items: center;
+            width: 25%;
+            font-size: 14px;
+            color: #F3367C;
+               }
+
+                .to-delete{
+                     display: flex;
+            justify-content: center;
+           align-items: center;
+                    // margin-top:5px; 
+                    //  margin-left: 90%;
+                        // margin-bottom: -15px;
+                    width: 10%;
+                    height: 25px;;
+                    opacity: 0.8;
+                    img{
+                          width: 25px;
+                    height: 25px;;
+                    }
+                }
+                }
+              
+                .img-style{
+                    width:100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 250px;;
+                 img{
+                     max-width:95%;
+               max-height:90%;
+                }
+                }
+                .to-be-poster
+                {
+                    margin-left: 80%;
+                        margin-top: -35px;
+                    width:50px;
+                    height: 30px;;
+                    opacity: 1;
+                    img{
+                          width: 50px;
+                    height: 30px;;
+                    }
+                }
+               
+               
+
+            }
+
+
+        }
+
+        // 视频
+        .teach-video{
+            border: 1px solid #f5f5f5;
+            margin-top: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            
+                .img-top{
+                    margin-top: 10px;
+                    width: 100%;
+                      display: flex;
+            justify-content: flex-end;
+           align-items: center;
+           right: 0;
+height:30px ;
+            .tips-first{
+                    // margin-top:5px; 
+                    //  margin-left: 90%;
+            display: flex;
+            justify-content: center;
+           align-items: center;
+            width: 25%;
+            font-size: 14px;
+            color: #F3367C;
+               }
+
+                .to-delete{
+                     display: flex;
+            justify-content: center;
+           align-items: center;
+                    // margin-top:5px; 
+                    //  margin-left: 90%;
+                        // margin-bottom: -15px;
+                    width: 10%;
+                    height: 25px;;
+                    opacity: 0.8;
+                    img{
+                          width: 25px;
+                    height: 25px;;
+                    }
+                }
+                }
+            //  .to-delete{
+            //          margin-left: 90%;
+            //             margin-bottom: -28px;
+            //         width: 30px;
+            //         height: 30px;;
+            //         opacity: 0.8;
+            //         img{
+            //               width: 30px;
+            //         height: 30px;;
+            //         }
+            //     }
+                .video-per{
+                      margin-top: 10px;
+                    width: 90%;
+                    height: 250px;
+                    video{
+                        max-width: 100%;
+                        max-height:250px ;
+                    }
+                }
+        
+        }
+         .btn-first{
+             width: 100%;
+             display: flex;
+                 transform: translateX(70%) translateY(-120%);
+        // width: 50px;
+        // height: 40px;
+        
+      img{
+          width: 60px;
+          height: 35px;;
+      }
+    }
+        .per-bottom{
+            margin-top:10px; 
+            margin-bottom: 10px;
+              width: 100%;
+    display: flex;
+     justify-content: center;
+    align-items: center;
+            textarea{
+                padding: 10px;
+                height: 100px;
+                width:90%;
+                font-size: 14px;
+                  color: #3D3D40;
+                  border: 1px solid rgba(238,238,238,1);
+
+            }
+        }
+
+.video-upload{
+    margin-top: 15px;
+
+    width:100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    .file1{
+        
+    position: relative;
+    display: inline-block;
+    background: #D0EEFF;
+    border: 1px solid #99D3F5;
+    border-radius: 4px;
+    padding: 4px 12px;
+    overflow: hidden;
+    color: #1E88C7;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+
+input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+    }
+   
+.file1:hover {
+    background: #AADFFD;
+    border-color: #78C3F3;
+    color: #004974;
+    text-decoration: none;
+}
+    .input-video{
+        width: 60%;
+        // height: 50px;
+        display: flex;
+    }
+
+    .title-video{
+         display: flex;
+    justify-content: center;
+    align-items: center;
+        width:30%;
+        font-size: 16px;
+
+
+
+    }
+    .img-video{
+        width: 50%;
+
+        img{
+            width: 50px;
+            height: 40px;;
+        }
+
+    }
+      .img-upload{
+        width: 50%;
+
+        img{
+            width: 50px;
+            height: 40px;;
+        }
+
+    }
+
+}
+
+
+
+    }
+
+}
+
+// 添加步骤按钮
+.btn-add{
+    margin-top: 10px;
+    width: 120px;
+       display: flex;
+      height: 25px;;
+     align-items: center;
+ width: 100%;
+    //  justify-content: center;
+    .tips-btn{
+        margin-left: 30px;
+        color: #fff;
+    font-size: 16px;
+    width: 30%;
+     display: flex;
+      height: 25px;;
+     align-items: center;
+
+   justify-content: center;
+    background-color: #F3367C;
+    border-radius: 15px 15px  15px  15px ; 
+    }
+
+}
+
+
+
+// 推荐至分类
+.body-categories{
+    width:90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .top-title{
+           width:100%;
+           display: flex;
+justify-content:space-between;
+padding: 5px;
+margin-left: 10px;
+        .left-title{
+               width:100%;
+               display: flex;
+
+            .title-img{
+              width: 20px;
+                img{
+                    width: 20px;
+                    height: 20xp;
+                    
+                }
+
+            }
+            .tips-title{
+                font-size: 16px;
+                color:#33342F; 
+
+            }
+
+        }
+        .right-title{
+            
+
+        }
+
+
+
+    }
+    .categories-list{
+        width: 100%;
+           display: flex;
+           padding: 10px;
+        .categories-per{
+            margin-right: 10px;
+            color: #949492;
+background:rgba(246,246,246,1);
+opacity:1;
+        }
+
+    }
+
+}
+
+ion-list {
+    width: 90%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    display: block;
+    contain: content;
+    list-style-type: none;
+}

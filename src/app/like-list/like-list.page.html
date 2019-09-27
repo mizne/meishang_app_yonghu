@@ -1,0 +1,39 @@
+<ion-header>
+
+  <ion-toolbar class="toolbarback">
+    <!-- <ion-icon style="float:left;width:50px;height:30px;color:#949492;" name="ios-arrow-back" (click)='canGoBack()'>
+    </ion-icon> -->
+    <img style="float:left;width:30px;height:30px;color:#949492;" src="assets/icons/back.png" (click)='canGoBack()'>
+    <ion-title id="animated">个人消息</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="bofy-none" *ngIf=(isMsgListEmpty)>
+    <div class="img-none">
+      <img src="assets/img/none.jpg" alt="">
+    </div>
+    <div class="tips-none">暂无个人消息</div>
+  </div>
+  <div class="content-bottom">
+    <div class="con-details" *ngFor="let item of messageList" (click)="goToProduct1(item.ProductId.RecordId,item.Type)">
+      <div class="body-left">
+        <div class="body-logo">
+          <img [src]="item.VisitorSender.Logo" alt="">
+        </div>
+      </div>
+      <div class="body-right">
+        <div class="title1">
+          <div class="nickname">{{item.VisitorSender.NickName}}</div>
+          <div class="nick-right">{{chooseType(item.Type)}}了你<span *ngIf="item.Type != '关注'">的教程</span></div>
+        </div>
+        <div class="desc">
+          {{ item.CreatedAt }}
+        </div>
+      </div>
+      <!-- <div class="time-msg">
+      
+      </div> -->
+    </div>
+  </div>
+</ion-content>

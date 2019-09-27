@@ -1,0 +1,98 @@
+:host {
+    .help-content {
+        --background: var(--ion-background-color, #F6F7F9) !important;
+
+    }
+    .userImgStyle {
+        margin-left: -55px;
+    }
+    .mat-raised-button {
+        border-radius: 40px;
+        background: #DDE1EA;
+        color: #FFFFFF;
+        height: 30px;
+        line-height: 30px;
+
+        z-index: 100;
+    }
+
+    .msg {
+        padding: 10px 0 20px 0;
+    }
+
+    .order-message {
+        font-size: 13px;
+        color: #686868;
+        padding-bottom: 10px;
+    }
+
+    .goods-detail {
+        font-size: 15px;
+        font-weight: bold;
+        color: #303030;
+        padding-bottom: 15px;
+    }
+
+    .price {
+        font-size: 15px;
+    }
+
+    .sign {
+        border-radius: 30px;
+        height: 24px;
+        line-height: 24px;
+
+        z-index: 100;
+    }
+    .price span{
+        color: #F3377D;
+        font-size: 18px;
+    }
+    .price{
+        font-size: 14px;
+    }
+    .help-logo{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-left: 0.1rem;
+    }
+    .btn span{
+        border-radius: 30px;
+        border: 1px solid rgb(204, 195, 195);
+        height: 24px;
+        line-height: 24px;
+        width: 60px;
+        z-index: 100;
+        margin: 0 3px;
+    }
+    .btn{
+        font-size: 14px;
+        line-height: 24px;
+        padding:20px 0 10px 0;
+    }
+    .inp{
+        background: #F4F4F4;
+        // border-radius: 30px;
+        text-indent: 30px;
+        padding-left: 30px;
+    }
+    .plus{
+        width: 50px;
+        height: 33px;
+        border-radius: 0.25rem;
+        line-height: 30px;
+        text-align: center;
+        border: 1px solid #F3367C;
+        color: #F3367C;
+        display: inline-block;
+        margin-top: 0.3rem;
+    }
+    .card {
+        margin: 10px 10px;
+        .card-content-inner {
+            padding: 0.75rem;
+            background: #FFFFFF;
+        }
+    }
+}

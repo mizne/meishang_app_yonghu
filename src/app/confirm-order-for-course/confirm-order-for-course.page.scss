@@ -1,0 +1,219 @@
+  .top-store{
+      margin-top: 10px;
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1px solid #f5f5f5;
+      .store-logo{
+        //   width: 30%;
+          padding-left: 10px;
+
+        img{
+            border-radius: 50%;
+            width:30px;
+            height: 30px;
+        }
+      }
+      .store-name{
+          padding-left: 10px;
+          font-size: 13px;
+          color: #333;
+          
+
+      }
+
+  }
+.body-course{
+    margin-top: 10px;
+   padding-left: 10px;
+    width: 100%;
+      display: flex;
+      justify-content: flex-start;
+    align-items: center;
+
+    .left-img{
+       display: flex;
+        justify-content: center;
+        align-items: center;
+        img{
+  border-radius: 10px;
+  width: 80px;
+        height: 80px;
+        }
+        
+    }
+    .right-course{
+        width: 70%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+ .title-course{
+        width: 100%;
+        display: flex;
+        padding-left: 10px;
+        justify-content: flex-start;
+        align-items: center;
+        font-size: 14px;
+
+    }
+    .price-course{
+     width: 100%;
+     padding-left: 10px;
+     display: flex;
+     justify-content: flex-start;
+     align-items: center;
+     font-size: 14px;
+    }
+    }
+   
+
+}
+
+
+  
+  .non-address{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // 
+ 
+    .address-left{
+       display: flex;
+    justify-content: center;
+    align-items: center;
+         font-size: 12px;  
+width:50%;
+    }
+.address-right{
+   display: flex;
+    justify-content: center;
+    align-items: center;
+  width:25%;
+  background: #f3367c;
+
+  color: #fff;
+      padding: 5px;
+  font-size: 14px;
+  border-radius: 20px;
+      
+    }
+  }
+  
+  page-tab-messages-page {
+    .toolbar-background-ios {
+      background-color: #333;
+      // background-image: url('../assets/img/headerbg.png');
+         background: url(../../assets/img/headerbg.png) no-repeat  center;
+      height: 44px;
+    }
+    #left_img {
+      display: block;
+      text-decoration: none;
+      width: 20px;
+      height: 20px;
+      background-size: 200px 200px;
+      background-position: -20px 0;
+      // background-image: url('../assets/img/sprites.png');
+      background: url(../../assets/img/sprites.png) no-repeat  center;
+    }
+    #right_img {
+      display: block;
+      text-decoration: none;
+      width: 20px;
+      height: 20px;
+      background-size: 200px 200px;
+      background-position: -60px 0;
+      // background-image: url('../assets/img/sprites.png');
+        background: url(../../assets/img/sprites.png) no-repeat  center;
+    }
+    .cart_content {
+      width: 100%;
+      height: 100%;
+      background-color: #F0F2F5;
+    }
+    .cart_content_head{
+      background-color: white;
+      width: 100%;
+      height: 55px;
+      text-align: center;
+      display: flex;
+      display: -webkit-flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .card_today_get{
+      margin-top: 10px;
+      display: -webkit-box;
+      display: -moz-box;
+      display:-webkit-flex;
+      display: -ms-flexbox;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .card_hot_sail{
+      margin-top: 10px;
+      display: flex;
+      display: -webkit-flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .card-ios{
+      width:100%;
+      margin: 0px;
+    }
+    .card-content-ios{
+      padding: 0px;
+    }
+    #reconmend_list .card-ios{
+  
+    }
+  }
+  // 底部按钮
+  
+  .body-bottom{
+    width:100%;
+    height:50px;
+    position:fixed;
+    bottom:0;
+    z-index: 10;
+    .buyLeft{
+      float:left;
+      width:70%;
+      height:50px;
+      background-color:#fff;
+      display: flex;
+      .left-service{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        flex-direction: column;
+        .tips-servicce{
+          font-size: 14px;
+          color: #707070;
+        }
+      }
+    }
+    .buyRight{
+      float:left;
+      width:30%;
+      height:50px;
+      background-color:#F3367C;
+      color:#fff;
+      text-align:center;
+      line-height:50px;
+      font-weight:500;
+      font-family:'微软雅黑';
+    }
+  }
+
+  .order-head img{
+    vertical-align: bottom;
+    
+  }

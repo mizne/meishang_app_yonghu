@@ -1,0 +1,74 @@
+<ion-header>
+
+  <ion-toolbar class="toolbarback">
+    <!-- <ion-icon style="float:left;width:50px;height:30px;color:#949492;" name="ios-arrow-back" (click)='canGoBack()'>
+    </ion-icon> -->
+    <img style="float:left;width:30px;height:30px;color:#949492;" src="assets/icons/back.png" (click)='canGoBack()'>
+    <ion-title id="animated">申请售后</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <div class="card" [ngStyle]="{padding:'10px'}">
+    <!-- <ion-row [ngStyle]="{marginBottom:'12px'}">
+      <ion-col class="sale-type">
+        请选择售后类型:
+      </ion-col>
+      <ion-col class="btn" text-right>
+        <button mat-stroked-button (click)='return()'>退款</button>
+        <button mat-stroked-button (click)='exchange()'>换货</button>
+        <button mat-stroked-button (click)='returnExchange()'>退款退货</button>
+      </ion-col>
+    </ion-row> -->
+    <ion-list *ngIf="IsReturn">
+      <ion-item>
+        <ion-label style="font-size: 15px;">请选择售后类型:</ion-label>
+        <ion-select [(ngModel)]="type" cancelText="取消" okText="确定" multiple="false">
+          <ion-select-option [value]="0">退款</ion-select-option>
+          <ion-select-option [value]="1">换货</ion-select-option>
+          <ion-select-option [value]="2">退款退货</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-row>
+      <ion-col size='4' *ngIf="ProductInfo && ProductInfo.PicList && ProductInfo.PicList[0]">
+        <!-- <img src="../../assets/settings/food.png" alt=""> -->
+        <img [src]="ProductInfo.PicList[0].PicPath" alt="">
+      </ion-col>
+
+      <ion-col size='8'>
+        <div *ngIf="ProductInfo">
+          <span class="email">包邮</span>{{ProductInfo.productTitle}}
+        </div>
+        <div class="type">
+          7天无理由退换
+        </div>
+        <div class="price" *ngIf="ProductInfo">
+
+          ￥{{ProductInfo.ProductPrice}}
+
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div [ngStyle]="{padding:'10px'}">
+    <ion-item style="font-size: 15px;">
+      <ion-label>退货原因</ion-label>
+      <ion-select placeholder="请选择" [(ngModel)]="Reason" cancelText="取消" okText="确定" multiple="false">
+        <ion-select-option value="商品与描述不一样">商品与描述不一样</ion-select-option>
+        <ion-select-option value="商品质量差">商品质量差</ion-select-option>
+        <ion-select-option value="商品/包装损坏">商品/包装损坏</ion-select-option>
+        <ion-select-option value="发货/物流问题">发货/物流问题</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item style="font-size: 15px;">
+      <ion-label position="stacked">详细原因</ion-label>
+      <ion-input placeholder="" (value)="Content" [(ngModel)]="Content" clearInput></ion-input>
+    </ion-item>
+  </div>
+  <div class="bottom" style="">
+    <div class="button" (click)='sumbit()'>提交</div>
+  </div>
+</ion-content>

@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar class="toolbarback">
+    <!-- <ion-icon style="float:left;width:50px;height:30px;color:#949492;" name="ios-arrow-back" (click)='canGoBack()'>
+    </ion-icon> -->
+    <img style="float:left;width:30px;height:30px;color:#949492;" src="assets/icons/back.png" (click)='canGoBack()'>
+    <ion-title id="animated">全部评论</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="bofy-none" *ngIf="!isComment">
+    <div class="img-none">
+      <img src="assets/img/none1.jpg" alt="">
+    </div>
+    <div class="tips-none">暂无更多评论</div>
+  </div>
+  <div class="comments-body" *ngIf="isComment">
+    <div class="">
+      <span>评论({{commentNum}})</span>
+    </div>
+
+    <div class="per-comm" *ngFor="let item of commentList;let i=index" (press)="goTodelete1(i,item.RecordId)">
+      <div class="comm-top">
+        <div class="comm-logo" (click)="goToVisitorHome(item.ProductId.ProductVisitorId)">
+          <img [src]="item.Logo || 'assets/img/shuang.png'" alt="">
+          <span style="font-size: 14px;padding-left: 6px;">{{item.Name}}</span>
+        </div>
+        <div class="comm-bottom">
+          <div class="comm-content">
+            {{item.Content}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

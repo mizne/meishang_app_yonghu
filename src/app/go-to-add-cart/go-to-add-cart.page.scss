@@ -1,0 +1,118 @@
+ .sizeAlive{
+    //  display: flex;
+    width: 25%;
+    float: left;
+    font-size: 15px;
+    color:#F3367C;
+    align-items: center;
+    border:1px solid #F3367C;
+    border-radius: 10px 10px 10px 10px;
+    margin-left: 15px;
+  }
+
+  .sizeAlive1{
+    display: flex;
+    justify-content: center;
+    width: 25%;
+    float: left;
+    font-size: 15px;
+    color:#F3367C;
+    align-items: center;
+    border:1px solid #F3367C;
+    border-radius: 10px 10px 10px 10px;
+    margin-left: 15px;
+  }
+  .everySize{
+    display: flex;
+    width: 25%;
+    float: left;
+    color: #33342F;
+    align-items: center;
+    border:1px solid #949492;
+    border-radius: 10px 10px 10px 10px;
+    margin-left: 15px;
+  }
+  .cart-body1{
+    margin-top: 5px;
+    // padding: 5px;
+    width: 100%;
+    display: flex;
+    flex-direction:column;
+    margin-bottom: 50px;
+
+.top-goods{
+  width: 100%;
+  display: flex;
+
+  .goods-left{
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img{
+      width: 90px;
+      height: 90px;
+    }
+
+  }
+  .goods-right{
+     width: 65%;
+  display: flex;
+  flex-direction: column;
+
+    .goods-name{
+      width: 100%;
+      font-size: 16px;
+      color: #33342F;
+
+    }
+    .goods-price{
+       width: 100%;
+      font-size: 16px;
+      color: #33342F;
+
+    }
+
+  }
+}
+
+  .btn-bottom {
+    width: 100%;
+    height: 50px;;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    .btn-cart-left {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50px;
+      width: 50%;
+      font-size: 16px;
+      color: #fff;
+      font-weight: 600;
+      background-color: #F671A2;
+    }
+    .btn-cart-right {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50px;
+      width: 50%;
+      font-size: 16px;
+      color: #fff;
+      font-weight: 600;
+      background-color: #F3367C;
+    }
+  }
+  .btn_style {
+    width: 12%;
+    height: 1.6rem;
+    background: #EFEFEF;
+    text-align: center;
+    line-height: 1.6rem;
+    font-size: 24px;
+  }
+}

@@ -1,0 +1,44 @@
+<ion-header>
+  <!-- <ion-toolbar>
+    <ion-title>商品详情</ion-title>
+  </ion-toolbar> -->
+  <ion-toolbar class="toolbarback">
+    <!-- <ion-icon style="float:left;width:50px;height:30px;color:#949492;" name="ios-arrow-back" (click)='canGoBack()'>
+    </ion-icon> -->
+    <img style="float:left;width:30px;height:30px;color:#949492;" src="assets/icons/back.png" (click)='canGoBack()'>
+    <ion-title id="animated">课程章节详情</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="video-top" *ngIf="isVideo">
+    <video id="myVideo" [src]="videourl" style="width: 100%;max-height: 240px;" preload="auto" controls
+      autoplay="autoplay" loop="loop" playsinline webkit-playsinline aria-orientation="horizontal" controlslist="nodownload"></video>
+    <div class="overStyle" *ngIf="isOver">
+      <div class="stopStyle" id="dynamicStyle"></div>
+      <div class="tips">
+        <span class="tips-text">只能试看60秒哦~购买课程即可观看完整版</span><br />
+        <span class="tips-btn" (click)="jump()">去购买</span>
+      </div>
+    </div>
+
+  </div>
+  <!-- <video *ngIf="isVideo"
+    poster="https://baizhanke-1253522040.cos.ap-chengdu.myqcloud.com/da2ed3ea-ea0f-4254-b3b1-f391961d6cf3.jpg"
+    src="https://1047.cdn-vod.huaweicloud.com/asset/88bb645d3432f94af14c99660a9c2637/2efef4b5972016c293d24d667975c2c5.mp4"
+    style="margin-top:10px;width: 100%;height: 240px;" #media id="singleVideo" preload="auto" controls autoplay="autoplay"
+    loop="loop">
+  </video> -->
+  <!-- 课程标题 -->
+  <div class="course-title">
+    {{courseTitle}}
+  </div>
+  <!-- 描述 -->
+  <div class="course-desc">
+    {{courseDesc}}
+  </div>
+  <!-- 课程图片 -->
+  <div class="course-img" *ngIf="isImage">
+    <img [src]="courseImage" alt="">
+  </div>
+</ion-content>

@@ -1,0 +1,104 @@
+<ion-header>
+  <ion-toolbar class="toolbarback">
+    <!-- <ion-icon style="float:left;width:50px;height:30px;color:#949492;" name="ios-arrow-back" (click)='canGoBack()'>
+    </ion-icon> -->
+    <img style="float:left;width:30px;height:30px;color:#949492;" src="assets/icons/back.png" (click)='canGoBack()'>
+    <ion-title id="animated">TA的主页</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content color="medium">
+  <!-- 未登录 提示登录-->
+  <mat-drawer-container class="example-container" autosize>
+    <ion-row style="height: 125px">
+      <ion-col size="3.5" [ngStyle]="{ paddingTop: '20px' }">
+        <img src="{{ VisitorInfo?.Logo }}" alt="" class="logo" />
+      </ion-col>
+      <ion-col size="8.5" class="myHead">
+        <ion-row>
+            <!-- (click)="goToMyfollwing()" -->
+          <ion-col size="3.5">
+            <p style="margin: 0.2rem 0;font-size:18px">{{numOfFollowing}}</p>
+            <span>关注</span>
+          </ion-col>
+          <!-- (click)="goToMyfollwer()" -->
+          <ion-col size="3.5">
+            <p style="margin: 0.2rem 0;font-size:18px">{{numOFFollowers}}</p>
+            <span>粉丝</span>
+          </ion-col>
+          <ion-col style="line-height: 3rem;">
+            <div class="body-right">
+              <ion-icon [ngClass]="{'perStyleActive': (isFollow==true)}"
+                style="margin-right: -1px;width: 45px;height: 30px;"
+                name="person-add" (click)="goToFollow()" ></ion-icon>
+              <span *ngIf="isFollow" (click)="goToFollow()">已关注</span>
+              <span *ngIf="!isFollow" (click)="goToFollow()" >关注</span>
+            </div>
+          </ion-col>
+          <ion-col size="3.5" (click)="removeBlacklist()" *ngIf="isInBlacklist">
+            <div class="icon-black"><img [src]="blacklist" alt="" /></div>
+            <p style="margin: 0.2rem 0;font-size:12px">移除黑名单</p>
+
+          </ion-col>
+          <ion-col size="3.5" (click)="addBlacklist()" *ngIf="!isInBlacklist">
+            <div class="icon-black"><img [src]="blacklist" alt="" /></div>
+            <p style="margin: 0.2rem 0;font-size:12px">加入黑名单</p>
+
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <div class="message">
+      <span *ngIf="VisitorInfo?.Sex==2">♀女</span><span style="color: blue" *ngIf="VisitorInfo?.Sex==1">♂男</span> <span
+        class="line">|</span>
+      <span>{{ VisitorInfo?.NickName }}</span><span
+        class="line">|</span><span>{{ VisitorInfo?.Birthday ||'2019-05-20' }}</span><span
+        class="line">|</span><span>{{ VisitorInfo?.CompAddr ||'未知' }}</span>
+      <span class="line">|</span><span>{{ VisitorInfo?.Job ||'未知' }}</span>
+      <div style="width:90%;margin-top: 10px;padding-top: 5px;padding-left: 10px;">个人简介：{{desc}}</div>
+    </div>
+    <div class="body-tab1">
+      <div
+        style="font-size: 18px;  display: flex;justify-content: center;border-bottom: 1px solid #b7b7b7;   width: 35%;margin-left: 20px;">
+        我发布的教程</div>
+    </div>
+    <!-- 教程 -->
+    <div class="botomo-content">
+      <!-- 暂无内容 -->
+      <div class="bofy-none" *ngIf=(IsFirstList)>
+        <div class="img-none">
+          <img src="assets/img/none.jpg" alt="">
+        </div>
+        <div class="tips-none">暂无教程</div>
+      </div>
+      <div class="masonry">
+        <div class="item" *ngFor="let item of coursesList">
+          <div class="item_content content-lar">
+            <!-- <div class="delete" (click)="goToEdit(item.RecordId)" *ngIf="isStore">
+              <img src='assets/img/edit.png' alt="">
+            </div> -->
+            <img [src]="item.PicList[0].PicPath " alt="" (click)="teachingDetailsModal111(item.RecordId)">
+            <div class="desc">{{item.ProductName}}</div>
+          </div>
+          <div class="bottom-info">
+            <div class="left-logo">
+              <!-- <img [src]="item.VisitorExhibitionInfoId.Logo || 'assets/img/shuang.png' " alt=""
+                *ngIf="item.VisitorExhibitionInfoId"> -->
+              <img src="assets/img/shuang.png" alt=""
+                *ngIf="null==item.VisitorExhibitionInfoId || undefined==item.VisitorExhibitionInfoId">
+
+              <img [src]="item.VisitorExhibitionInfoId.Logo || 'assets/img/shuang.png' "
+                *ngIf="item.VisitorExhibitionInfoId" alt="">
+
+            </div>
+            <div class="right-nickname" *ngIf="item.VisitorExhibitionInfoId">
+              {{item.VisitorExhibitionInfoId.NickName || item.CreatedBy}}</div>
+            <div class="body-eyes">
+              <ion-icon name="eye"></ion-icon>
+              浏览{{item.PVNumber}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-drawer-container>
+</ion-content>

@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar class="toolbarback">
+    <!-- <ion-icon style="float:left;width:50px;height:30px;color:#949492;" name="ios-arrow-back" (click)='canGoBack()'>
+    </ion-icon> -->
+    <img style="float:left;width:30px;height:30px;color:#949492;" src="assets/icons/back.png" (click)='canGoBack()'>
+    <ion-title id="animated">消息中心</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="body-main">
+    <div class="content-bottom">
+      <div class="con-details" (click)="goToLikeList()">
+        <div class="body-left">
+          <div class="body-logo">
+            <img src="assets/img/sysmsg.png" alt="">
+          </div>
+        </div>
+        <div class="body-right">
+          <div class="title-top">
+            个人消息
+          </div>
+        </div>
+      </div>
+      <div class="con-details" (click)="goToMyAppointments()">
+        <div class="body-left">
+          <div class="body-logo">
+            <img src="assets/img/myaccount.png" alt="">
+          </div>
+        </div>
+        <div class="body-right">
+          <div class="title-top">
+            系统消息
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ion-content>

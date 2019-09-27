@@ -1,0 +1,179 @@
+<ion-header>
+  <!-- <ion-toolbar>
+    <ion-title>教程详情</ion-title>
+  </ion-toolbar> -->
+  <ion-toolbar class="toolbarback">
+    <!-- <ion-icon style="float:left;width:50px;height:30px;color:#949492;" name="ios-arrow-back" (click)='canGoBack()'>
+    </ion-icon> -->
+    <img style="float:left;width:30px;height:30px;color:#949492;" src="assets/icons/back.png" (click)='canGoBack()'>
+    <ion-title id="animated">教程详情</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <div class="ad">
+    <img [src]="banner">
+  </div>
+  <!-- 标题 -->
+  <div class="top-both">
+    <div class="title-course">
+      <!-- 温柔奶茶妆合集| 眼影 腮红 口红 -->
+      {{teachingDetails.ProductName}}
+    </div>
+    <div class="body-eyes">
+      <ion-icon name="eye"></ion-icon>
+      <span>
+        {{checkNum}}
+      </span>
+    </div>
+  </div>
+  <div>
+    <div class="todelete" (click)="goToDelete()" *ngIf=(isOwn)>删除</div>
+  </div>
+  <div class="con-botom">
+    <div class="body-left" *ngIf=(!isOwn)>
+      <div class="body-logo">
+        <img [src]="details.Logo || 'assets/img/friends.jpg' " alt="">
+      </div>
+      <div class="body-nickname">{{details.NickName }}</div>
+    </div>
+    <div class="body-left1" *ngIf=(isOwn)>
+      <div class="body-logo">
+        <img [src]="details.Logo || 'assets/img/friends.jpg' " alt="">
+      </div>
+      <div class="body-nickname">{{details.NickName }}</div>
+    </div>
+    <div class="body-right">
+      <ion-icon *ngIf=(!isOwn) [ngClass]="{'perStyleActive': (isCollect==true)}"
+        style=" display: flex; margin-right: 10px;justify-content:center;  align-items: center; font-size: 14px;   border-radius: 15px 15px 15px 15px ;width: 45px;height: 30px;"
+        name="heart" (click)="goToCollect()"></ion-icon>
+      <ion-icon *ngIf=(!isOwn) [ngClass]="{'perStyleActive': (isFollow==true)}"
+        style=" display: flex; margin-right: 10px;justify-content:center;  align-items: center; font-size: 14px;   border-radius: 15px 15px 15px 15px ;width: 45px;height: 30px;"
+        name="person-add" (click)="goToFollow()"></ion-icon>
+    </div>
+  </div>
+
+  <div class="tips">
+   
+    <div class="title1">
+      教程详情
+    </div>
+  </div>
+  <!-- 教程步骤详情 -->
+  <div class="body-steps">
+    <div class="per-step" *ngFor="let item of StepsList;let i=index">
+      <div class="per-top">
+        {{item.title}}
+      </div>
+      <div class="per-bottom">
+        {{item.desc}}
+      </div>
+      <div class="teach-video" *ngFor="let item2 of item.video;let k=index">
+      </div>
+      <video style="width: 200px;height: 200px" [poster]="item2.img" *ngFor="let item2 of item.video;let k=index"
+        [src]="item2.url" style="margin-top:10px;width: 320px;height: 200px" #media id="singleVideo" preload="auto"
+        controls controlslist="nodownload">
+      </video>
+      <!-- 循环显示图片 -->
+      <div class="per-mid" *ngFor="let item1 of item.picList;let k=index">
+        <img [src]="item1">
+      </div>
+    </div>
+  </div>
+  <!-- 视频 -->
+  <div style="height: 20px"></div>
+  <div class="tips" *ngIf="!isConnGoods">
+    <div class="title1">
+      商品
+    </div>
+  </div>
+  <!-- 包含商品 -->
+  <div class="goods-body">
+    <div class="goods-per" (click)="goToGoodsDetail()" *ngFor="let item of connGoodsList">
+      <div class="goods-left">
+        <img [src]="item.ProductId.PicList[0].PicPath || 'assets/img/red.png'" alt="">
+      </div>
+      <div class="goods-right">
+        <div class="goods-title">
+          {{item.ProductId.productTitle}}     
+        </div>
+        <div class="goods-type">
+          <div class="type-con">限时抢购</div>
+        </div>
+        <div class="goods-price">
+          <div class="price-new">￥{{item.ProductId.ProductPrice}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 课程 -->
+  <div style="height: 20px"></div>
+  <div class="tips" *ngIf="!isConnCourse">
+    <div class="title1">
+      课程
+    </div>
+  </div>
+  <div class="goods-body">
+    <div class="goods-per" (click)="goToCourseDetail(item)" *ngFor="let item of connCourseList">
+      <div class="goods-left">
+        <img [src]="item.CourseId.CourseFirstImage || 'assets/img/red.png'" alt="">
+      </div>
+      <div class="goods-right">
+        <div class="goods-title">
+          {{item.CourseId.CourseTitle}}
+        </div>
+        <div class="goods-type">
+          <div class="type-con">点击试看</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="comments-body" *ngIf="!isComm">
+    <span>暂无评论</span>
+    <div>
+      <div class="bottom-send">
+        添加评论
+
+        <ion-input style="height:30px;margin-left: 10px;border-bottom: 1px solid #1b1b1ba8;" placeholder="输入评论"
+          [(ngModel)]="commentsInfo"></ion-input>
+        <ion-button style="border:none" color="primary" (click)="toSendComments()">发送</ion-button>
+      </div>
+    </div>
+
+  </div>
+  <!-- 评论 -->
+  <div class="comments-body" *ngIf="isComm">
+    <div class="">
+      <span>评论(</span>
+      {{commentNum}}<span>)</span>
+    </div>
+    <div class="comm-top" *ngFor="let item of commentList;let i=index">
+      <div class="comm-left">
+        <div class="logo-comm">
+          <!-- <img src="assets/img/friends.jpg" alt=""> -->
+          <img [src]="item.Logo || 'assets/img/friends.jpg' " alt="">
+        </div>
+        <div class="nick-comm">{{item.Name }}</div>
+
+
+      </div>
+
+      <div class="comm-right"> {{item.Content}}</div>
+    </div>
+    <div class="comm-bottom" (click)="goToAllComments()">点击查看更多评论</div>
+
+    <div class="bottom-send">
+      添加评论
+      <ion-input style="height:30px;margin-left: 10px;border-bottom: 1px solid #1b1b1ba8;" placeholder="输入评论"
+        [(ngModel)]="commentsInfo"></ion-input>
+      <ion-button style="border:none" color="primary" (click)="toSendComments()">发送</ion-button>
+    </div>
+
+  </div>
+  <div style="height:60px;"> </div>
+  <div class="btn-bottom">
+    <div class="btn-send" (click)="presentModal1()">+我也要发布</div>
+  </div>
+</ion-content>

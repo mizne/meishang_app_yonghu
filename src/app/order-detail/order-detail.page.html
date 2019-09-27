@@ -1,0 +1,134 @@
+<ion-header>
+  <ion-toolbar class="toolbarback">
+    <!-- <ion-icon style="float:left;width:50px;height:30px;color:#949492;" name="ios-arrow-back" (click)='canGoBack()'>
+    </ion-icon> -->
+    <img style="float:left;width:30px;height:30px;color:#949492;" src="assets/icons/back.png" (click)='canGoBack()'>
+    <ion-title id="animated">订单详情</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-row *ngIf="countDownState">
+    <div style="margin: 0 auto;color: red;">剩余支付时间：{{ countDownTimeStr }}</div>
+  </ion-row>
+  <mat-divider></mat-divider>
+  <ion-row class="address" >
+    <ion-col size="12">
+      <div class="address-head" style="padding-left:10px ">
+        <span> {{addressFirst?.Name}} </span>
+        <span>{{addressFirst?.Phone}}</span>
+      </div>
+      <div class="address-foot" style="padding-left:10px ">
+        {{addressFirst?.Province}} {{addressFirst?.City}} {{addressFirst?.Area}} {{addressFirst?.AddressDetail}}
+      </div>
+    </ion-col>
+    <!-- <ion-col size='1' text-right class="choose" style="padding-top:20px;">
+      >
+    </ion-col> -->
+  </ion-row>
+  <div *ngElse>
+
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="card" [ngStyle]="{padding:'10px'}" *ngFor="let item of OrderDetailList;let i = index">
+    <div>
+      <div class="order-card-head">
+        <div>包裹 <span style="float: right;">{{orderState(item.OrderId.state)}}</span></div>
+        <div *ngIf="!isShowReason">
+          被拒原因：{{ refuseReason }}
+        </div>
+        <div (click)="goToStore()" class="tore-style"> 
+          <img [src]='storeLogo' alt="" class="pic">
+          <span class="pic">{{storeName}}</span>
+          <!-- <img src="../../assets/settings/arrow.png" alt=""> -->
+        </div>
+      </div>
+    </div>
+
+    <ion-row>
+      <ion-col size='4'>
+        <!-- <img src="../../assets/settings/food.png" alt=""> -->
+        <img [src]="item?.ProductId?.PicList[0].PicPath" alt="">
+      </ion-col>
+
+      <ion-col size='8'>
+        <div>
+          <span class="email">包邮</span>{{item.ProductId.productTitle}}
+        </div>
+        <div class="type">
+          <!-- <span>牛肉味</span> <span>3盒装</span> -->
+          <span>{{ item.ProductId?.Specifications[0]?.size || '默认规格'}}</span>
+        </div>
+        <div>
+          <div>
+            ￥{{item.UnitPrice || item.ProductId.ProductPrice}} X {{item.ProductNum}}
+          </div>
+          <div text-right class="btn">
+           
+            <button mat-stroked-button color="accent" (click)="comments(item.ProductId.RecordId)" *ngIf=" item.OrderId.state == '401'">评价</button>
+            <button mat-stroked-button (click)="applicationRefund(item.OrderId.RecordId)" *ngIf="item.OrderId.state == '201' || item.OrderId.state == '202'">申请退换</button>
+        
+            
+            <!-- <button mat-stroked-button (click)="applicationRefund()" *ngIf="false">申请退换</button> -->
+
+          </div>
+
+        </div>
+      </ion-col>
+    </ion-row>
+    <mat-divider></mat-divider>
+    <div>
+      <p>商品总额：{{item.Price}}</p>
+      <p *ngIf="false">运费：0</p>
+      <!-- <p text-right class="btn view" *ngIf="item.OrderId.state != '101' && item.OrderId.state != '201'">
+        <button mat-stroked-button (click)="contactService()">联系客服</button>
+        <button mat-stroked-button (click)="goToLogistics()" *ngIf="item.OrderId.state == '202' || item.OrderId.state == '401'">查看物流</button>
+      </p> -->
+    </div>
+  </div>
+
+    <div text-right class="btn">
+      <div *ngIf="OrderInfo.state == '402'" style="color: #F3367C;font-size:16px;">订单已关闭</div>
+   
+    
+      <button mat-stroked-button (click)="submitOrder()" *ngIf="OrderInfo.state == '101'">付款</button>
+      <button mat-stroked-button (click)="goToReceipt(OrderInfo.RecordId);$event.stopPropagation();"
+        *ngIf="OrderInfo.state == '201' || OrderInfo.state === '202'">确认收货</button>
+    
+      <button mat-stroked-button (click)="contactService()"
+        *ngIf="OrderInfo.state == '302' || OrderInfo.state === '312' || OrderInfo.state === '322'">联系客服</button>
+          <button mat-stroked-button (click)="goToLogistics()"
+            *ngIf="OrderInfo.state == '202' || OrderInfo.state == '401'">查看物流</button>
+    </div>
+
+  <div class="card" [ngStyle]="{padding:'12px'}">
+    <ion-row class="total">
+      <ion-col>
+        总计：
+      </ion-col>
+      <ion-col text-right>
+        ￥{{totalPrice}}
+      </ion-col>
+    </ion-row>
+    <mat-divider [ngStyle]="{margin:'12px 0'}"></mat-divider>
+    <ion-row>
+      <ion-col>
+        订单编号：
+      </ion-col>
+      <ion-col text-right>
+        {{orderNumber}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        下单时间：
+      </ion-col>
+      <ion-col text-right>
+        <span>{{orderTime}}</span>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

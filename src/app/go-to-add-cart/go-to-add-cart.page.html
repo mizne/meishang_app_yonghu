@@ -1,0 +1,75 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>加入购物车</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+  <!-- 加入购物车 -->
+  <div class="cart-body1">
+    <div class="top-goods">
+
+      <div class="goods-left">
+        <!-- <img src="assets/img/shuang.png" alt=""> -->
+        <img [src]="goodsDetaiInfo?.PicList[0].PicPath" alt="">
+      </div>
+
+      <div class="goods-right">
+        <div class="goods-name">{{goodsDetaiInfo.productTitle}}</div>
+        <!-- <div class="goods-price">  ￥{{goodsDetaiInfo.Price}}</div> -->
+        <div class="goods-price"> ￥{{goodsPrice || goodsDetaiInfo.ProductPrice}}</div>
+        <div class="goods-price"> 库存{{goodsVolum}}件</div>
+      </div>
+
+    </div>
+    <!--   <div [ngClass]="{'cateLeftActive': (leftid==item.RecordId)}" -->
+    <ion-list>
+      <ion-list-header>规格</ion-list-header>
+      <!-- class="every-size" -->
+      <!-- 设置默认格式-->
+      <div *ngIf=(isSpec) class="sizeAlive1">默认规格</div>
+      <div [ngClass]="{'sizeAlive': (sizeId==k)}"
+        style="display: flex;font-size:15px;border:1px solid #f5f5f5;border-radius:10px 10px 10px 10px ; margin-left: 15px;  align-items: center; width: 25%;float: left;justify-content: center"
+        *ngFor="let item of goodsDetaiInfo.Specifications;let k=index" (click)="goCilic(k)">
+        {{item.size || "默认规格"}}
+
+      </div>
+
+
+      <!-- <ion-item>
+          <ion-label>选择</ion-label>
+          <ion-select [(ngModel)]="goodSelect" cancelText="取消" okText="确定!">
+      
+            <ion-select-option [value]="i" *ngFor="let item of goodsDetaiInfo.Specifications;let i=index">{{item.size}}
+            </ion-select-option>
+      
+          </ion-select>
+        </ion-item> -->
+
+    </ion-list>
+    <ion-item>
+      <ion-label>购买数量</ion-label>
+      <span (click)="goToMinus()" class="btn_style">-</span>
+      <input type="number" style="width: 50px;display: flex;justify-content: center;text-align: center;padding-left:5px;
+        padding-right: 5px;" [(ngModel)]="numBuy" />
+      <!-- [(ngModel)]="numBuy" -->
+      <span (click)="goToAdd()" class="btn_style">+</span>
+
+    </ion-item>
+
+    <div class="btn-bottom">
+      <div class="btn-cart-left" (click)="canelCart()">
+        取消
+      </div>
+      <div class="btn-cart-right" (click)="confirmCart()" *ngIf="source==0">
+        加入购物车
+      </div>
+      <div class="btn-cart-right" (click)="confirmBuy()" *ngIf="source==1">
+        确定
+      </div>
+      <!-- <ion-button shape="round" fill="outline" (click)="confirmCart()">确定</ion-button>
+  <ion-button shape="round" fill="outline" (click)="canelCart()">取消</ion-button> -->
+    </div>
+
+  </div>
+</ion-content>

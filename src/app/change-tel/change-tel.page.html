@@ -1,0 +1,60 @@
+<ion-header>
+  <!-- <ion-toolbar>
+    <ion-title>更换手机号</ion-title>
+  </ion-toolbar> -->
+  <ion-toolbar class="toolbarback">
+    <!-- <ion-icon style="float:left;width:50px;height:30px;color:#949492;" name="ios-arrow-back" (click)='canGoBack()'>
+    </ion-icon> -->
+    <img style="float:left;width:30px;height:30px;color:#949492;" src="assets/icons/back.png" (click)='canGoBack()'>
+    <ion-title id="animated">绑定手机号</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content class="help-content">
+  <!-- <div (click)="goTotest()">test</div> -->
+  <div class="tip">
+    请输入你希望绑定的手机号。
+  </div>
+  <div class="content1">
+    <!-- <ion-row class="high">
+      <ion-col size='5' text-left>
+      当前手机号
+      </ion-col>
+      <ion-col size='7' text-left class="content-right" [ngStyle]="{lineHeight: '30px'}">
+        86 654654654985 
+      </ion-col>
+    </ion-row> -->
+    <!-- <mat-divider></mat-divider> -->
+    <ion-row size="5">
+      <ion-col [ngStyle]="{lineHeight: '40px'}" text-left>
+        中国大陆 +86
+      </ion-col>
+      <ion-col text-left class="content-right" size='7'>
+        <ion-input placeholder="请输入11位手机号" minlength="11" maxlength="11" [(ngModel)]="userPhone" name="number" required>
+        </ion-input>
+
+      </ion-col>
+    </ion-row>
+  </div>
+  <div class="inp">
+    <ion-row>
+      <ion-col size="6" [ngStyle]="{lineHeight: '40px',fontSize:'16px'}">
+        <ion-input placeholder="请输入验证码" [(ngModel)]="Code" required></ion-input>
+      </ion-col>
+
+      <ion-col size="6" [ngStyle]="{lineHeight: '55px',fontSize:'16px'}">
+
+        <button item-right round [disabled]="verifyCode.disable" (click)="getSmsCode()"
+          class="co">{{verifyCode.verifyCodeTips}}</button>
+      </ion-col>
+    </ion-row>
+
+  </div>
+
+  <div class="btn-submit" (click)="goBackToLogin()">
+    <div class="btn-body">确定
+    </div>
+
+  </div>
+</ion-content>

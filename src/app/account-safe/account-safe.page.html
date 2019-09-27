@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar class="toolbarback">
+    <!-- <ion-icon style="float:left;width:50px;height:30px;color:#949492;" name="ios-arrow-back" (click)='canGoBack()'>
+    </ion-icon> -->
+    <img style="float:left;width:30px;height:30px;color:#949492;" src="assets/icons/back.png" (click)='canGoBack()'>
+    <ion-title id="animated">账户与安全</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="help-content">
+  <div class="content1">
+    <ion-row class="high" (click)="gotoChangePhone()">
+      <ion-col size='3'>
+        手机号
+      </ion-col>
+      <ion-col size='9' text-right class="content-right">
+        +86 {{myPhone}} <span class="icon icon-right"></span>
+      </ion-col>
+    </ion-row>
+    <mat-divider></mat-divider>
+    <ion-row class="high" (click)="goToSetPassword()">
+      <ion-col>
+        登录密码
+      </ion-col>
+      <ion-col text-right class="content-right">
+        去修改 <span class="icon icon-right"></span>
+      </ion-col>
+    </ion-row>
+  </div>
+  <!-- <div class="content1">
+    <ion-row class="high">
+      <ion-col size='3'>
+        微信账号
+      </ion-col>
+      <ion-col size='9' text-right class="content-right">
+       夕胖 <span class="icon icon-right" ></span>
+      </ion-col>
+    </ion-row>
+    <mat-divider></mat-divider>
+    <ion-row class="high">
+      <ion-col>
+       微博账号
+      </ion-col>
+      <ion-col text-right class="content-right">
+        未绑定 <span class="icon icon-right"></span>
+      </ion-col>
+    </ion-row>
+    <mat-divider></mat-divider>
+    <ion-row class="high">
+      <ion-col>
+       QQ账号
+      </ion-col>
+      <ion-col text-right class="content-right">
+        未绑定 <span class="icon icon-right"></span>
+      </ion-col>
+    </ion-row>
+  </div> -->
+  <div class="content1 content2" text-center (click)="goToCall()">
+    投诉
+  </div>
+  <div class="content1 content2" text-center (click)="goToLoginOut()">
+    登出账户
+  </div>
+
+  <!-- <div class="company" (click)="goTotest()">
+  南京美尚广告文化传媒
+  </div> -->
+  <!-- <div class="company" (click)="goTotest1()">
+   联系电话：025-86607244
+  </div> -->
+  <div class="company"> 版权归美尚荟所有</div>
+  <!-- (click)="goTotest2()" -->
+</ion-content>

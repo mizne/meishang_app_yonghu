@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-grid>
+    <ion-row>
+      <ion-col size='4.8'>
+        <img src="../../assets/首页/back.png" alt="" [ngStyle]="{width:'12px',verticalAlign:'bottom',marginRight:'8px'}"
+          (click)='back()'>
+      </ion-col>
+      <ion-col size='7.2'>
+        物流信息
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+<ion-content>
+  <ion-card class="logistics">
+    <ion-row>
+      <ion-col>
+        <span>快递公司：</span><span>{{Logistics ? Logistics:'暂无'}}</span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <span>物流编号：</span><span>{{detail?.ExpressNum ? detail?.ExpressNum:'暂无'}}</span>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+  <ion-card class="logistics">
+
+    <ion-row (click)='getRouteInfo()' class="info">
+      <ion-col>
+        物流信息
+      </ion-col>
+    </ion-row>
+    <mat-divider></mat-divider>
+    <div>
+      <ion-row *ngFor="let k of routesInfo;let i=index">
+        <ion-col size='3' text-right>{{k.time}}</ion-col>
+        <ion-col size='1' text-center><img src="../../../assets/首页/circle.png" alt=""><br>
+          <img src="../../../assets/首页/line.png" alt="" class="line"></ion-col>
+        <ion-col size='8'>{{k.context}}</ion-col>
+      </ion-row>
+
+    </div>
+  </ion-card>
+
+</ion-content>

@@ -1,0 +1,167 @@
+<ion-header>
+  <!-- <ion-toolbar>
+    <ion-title>everyCateory</ion-title>
+  </ion-toolbar> -->
+  <ion-toolbar class="toolbarback">
+    <!-- <ion-icon style="float:left;width:50px;height:30px;color:#949492;" name="ios-arrow-back" (click)='canGoBack()'>
+    </ion-icon> -->
+    <img style="float:left;width:30px;height:30px;color:#949492;" src="assets/icons/back.png" (click)='canGoBack()'>
+    <ion-title id="animated">{{ headerText }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="body-search">
+    <ion-searchbar style="height: 18px;" [(ngModel)]="searchValue" placeholder="输入名称搜索"></ion-searchbar>
+    <div class="btn-search" (click)="goToSearch()">搜索</div>
+  </div>
+  <!-- 搜索到的商品 -->
+  <div *ngIf="isSearch" >
+    <div class="bofy-none" *ngIf="isSearchNull " >
+      <div class="img-none">
+        <img src="assets/img/none1.jpg" alt="">
+      </div>
+      <div class="tips-none">未搜索到任何信息</div>
+    </div>
+  <!-- 教程 -->
+    <div class="botomo-content" *ngIf="!isSearchNull && type=='0'">
+      <div class="masonry">
+        <div class="item" *ngFor="let item of goodsSearchList" (click)="goToDetails(item.RecordId)">
+          <div class="item_content content-lar">
+            <img [src]='item.PicList[0].PicPath' alt="">
+            <div class="desc">{{item.ProductName}}</div>
+          </div>
+          <div class="bottom-info">
+            <div class="left-logo">
+              <img [src]="item.VisitorExhibitionInfoId.Logo || 'assets/img/shuang.png' " alt=""
+                *ngIf="item.VisitorExhibitionInfoId">
+            </div>
+            <div class="right-nickname" *ngIf="item.VisitorExhibitionInfoId">
+              {{ item.VisitorExhibitionInfoId.NickName ||item.CreatedBy }}</div>
+            <!-- <div>浏览数{{item.PVNumber}}</div> -->
+            <div class="body-eyes">
+              <ion-icon name="eye"></ion-icon>
+              浏览{{item.PVNumber}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- 商品 -->
+    <div class="botomo-content" *ngIf="!isSearchNull && type=='1'" >
+      <div class="masonry">
+        <div class="item" *ngFor="let item of goodsSearchList"  (click)="goToDetails(item.RecordId)">
+          <div class="item_content content-lar">
+            <img [src]="item.PicList[0].PicPath || 'assets/img/red.png'" alt="">
+            <div class="desc">{{item.productTitle}}</div>
+          </div>
+          <div class="con-botom">
+            <div class="body-left">
+              <div class="body-logo">
+                ￥{{item.ProductPrice}}
+              </div>
+            </div>
+            <div class="body-eyes">
+              <ion-icon name="eye"></ion-icon>
+              浏览{{item.PVNumber}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 分类下商品 -->
+  <!-- 暂无内容 -->
+  <div class="title-goods" *ngIf="!isGoodsNull && type=='1'" >
+    分类下全部商品
+  </div>
+  <div class="title-goods" *ngIf=" !isGoodsNull && type=='0'" >
+    分类下全部教程
+  </div>
+  <div class="bofy-none" *ngIf=(isGoodsNull)>
+    <div class="img-none">
+      <img src="assets/img/none1.jpg" alt="">
+    </div>
+    <div class="tips-none" *ngIf=" type=='1'">暂无商品</div>
+      <div class="tips-none" *ngIf="type=='0'">暂无教程</div>
+  </div>
+<!-- 教程 -->
+  <div class="botomo-content" *ngIf="!isGoodsNull && type=='0'">
+    <div class="masonry">
+      <div class="item" *ngFor="let item of goodsList" [ngClass]="{'right': item.float === 'right'}" (click)="goToDetails(item.RecordId)">
+        <div class="item_content content-lar">
+          <img [src]='item.PicList[0].PicPath' alt="">
+          <div class="desc">{{item.ProductName}}</div>
+        </div>
+        <div class="bottom-info">
+          <div class="left-logo">
+            <img [src]="item.VisitorExhibitionInfoId.Logo || 'assets/img/shuang.png' " alt=""
+              *ngIf="item.VisitorExhibitionInfoId">
+          </div>
+          <div class="right-nickname" *ngIf="item.VisitorExhibitionInfoId">
+            {{ item.VisitorExhibitionInfoId.NickName || item.CreatedBy }}</div>
+          <!-- <div>浏览数{{item.PVNumber}}</div> -->
+          <div class="body-eyes">
+            <ion-icon name="eye"></ion-icon>
+            浏览{{item.PVNumber}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="nomore" *ngIf="!isMoreGoods">
+      我也是有底线的
+    </div>
+    <ion-infinite-scroll *ngIf="isMoreGoods" threshold="100px" (ionInfinite)="loadData1($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="加载中...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+  <!-- 商品 -->
+  <div class="botomo-content" *ngIf="!isGoodsNull && type=='1'">
+    <div class="masonry">
+      <div class="item" *ngFor="let item of goodsList" [ngClass]="{'right': item.float === 'right'}" (click)="goToDetails(item.RecordId)">
+        <div class="item_content content-lar">
+          <img [src]="item.PicList[0].PicPath || 'assets/img/red.png'" alt="">
+          <div class="desc">{{item.productTitle}}</div>
+        </div>
+        <div class="con-botom">
+          <div class="body-left">
+            <div class="body-logo">
+              ￥{{item.ProductPrice}}
+            </div>
+          </div>
+          <div class="body-eyes">
+            <ion-icon name="eye"></ion-icon>
+            浏览{{item.PVNumber}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="nomore" *ngIf="!isMoreGoods">
+      我也是有底线的
+    </div>
+    <ion-infinite-scroll *ngIf="isMoreGoods" threshold="100px" (ionInfinite)="loadData1($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="加载中...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+  <!-- <div class="botomo-content" *ngIf=(!isGoodsNull)>
+    <div class="body-pics" *ngFor="let item of goodsList;let i=index" (click)="goToDetails(item.RecordId)">
+      <div class="img-con">
+        <img [src]="item.PicList[0].PicPath || 'assets/img/red.png'" alt="">
+      </div>
+      <div class="desc-name">{{item.productTitle}}</div>
+      <div class="con-botom">
+        <div class="body-left">
+          <div class="body-logo" *ngIf="isGoodsNull && type=='1'">
+            ￥{{item.ProductPrice}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+</ion-content>

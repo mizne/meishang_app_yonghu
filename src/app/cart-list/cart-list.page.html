@@ -1,0 +1,117 @@
+<ion-header>
+
+  <ion-toolbar class="toolbarback">
+    <!-- <ion-icon style="float:left;width:50px;height:30px;color:#949492;" name="ios-arrow-back" (click)='canGoBack()'>
+    </ion-icon> -->
+    <img style="float:left;width:30px;height:30px;color:#949492;" src="assets/icons/back.png" (click)='canGoBack()'>
+    <ion-title id="animated">购物车</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="top_style">
+    <ion-checkbox color="danger" [ngModel]="selectAll" [indeterminate]="indeterminate"
+      (ngModelChange)="selectAllChange()" style="top: 0.14rem; margin-left: 1rem;"></ion-checkbox>
+    <span class="check_all">全选</span>
+    <span class="clear_all" (click)="clearCart()">清空购物车</span>
+  </div>
+  <div *ngFor="let item of shopcart, let i = index"
+    style="background-color: #f4f4f4;margin: 10px 20px;border-radius: 7px;">
+
+    <div>
+      <div style="padding:10px;color:#F3367C;">
+        <ion-label>{{item.shops.shop_name}}</ion-label>
+      </div>
+      <div style="display: flex;align-items: center;border-bottom: 0.55px solid #fff;border-top: 0.55px solid #fff">
+        <div style="margin:10px;">
+          <ion-checkbox color="danger" style="padding:2px;background-color: #f4f4f4;border:none;"
+            [ngModel]="item.shops.isSelect" (ngModelChange)="selectOneChange(item.shops)"></ion-checkbox>
+          <!-- <mat-checkbox (change)="masterToggle()" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()"></mat-checkbox>
+          <mat-checkbox (change)="selection.toggle(row)" [checked]="selection.isSelected(row)" (click)="$event.stopPropagation()"></mat-checkbox> -->
+        </div>
+
+        <ion-row *ngFor="let products_item of item.shops.products, let products_index = index"
+          (click)="goDetails(i,products_index)" style="flex-wrap: nowrap;width: 100%;">
+
+          <div class="" style="display:flex;align-items: center;justify-content: center;width: 40%;">
+            <img style="max-width: 100%;max-height: 100px;" [src]="products_item.PicPath" alt="" />
+          </div>
+          <div class="" style="padding-left: 10px;">
+            <h3>{{products_item.name}}</h3>
+            <!-- <ion-item>
+            <ion-label>
+              <h2>{{products_item.name}}</h2>
+            </ion-label>
+            <ion-checkbox color="danger" checked={{products_item.isSelect}} (ionChange)="AddRemoveRecipeToFavoriteOpt(products_item,i,products_index);$event.stopPropagation();"></ion-checkbox>
+          </ion-item> -->
+            <p style="color: gray;font-size: 15px;">双十一价格9.9包邮,近期期待</p>
+            <div style="  display: flex; justify-content: center; align-items: center; height: 35px;">
+              <label style="display: inline-flex;align-items: center;font-size:14px;">￥{{products_item.price}}</label>
+              <div style="display: inline-flex;margin-left: 10px;align-items: center;">
+                <img src="assets/img/reduce.png" style="width: 20px;height: 20px"
+                  (click)="reduceNum(i,products_index);$event.stopPropagation();" />
+
+                <label
+                  style="border: 1px solid gray;width: 35px;heigth:30px;display: flex;font-size:12px;justify-content: center;align-items: center">{{products_item.num}}</label>
+                <img src="assets/img/add.png" style="width: 20px;height: 20px"
+                  (click)="addNum(i,products_index);$event.stopPropagation();" />
+                <img src="assets/img/delete.png" style="margin-left:5px;width: 20px;height: 20px"
+                  (click)="deleteProduct(i,products_index);$event.stopPropagation();" />
+              </div>
+            </div>
+          </div>
+
+          <ion-col col-2 *ngIf=(false) style="display:flex;align-items: center">
+            <!-- <img src="assets/img/nanz5.jpg" alt=""/> -->
+            <img [src]="products_item.PicPath" alt="" />
+          </ion-col>
+          <ion-col col-10 *ngIf=(false)>
+            <h2>{{products_item.name}}</h2>
+            <!-- <ion-item>
+              <ion-label>
+                <h2>{{products_item.name}}</h2>
+              </ion-label>
+              <ion-checkbox color="danger" checked={{products_item.isSelect}} (ionChange)="AddRemoveRecipeToFavoriteOpt(products_item,i,products_index);$event.stopPropagation();"></ion-checkbox>
+            </ion-item> -->
+            <p style="color: gray">双十一价格9.9包邮,近期期待</p>
+            <div>
+              <label>￥{{products_item.price}}</label>
+              <div style="display: inline-flex;margin-left: 20px">
+                <img src="assets/img/add.png" style="width: 15px;height: 15px"
+                  (click)="addNum(i,products_index);$event.stopPropagation();" />
+                <label style="border: 1px solid gray;margin-left: 5px;margin-right: 5px">{{products_item.num}}</label>
+                <img src="assets/img/reduce.png" style="width: 15px;height: 15px"
+                  (click)="reduceNum(i,products_index);$event.stopPropagation();" />
+                <img src="assets/img/delete.png" style="margin-left:20px;width: 15px;height: 15px"
+                  (click)="deleteProduct(i,products_index);$event.stopPropagation();" />
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items:center;">
+      <div style="float: right;margin: 10px">
+        <label style="margin-right: 10px"> 小计:￥{{item.shops.allPrise}}</label>
+      </div>
+    </div>
+  </div>
+  <div style="height: 80px;"></div>
+  
+</ion-content>
+<!-- 固定底边栏 -->
+<div class="body-bottom">
+  <div class="buyLeft">
+    <div class="left-service">
+      <!-- <div class="service-top">
+          <img src="assets/img/custom-service.png" alt="">
+        </div> -->
+      <div class="tips-servicce">
+        <!-- 哈哈哈哈哈 -->
+        总价：{{ SumPrice|| '0'}} 元
+      </div>
+    </div>
+  </div>
+  <div class="buyRight" (click)="presentOrder()">去结算</div>
+</div>

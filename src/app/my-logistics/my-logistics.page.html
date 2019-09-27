@@ -1,0 +1,42 @@
+<ion-header>
+
+  <ion-toolbar class="toolbarback">
+    <!-- <ion-icon style="float:left;width:50px;height:30px;color:#949492;" name="ios-arrow-back" (click)='canGoBack()'>
+    </ion-icon> -->
+    <img style="float:left;width:30px;height:30px;color:#949492;" src="assets/icons/back.png" (click)='canGoBack()'>
+    <ion-title id="animated">物流进度</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card class="logistics">
+    <ion-row>
+      <ion-col>
+        <span>快递公司：</span><span>{{detail?.Logistics ? detail?.Logistics:'暂无'}}</span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <span>物流编号：</span><span>{{detail?.ExpressNum ? detail?.ExpressNum:'暂无'}}</span>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+  <ion-card class="logistics">
+
+    <ion-row (click)='getRouteInfo()' class="info">
+      <ion-col>
+        物流信息
+      </ion-col>
+    </ion-row>
+    <!-- <mat-divider></mat-divider> -->
+    <div>
+      <ion-row *ngFor="let k of routesInfo;let i=index">
+        <ion-col size='3' text-right>{{k.time}}</ion-col>
+        <ion-col size='1' text-center><img src="../../../assets/首页/circle.png" alt=""><br>
+          <img src="../../../assets/首页/line.png" alt="" class="line"></ion-col>
+        <ion-col size='8'>{{k.context}}</ion-col>
+      </ion-row>
+
+    </div>
+  </ion-card>
+
+</ion-content>

@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar class="toolbarback">
+    <!-- <ion-icon style="float:left;width:50px;height:30px;color:#949492;" name="ios-arrow-back" (click)='canGoBack()'>
+    </ion-icon> -->
+    <img style="float:left;width:30px;height:30px;color:#949492;" src="assets/icons/back.png" (click)='canGoBack()'>
+    <ion-title id="animated">帮助与客服</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="help-content">
+  <div *ngFor="let item of messageList;let i = index">
+    <ion-row>
+      <ion-col size='1.6' [ngStyle]="{padding: '12px 0'}" [ngClass]="{'userImgStyle': item.Type === '0'}">
+        <img [src]="storeLogo" alt="" class="help-logo">
+      </ion-col>
+      <ion-col size='10.4'>
+        <div class="card">
+          <div class="card-content">
+            <div class="card-content-inner">
+              {{item.Content}}
+            </div>
+          </div>
+        </div>
+      </ion-col>
+      <ion-col size='1.6' [ngStyle]="{padding: '12px 0'}" *ngIf="item.Type === '0'">
+        <img [src]="Logo" alt="" class="help-logo">
+      </ion-col>
+    </ion-row>
+  </div>
+  
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col size='10'>
+        <ion-input class="inp" placeholder="请输入详细问题" [(ngModel)]="sendContent" (keyup.enter)="sendMessage()"></ion-input>
+      </ion-col>
+      <ion-col size='2'>
+       <span class="plus" (click)="sendMessage()">发送</span>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,36 @@
+.card-content-inner {
+    color: black;
+}
+
+.company{
+    padding-left: 20px;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    display: flex;
+    color: #9D9D9D;
+    font-size: 15px;
+}
+.tips {
+    margin-bottom: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    text-align: center;
+    .title{
+        margin: 0 auto;
+        width: 90%;
+        background-color: rgb(54, 183, 243); 
+        color: #fff;
+        font-size: 20px;
+        display: flex;
+        height: 40px;
+        justify-content: center;
+        align-items: center;
+    }
+}
+// .contentStyle {
+//     height: 130px;
+// }

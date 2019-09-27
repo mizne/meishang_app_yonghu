@@ -1,0 +1,150 @@
+<ion-content id="home" color="#fff">
+  <div id="headerBar" class="headerBar">
+    <div class="headerBar-logo" (click)="presentModal1()">
+      <img src="assets/img/add.png" />
+    </div>
+    <a class="headerBar-search" (click)="goToSearch()">
+      <span class="input_style">搜索教程</span>
+    </a>
+    <a class="headerBar-login" (click)="goToMsgList()">
+      <img src="assets/img/inform.png" />
+    </a>
+  </div>
+
+  <div class="ad" style="clear: both">
+    <!-- <ion-slides pager="true" autoplay="1000" loop="true"> -->
+      <ion-slides pager="true" autoplay="1000" loop="true" *ngIf="isBanner" [options]="slidesOptions">
+        <ion-slide *ngFor="let item of bannerList" (click)="goToTeachingDetails(item.ProductId)" (press)="goToSave()">
+          <img [src]="item.Name" />
+        </ion-slide>
+      </ion-slides>
+      <ion-slides pager="true" autoplay="1000" loop="true" *ngIf="!isBanner">
+        <ion-slide>
+          <img
+            src="https://baizhanke-1253522040.cos.ap-chengdu.myqcloud.com/141be1ba-a4a9-4058-9036-e1338c0f413b.png" />
+        </ion-slide>
+        <ion-slide>
+          <img
+            src="https://baizhanke-1253522040.cos.ap-chengdu.myqcloud.com/18010b86-43c3-43aa-b399-c0c60d9fb147.jpg" />
+        </ion-slide>
+        <ion-slide>
+          <img
+            src="https://baizhanke-1253522040.cos.ap-chengdu.myqcloud.com/da2ed3ea-ea0f-4254-b3b1-f391961d6cf3.jpg" />
+        </ion-slide>
+        <ion-slide>
+          <img
+            src="https://baizhanke-1253522040.cos.ap-chengdu.myqcloud.com/88f1b860-93c6-46f4-93f4-3b17053a629f.jpg" />
+        </ion-slide>
+        <ion-slide>
+          <img
+            src="https://baizhanke-1253522040.cos.ap-chengdu.myqcloud.com/bdba9803-c438-4921-bb62-6060fdf2cd2e.jpg" />
+        </ion-slide>
+      </ion-slides>
+    <!-- </ion-slides> -->
+  </div>
+
+  <div class="title-sign" (click)="goToSign()">
+    <div class="con-sign">
+      <!-- <ion-icon name="calendar" class="iocn-sign"></ion-icon> -->
+      <img src="assets/icons/date.png" alt="" class="icon_style">
+      <div class="tips-sign">每日签到</div>
+    </div>
+  </div>
+
+  <div class="body-tab">
+    <div [ngClass]="{'clickAlive': isRecommend==true}"
+      style="font-size: 16px;  display: flex; justify-content: center;width: 50px;margin-left: 10px;"
+      (click)="goToChange()">推荐</div>
+    <div [ngClass]="{'clickAlive': isRecommend==false}"
+      style="font-size: 16px;  display: flex;justify-content: center;width: 50px;margin-left: 10px"
+      (click)="goToChange()">
+      收藏</div>
+
+  </div>
+  <div class="recommend">
+    <span class="recommend_title" *ngIf=(isRecommend)>推荐教程</span>
+    <span class="recommend_title" *ngIf=(!isRecommend)>收藏教程</span>
+    <span class="recomment_class" (click)="classification()">分类</span>
+  </div>
+
+  <div class="botomo-content" *ngIf="isRecommend">
+
+    <div class="bofy-none" *ngIf="isCourseEmpty">
+      <div class="img-none">
+        <img src="assets/img/none.jpg" alt="" />
+      </div>
+      <div class="tips-none">暂无教程</div>
+    </div>
+
+    <div class="masonry">
+      <div class="item" *ngFor="let item of coursesList" [ngClass]="{'right': item.float === 'right'}">
+        <div class="item_content content-lar" (click)="goToTeachingDetails(item.RecordId)">
+          <img [src]="item.PicList[0].PicPath" alt="" />
+          <div class="desc">{{ item.ProductName }}</div>
+        </div>
+        <div class="bottom-info">
+          <div class="left-logo" (click)="goToVisitorHome(item.ProductVisitorId)">
+            <img [src]="
+                item.VisitorExhibitionInfoId.Logo || 'assets/img/shuang.png'
+              " alt="" *ngIf="item.VisitorExhibitionInfoId" />
+          </div>
+          <div class="right-nickname" *ngIf="item.VisitorExhibitionInfoId">
+            {{ item.VisitorExhibitionInfoId.NickName || item.CreatedBy }}
+          </div>
+          <div class="body-eyes">
+            <!-- <ion-icon name="eye"></ion-icon> -->
+            <img src="assets/icons/eye.png" alt="" class="icon_check_style">
+            浏览{{ item.PVNumber }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="nomore" *ngIf="!isCourseEmpty && IsFirstList">
+      我也是有底线的
+    </div>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData1($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="加载中...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+  <div class="botomo-content" *ngIf="!isRecommend">
+    <div class="bofy-none" *ngIf="IsCollection">
+      <div class="img-none">
+        <img src="assets/img/none.jpg" alt="" />
+      </div>
+      <div class="tips-queryList/Product">暂无收藏教程</div>
+    </div>
+
+    <div class="masonry">
+      <div class="item" *ngFor="let item of coursesFollowList" [ngClass]="{'right': item.float === 'right'}">
+        <div class="item_content content-lar" (click)="goToTeachingDetails(item.ProductId.RecordId)">
+          <img [src]="item.ProductId.PicList[0].PicPath" alt="" />
+          <div class="desc">{{ item.ProductId.ProductName }}</div>
+        </div>
+        <div class="bottom-info">
+          <div class="left-logo" (click)="goToVisitorHome(item.ProductId.ProductVisitorId)">
+            <img [src]="item.ProductVisitorExhibitionId.Logo" alt="" />
+          </div>
+          <div class="right-nickname">
+            {{ item.ProductVisitorExhibitionId.NickName }}
+          </div>
+          <!-- <div class="body-eyes">
+            <ion-icon name="eye"></ion-icon>
+            浏览{{ item.PVNumber }}
+          </div> -->
+        </div>
+      </div>
+    </div>
+    <div class="nomore" *ngIf="!IsCollection && !isMoreCollection">
+      我也是有底线的
+    </div>
+    <ion-infinite-scroll *ngIf="isMoreCollection" threshold="100px" (ionInfinite)="loadData2($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="加载中...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+</ion-content>

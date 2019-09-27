@@ -1,0 +1,74 @@
+<ion-header>
+
+  <ion-toolbar class="toolbarback">
+    <!-- <ion-icon style="float:left;width:50px;height:30px;color:#949492;" name="ios-arrow-back" (click)="canGoBack()">
+    </ion-icon> -->
+    <img style="float:left;width:30px;height:30px;color:#949492;" src="assets/icons/back.png" (click)='canGoBack()'>
+    <ion-title id="animated">地址列表</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <div>
+    <ion-row class="address" *ngIf='false'>
+      <ion-col size="10">
+        <div class="address-head">
+          <span> 茜茜 </span>
+          <span>132654521654</span>
+          <span class="edit">
+            <img src="../../assets/businessman/edit.png" alt="" [ngStyle]="{height: '12px'}">编辑</span>
+        </div>
+        <div class="address-foot">
+          江苏省 南京市 建邺区
+        </div>
+      </ion-col>
+      <ion-col size='2' text-right class="choose">
+        <ion-checkbox></ion-checkbox>
+      </ion-col>
+    </ion-row>
+    <ion-row class="address" *ngFor="let item of AddressInfo;let k=index">
+      <ion-col size="8" (click)="goToChoose(item.RecordId,item.Name)" >
+        <div class="address-head">
+          <span> {{item.Name || item.VisitorId.Name}}</span>
+          <!-- <div>
+            <span class="edit" (click)='addAddress("edit",item)'>
+              <img src="../../assets/businessman/edit.png" alt="" [ngStyle]="{height: '12px'}">编辑</span>
+          </div> -->
+        </div>
+        <div class="address-foot">
+          <span>联系电话： {{item.Phone || item.VisitorId.Mob}}</span>
+        </div>
+        <div class="address-foot">
+          {{item.Province}} {{item.City}} {{item.Area}}
+        </div>
+        <div class="address-foot">
+          {{item.AddressDetail}}
+        </div>
+      </ion-col>
+      <ion-col size='4' text-right>
+        <div>
+          <span class="edit" (click)='addAddress("edit",item)'>
+            <img src="../../assets/businessman/edit.png" alt="" [ngStyle]="{height: '12px'}">编辑</span>
+        </div>
+        <div>
+          <span class="edit" (click)='delectAddress(item)'>
+            <img src="../../assets/businessman/edit.png" alt="" [ngStyle]="{height: '12px'}">删除</span>
+        </div>
+      </ion-col>
+      <!-- <ion-col size='2' text-right class="choose">
+        <ion-checkbox></ion-checkbox>
+      </ion-col> -->
+    </ion-row>
+   
+  </div>
+  <ion-row class="add" (click)='addAddress("add",null)'>
+    <ion-col size='1'>
+      <img src="../../assets/businessman/add.png" alt="">
+    </ion-col>
+    <ion-col size='11'>
+      <span>添加新地址</span>
+    </ion-col>
+  </ion-row>
+
+</ion-content>

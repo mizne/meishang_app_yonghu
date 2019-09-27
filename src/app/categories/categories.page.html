@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar class="toolbarback">
+    <!-- <ion-icon style="float:left;width:50px;height:30px;color:#949492;" name="ios-arrow-back" (click)='canGoBack()'>
+    </ion-icon> -->
+    <img style="float:left;width:30px;height:30px;color:#949492;" src="assets/icons/back.png" (click)='canGoBack()'>
+    <ion-title id="animated">分类</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- 搜索 -->
+  <!-- Default Searchbar -->
+  <!-- <ion-searchbar (click)="goToSearch()"></ion-searchbar> -->
+  <a class="headerBar-search" (click)="goToSearch()">
+    <span class="input_style">搜索</span>
+  </a>
+  <!-- <a class="headerBar-search" (click)="goToSearch()"></a> -->
+  <!-- <div (click)="presentAlertConfirm()">haha</div> -->
+
+  <!-- <div class="body-search">
+    <ion-searchbar style="height: 18px;" [(ngModel)]="searchValue" aria-placeholder="hah"></ion-searchbar>
+    <div class="btn-search" (click)="goToSearch()">搜索</div>
+  </div>
+  -->
+
+  <div class="body-categories">
+    <div class="body-left">
+
+      <!-- <div class="cate-left" *ngFor="let item of CategoriesFirstList;let i=index">  -->
+      <div [ngClass]="{'cateLeftActive': (leftid==item.RecordId)}" class="cate-left"
+        *ngFor="let item of CategoriesFirstList;let i=index" (click)="gotoGet1(item)">
+        <div [ngClass]="{'perStyleActive1': (leftid==item.RecordId)}" style="font-size: 22px;font-weight: 600;">{{ i+1}}
+        </div>
+
+        <div [ngClass]="{'perStyleActive': (leftid==item.RecordId)}">
+          {{item.Name}}</div>
+        <!-- <div [ngClass]="{'perStyleActive': (leftid==item.RecordId)}">hhaa</div> -->
+      </div>
+      <!-- <div  *ngIf=(isGoods1) class="per-category-active"(click)="gotoGet1()">哈哈1</div> -->
+      <!-- <div class="" (click)="gotoGet2()">哈哈2</div> -->
+    </div>
+    <div class="body-right">
+      <div class="title-right">
+        类别
+      </div>
+      <div class="secondCate" *ngFor="let item of CategoriesSecondList;let i=index"
+        (click)="goToDetails(item)">
+        <div class="right-top">
+          <!-- <img src="assets/img/makeup3.png" alt=""> -->
+          <!-- {{item.Image}} -->
+          <img [src]="item.Image" alt="">
+        </div>
+        <div class="right-bottom">
+          {{item.Name}}
+        </div>
+      </div>
+      <!-- <div  *ngIf=(isGoods2)>我是哈哈2</div> -->
+    </div>
+  </div>
+</ion-content>

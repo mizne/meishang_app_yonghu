@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar class="toolbarback">
+    <!-- <ion-icon style="float:left;width:50px;height:30px;color:#949492;" name="ios-arrow-back" (click)='canGoBack()'>
+    </ion-icon> -->
+    <img style="float:left;width:30px;height:30px;color:#949492;" src="assets/icons/back.png" (click)='canGoBack()'>
+    <ion-title id="animated">地址编辑</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item>
+    <ion-label position="stacked">收货人</ion-label>
+    <ion-input placeholder="请输入收件人信息" (value)="form.Name" [(ngModel)]="form.Name" clearInput></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked">联系电话</ion-label>
+    <ion-input placeholder="请输入11位手机号" minlength="11" maxlength="11" (value)="form.Phone" [(ngModel)]="form.Phone"
+      name="number" clearInput></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked" style="margin-bottom: 8px;">所在地区</ion-label>
+    <!-- <ion-input placeholder="" (value)="form.Area" clearInput></ion-input> -->
+    <div style="display: flex;width: 100%;flex-direction: column;">
+      <ion-item style="width: 100%;">
+        <ion-label>省</ion-label>
+        <ion-select [interfaceOptions]="provinceOptions" interface="action-sheet" placeholder="省" cancelText='取消'
+          (ionChange)="provinceOptionChange($event)" [(ngModel)]="form.Province">
+          <ion-select-option *ngFor="let item of provinceList" [value]="item">{{item.text}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item style="width: 100%;">
+        <ion-label>市</ion-label>
+        <ion-select [interfaceOptions]="cityOptions" interface="action-sheet" placeholder="市" cancelText='取消'
+          (ionChange)="cityOptionChange($event)" [(ngModel)]="form.City">
+          <ion-select-option *ngFor="let item of cityList" [value]="item">{{item.text}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item style="width: 100%;">
+        <ion-label>区</ion-label>
+        <ion-select [interfaceOptions]="districtOptions" interface="action-sheet" placeholder="区" cancelText='取消'
+          (ionChange)="districtOptionChange($event)" [(ngModel)]="form.County">
+          <ion-select-option *ngFor="let item of districtList" [value]="item">{{item.text}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked">详细地址</ion-label>
+    <ion-input placeholder="请输入详细地址" (value)="form.Address" [(ngModel)]="form.Address" clearInput></ion-input>
+  </ion-item>
+
+  <div class="bottom">
+    <div class="button" (click)='sumbit()'>提交</div>
+  </div>
+
+
+</ion-content>

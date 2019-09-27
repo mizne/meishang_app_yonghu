@@ -1,0 +1,178 @@
+<ion-header>
+  <ion-toolbar class="toolbarback">
+    <!-- <ion-icon style="float:left;width:50px;height:30px;color:#949492;" name="ios-arrow-back" (click)='canGoBack()'>
+    </ion-icon> -->
+    <img style="float:left;width:30px;height:30px;color:#949492;" src="assets/icons/back.png" (click)='canGoBack()'>
+    <ion-title id="animated">我的订单</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <!-- 一级 tab -->
+  <div class="body-tab1">
+    <div [ngClass]="{'clickAlive': orderType=='0'}"
+      style="font-size: 14px;  display: flex;justify-content: center;width: 90px;margin-left: 5px"
+      (click)="queryList('0')">商品</div>
+    <div [ngClass]="{'clickAlive': orderType=='1'}"
+      style="font-size: 14px;  display: flex;justify-content: center;width: 90px;margin-left: 5px"
+      (click)="queryList('1')" *ngIf="!isTest">课程</div>
+  </div>
+  <!-- 二级 tab -->
+  <div class="buttons-tab" *ngIf="orderType=='0' ">
+    <div style="font-size: 14px;  display: flex;justify-content: center;width: 90px;margin-left: 5px"
+      [ngClass]="{'clickAlive': activeStyle === '0'}" (click)="getOrderList()">全部</div>
+    <div style="font-size: 14px;  display: flex;justify-content: center;width: 90px;margin-left: 5px"
+      [ngClass]="{'clickAlive': activeStyle === '101'}" (click)="getOrderStateList('101')">待付款</div>
+    <div style="font-size: 14px;  display: flex;justify-content: center;width: 90px;margin-left: 5px"
+      [ngClass]="{'clickAlive': activeStyle === '201'}" (click)="getOrderStateList('201')">待发货</div>
+    <div style="font-size: 14px;  display: flex;justify-content: center;width: 90px;margin-left: 5px"
+      [ngClass]="{'clickAlive': activeStyle === '202'}" (click)="getOrderStateList('202')">待收货</div>
+    <div style="font-size: 14px;  display: flex;justify-content: center;width: 90px;margin-left: 5px"
+      [ngClass]="{'clickAlive': activeStyle === '401'}" (click)="getOrderStateList('401')">已完成</div>
+    <div style="font-size: 14px;  display: flex;justify-content: center;width: 90px;margin-left: 5px"
+      [ngClass]="{'clickAlive': activeStyle === '300'}" (click)="getOrderStateBoolList()">售后</div>
+    <div style="font-size: 14px;  display: flex;justify-content: center;width: 90px;margin-left: 5px"
+      [ngClass]="{'clickAlive': activeStyle === '402'}" (click)="getOrderStateList('402')">已关闭</div>
+  </div>
+  <div class="buttons-tab" *ngIf="orderType=='1' ">
+    <div style="font-size: 14px;  display: flex;justify-content: center;width: 90px;margin-left: 5px"
+      [ngClass]="{'clickAlive': activeStyle1 == '0'}" (click)="getOrderList1()">全部</div>
+    <div style="font-size: 14px;  display: flex;justify-content: center;width: 90px;margin-left: 5px"
+      [ngClass]="{'clickAlive': activeStyle1 == '101'}" (click)="getOrderStateList1('101')">待付款</div>
+    <div style="font-size: 14px;  display: flex;justify-content: center;width: 90px;margin-left: 5px"
+      [ngClass]="{'clickAlive': activeStyle1 == '401'}" (click)="getOrderStateList1('401')">已完成</div>
+    <div style="font-size: 14px;  display: flex;justify-content: center;width: 90px;margin-left: 5px"
+      [ngClass]="{'clickAlive': activeStyle1 == '402'}" (click)="getOrderStateList1('402')">已关闭</div>
+  </div>
+  <!-- 展示内容 -->
+  <div class="content-block" *ngIf="orderType=='0' ">
+    <div class="bofy-none" *ngIf=(isOrderNone)>
+      <div class="img-none">
+        <img src="assets/img/none.jpg" alt="">
+      </div>
+      <div class="tips-none">暂无订单</div>
+    </div>
+    <div *ngFor="let item of OrderList;let i = index">
+      <ion-card class="order-card" (click)="goToDetails(item.RecordId)"
+        style="background-color: #f4f4f4;box-shadow: none;">
+        <ion-row [ngStyle]="{padding:'5px 0'}">
+          <ion-col size='8.4'>
+            下单时间：{{item.CreatedAt}}
+          </ion-col>
+          <ion-col text-right size='3.6'>
+            <span [ngStyle]="{color: '#F3367C'}" *ngIf="item.state === '402'"> 已关闭</span>
+            <span [ngStyle]="{color: '#F3367C'}" *ngIf="item.state === '101'"> 待付款</span>
+            <span [ngStyle]="{color: '#F3367C'}" *ngIf="item.state === '201'"> 待发货</span>
+            <span [ngStyle]="{color: '#F3367C'}" *ngIf="item.state === '202'"> 待收货</span>
+            <span [ngStyle]="{color: '#F3367C'}" *ngIf="item.state === '401'"> 已完成</span>
+            <span [ngStyle]="{color: '#F3367C'}" *ngIf="item.IsPostSale === true"> {{ changeState(item.state) }}</span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="4"
+            *ngIf="item.ProductId && item.ProductId.PicList && item.ProductId.PicList[0] && item.ProductId.PicList[0].PicPath">
+            <!-- <img src="../../assets/img/white.jpg" alt=""> -->
+            <img [src]="item.ProductId.PicList[0].PicPath" alt="">
+          </ion-col>
+          <ion-col size="8" style="display: flex;justify-content: center;flex-direction: column;padding-left: 30px;">
+            <span>{{item.OrderName}}</span>
+            <span> 实付:￥{{item.Sum}}</span>&nbsp;
+            <span>共{{item.OrderLineNumber}}件商品</span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <!-- <ion-col class="pay">
+            <span> 实付:￥{{item.Sum}}</span>&nbsp;
+            <span>共{{item.OrderLineNumber}}件商品</span>
+          </ion-col> -->
+          <ion-col text-right style="display: flex;flex-direction: row-reverse;">
+            <button mat-raised-button color="accent" (click)="goToCancelOrder(item.RecordId);$event.stopPropagation();"
+              *ngIf="item.state === '101'" style="margin: 5px;box-shadow: none;color: #fff;background-color: #f3367c;"
+              [ngStyle]="{borderRadius:'30px'}">取消订单
+            </button>
+            <button mat-raised-button color="accent" (click)="goToDetails(item.RecordId);$event.stopPropagation();"
+              *ngIf="item.state === '101'" style="margin: 5px;box-shadow: none;color: #fff;background-color: #f3367c;"
+              [ngStyle]="{borderRadius:'30px'}">抢先支付
+              <span *ngIf="false">29:31</span>
+            </button>
+            <button mat-raised-button color="accent" (click)="goToSales(item.RecordId);$event.stopPropagation();"
+              *ngIf="item.state === '201' || item.state === '202'"
+              style="margin: 5px;box-shadow: none;color: #fff;background-color: #f3367c;"
+              [ngStyle]="{borderRadius:'30px'}">申请售后
+            </button>
+            <button mat-raised-button color="accent" (click)="goToReceipt(item.RecordId);$event.stopPropagation();"
+              *ngIf="item.state === '202'" style="margin: 5px;box-shadow: none;color: #fff;background-color: #f3367c;"
+              [ngStyle]="{borderRadius:'30px'}">确认收货
+            </button>
+            <!-- <button mat-raised-button color="accent" *ngIf="item.state != '101'"
+              style="margin: 5px;box-shadow: none;color: #fff;background-color: #f3367c;"
+              [ngStyle]="{borderRadius:'30px'}">详细信息
+            </button> -->
+            <!-- 查看物流 -->
+            <button mat-raised-button color="accent" *ngIf="item.state != '101' && item.state != '402' "
+              (click)="goToLogistics(item.RecordId);$event.stopPropagation();"
+              style="margin: 5px;box-shadow: none;color: #fff;background-color: #f3367c;"
+              [ngStyle]="{borderRadius:'30px'}">查看物流
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </div>
+  </div>
+  <div class="content-block" *ngIf="orderType=='1' ">
+    <div class="bofy-none" *ngIf=(isOrderNone1)>
+      <div class="img-none">
+        <img src="assets/img/none.jpg" alt="">
+      </div>
+      <div class="tips-none">暂无订单</div>
+    </div>
+    <div *ngFor="let item of OrderList1;let i = index" (click)="goToDetailsForCourse(item.RecordId)">
+      <ion-card class="order-card" style="background-color: #f4f4f4;box-shadow: none;">
+        <ion-row [ngStyle]="{padding:'5px 0'}">
+          <ion-col size='9'>
+            下单时间：{{item.CreatedAt}}
+          </ion-col>
+          <ion-col text-right size='3'>
+            <span [ngStyle]="{color: '#F3367C'}" *ngIf="item.state === '402'"> 已关闭</span>
+            <span [ngStyle]="{color: '#F3367C'}" *ngIf="item.state === '101'"> 待付款</span>
+            <span [ngStyle]="{color: '#F3367C'}" *ngIf="item.state === '401'"> 已完成</span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="4" *ngIf="item.ProductId && item.ProductId.CourseFirstImage ">
+            <img [src]="item.ProductId.CourseFirstImage" alt="">
+          </ion-col>
+          <ion-col size="8">
+            {{item.ProductId.CourseTitle}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="pay" size="8">
+            <span> 实付:￥{{item.Sum}}</span>&nbsp;
+            <span>共{{item.OrderLineNumber}}件课程</span>
+          </ion-col>
+          <ion-col text-right style="display: flex;flex-direction: row-reverse;">
+            <button mat-raised-button color="accent" (click)="goToCancelOrder1(item.RecordId);$event.stopPropagation();"
+              *ngIf="item.state === '101'" style="margin: 5px;box-shadow: none;color: #fff;background-color: #f3367c;"
+              [ngStyle]="{borderRadius:'30px'}">取消订单
+            </button>
+            <button mat-raised-button color="accent" (click)="goToDetails(item.RecordId)" *ngIf="item.state === '101'"
+              style="margin: 5px;box-shadow: none;color: #fff;background-color: #f3367c;"
+              [ngStyle]="{borderRadius:'30px'}">抢先支付
+              <span *ngIf="false">29:31</span>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </div>
+  </div>
+  <!-- 滚动加载 -->
+  <div class="nomore" *ngIf="!isMoreGoods">
+    我也是有底线的
+  </div>
+  <ion-infinite-scroll *ngIf="isMoreGoods" threshold="100px" (ionInfinite)="loadMoreData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="加载中...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

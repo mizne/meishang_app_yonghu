@@ -1,0 +1,231 @@
+<ion-header>
+  <ion-toolbar class="toolbarback">
+    <img style="float:left;width:30px;height:30px;color:#949492;" src="assets/icons/back.png" (click)='canGoBack()'>
+    <ion-title id="animated">教程详情</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content> 
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="presentModalShare()">
+      <!-- <ion-icon name="share"></ion-icon> -->
+      <img src="assets/icons/share.png" alt="" class="icon_style">
+    </ion-fab-button>
+  </ion-fab>
+
+  <!--Banner-->
+  <div class="ad1" *ngIf="PicList==undefined" style="height: 500px">
+  </div>
+  <div class="ad" *ngIf="PicList">
+    <img [src]="PicList[0]?.PicPath">
+   
+  </div>
+  <!-- 标题 -->
+  <div class="top-both">
+    <div class="title-course">
+      {{teachingDetails?.ProductName}}
+    </div>
+    <div class="body-eyes">
+      <!-- <ion-icon name="eye"></ion-icon> -->
+      <span>
+      浏览：{{checkNum}} 分享：{{shareNum}}
+      </span>
+    </div>
+  </div>
+  <div>
+    <div class="todelete" (click)="goToDelete()" *ngIf=(isOwn)>删除</div>
+    <!-- <div class="todelete" (click)="goToShare()">分享</div> -->  
+  </div>
+  <ion-icon name="ion-thumbsup"></ion-icon>
+
+  <div class="con-botom">
+    <div class="body-left" *ngIf=(!isOwn) (click)="goToVisitorHome(teachingDetails.ProductVisitorId)">
+      <div class="body-logo">
+        <!-- <img src="assets/img/friends.jpg" alt=""> -->
+        <img [src]="teachingDetails?.VisitorExhibitionInfoId?.Logo || 'assets/img/friends.jpg' " alt="" *ngIf="teachingDetails?.VisitorExhibitionInfoId">
+      </div>
+      <div class="body-nickname" *ngIf="teachingDetails?.VisitorExhibitionInfoId">{{teachingDetails?.VisitorExhibitionInfoId?.NickName || teachingDetails?.CreatedBy}}</div>
+
+    </div>
+ 
+    <div class="body-left1" *ngIf=(isOwn)  (click)="goToVisitorHome(teachingDetails.ProductVisitorId)">
+      <div class="body-logo">
+        <!-- <img src="assets/img/friends.jpg" alt=""> -->
+        <img [src]="teachingDetails?.VisitorExhibitionInfoId.Logo || 'assets/img/friends.jpg' "  *ngIf="teachingDetails.VisitorExhibitionInfoId"  alt="">
+      </div>
+      <div class="body-nickname"  *ngIf="teachingDetails?.VisitorExhibitionInfoId" >{{teachingDetails?.VisitorExhibitionInfoId.NickName || teachingDetails.CreatedBy}}</div>
+
+    </div>
+    <div class="body-right">
+      <!-- <ion-icon *ngIf=(!isOwn) [ngClass]="{'perStyleActive': (isFollow==true)}"
+        style=" display: flex; margin-right: 10px;justify-content:center;  align-items: center; font-size: 14px;   border-radius: 15px 15px 15px 15px ;width: 45px;height: 30px;"
+        name="person-add" (click)="goToFollow()" ></ion-icon> -->
+      <img src="assets/icons/guanzhu.png" alt="" *ngIf="isFollow === false" class="icon_check_style" (click)="goToFollow()">
+      <img src="assets/icons/guanzhup.png" alt="" *ngIf="isFollow === true" class="icon_check_style" (click)="goToFollow()">
+      <span *ngIf="isFollow && !isOwn" (click)="goToFollow()">已关注</span>
+      <span *ngIf="!isFollow && !isOwn" (click)="goToFollow()" >关注</span>
+    </div>
+  </div>
+  <!-- 个人简介 -->
+  <div class="my-remark">
+    <div class="remark-con">
+      <div class="remark-left">
+        <div class="left-top" *ngIf="!isAllRemark ">
+          {{remark1}}
+        </div>
+        <div class="left-top" *ngIf="isAllRemark">
+          {{remark2}}
+        </div>
+      </div>
+      <div class="remark-right" (click)="goToAllRemark()" *ngIf="!isAllRemark && isIcon">
+        <img src="assets/img/arrow-down.png" alt="">
+      </div>
+      <div class="remark-right" (click)="goToAllRemark()" *ngIf="isAllRemark  && isIcon">
+        <img src="assets/img/arrow-up.png" alt="">
+      </div>
+    </div>
+    <div class="remark-con-left">
+      
+    </div>
+  </div>
+  <div class="tips">
+    <div class="title1">
+      教程详情 
+    </div>
+  </div>
+
+  <!-- 教程步骤详情 -->
+  <div class="body-steps">
+    <div class="per-step" *ngFor="let item of StepsList;let i=index">
+      <div class="per-top">
+        {{item.title}}
+      </div>
+
+      <div class="per-bottom">
+        {{item.desc}}
+      </div>
+      <!-- 循环显示视频 -->
+      <div class="test">
+        <video style="width: 200px;height: 200px" [poster]="item2.img" *ngFor="let item2 of item.video;let k=index" [src]="item2.url"
+          style="margin-top:10px;width: 320px;height: 200px" #media [id]="i" preload="auto" controls controlslist="nodownload">
+        </video>
+      </div>
+      
+      <!-- 循环显示图片 -->
+      <div class="per-mid" *ngFor="let item1 of item.picList;let k=index">
+        <img [src]="item1">
+      </div>
+
+    </div>
+  </div>
+  <!-- 视频 -->
+<div style="height: 20px"></div>
+  <div class="tips" *ngIf="!isConnGoods">
+    <div class="title1">
+      商品 
+    </div>
+  </div>
+  <div>
+  </div>
+  <!-- 包含商品 -->
+  <div class="goods-body">
+    <div class="goods-per" (click)="goToGoodsDetail(item?.ProductId.RecordId)" *ngFor="let item of connGoodsList">
+      <div class="goods-left">
+        <!-- <img src="assets/img/red.png" alt=""> -->
+        <img [src]="item.ProductId?.PicList[0].PicPath " alt="">
+      </div>
+      <div class="goods-right">
+        <div class="goods-title">
+          {{item?.ProductId?.productTitle}}
+        </div>
+        <div class="goods-price">
+          <div class="price-new">￥{{item?.ProductId?.ProductPrice}}</div>
+        </div>
+        <div class="goods-type">
+          <div class="type-con">点击购买</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 课程 -->
+  <div style="height: 20px"></div>
+  <div class="tips" *ngIf="!isConnCourse">
+    <div class="title1">
+      课程
+    </div>
+  </div>
+  <div class="goods-body">
+    <div class="goods-per" (click)="goToCourseDetail(item.CourseId?.RecordId)" *ngFor="let item of connCourseList">
+      <div class="goods-left">
+        <img [src]="item.CourseId?.CourseFirstImage " alt="">
+      </div>
+      <div class="goods-right">
+        <div class="goods-title">
+          {{item?.CourseId?.CourseTitle}}
+        </div>
+        <div class="goods-type">
+          <div class="type-con">点击查看</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="comments-body" *ngIf="!isComm">
+    <span>暂无评论</span>
+    <div>
+  <div class="bottom-send">
+    <img [src]="userLogo || 'assets/img/shuang.png'" alt="" class="logo_style">
+    <ion-input style="height:30px;margin-left: 10px;border-bottom: 1px solid #1b1b1ba8;" placeholder="输入评论"
+      [(ngModel)]="commentsInfo"></ion-input>
+    <span class="send_btn" (click)="toSendComments()">发送</span>
+  </div>
+    </div>
+  </div>
+  <!-- 评论 -->
+  <div class="comments-body" *ngIf="isComm">
+    <div class="">
+      <span>评论({{commentNum}})</span>
+    </div>
+      <div class="per-comm" *ngFor="let item of commentList;let i=index" (press)="goTodelete1(i,item.RecordId)">
+        <div class="comm-top">
+          <div class="comm-logo"  (click)="goToVisitorHome(item.VisitorId)">
+            <img [src]="item.Logo || 'assets/img/shuang.png'" alt="">
+            <span style="font-size: 14px;padding-left: 6px;">{{item.Name}}</span>
+          </div>
+          <div class="comm-bottom">
+            <div class="comm-content">
+              {{item.Content}}
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="comm-bottom1" (click)="goToAllComments()" *ngIf="showMoreBtn">点击查看更多评论</div>
+    <div class="bottom-send">
+      <img [src]="userLogo || 'assets/img/shuang.png'" alt="" class="logo_style">
+      <ion-input style="height:30px;margin-left: 10px;border-bottom: 1px solid #1b1b1ba8;" placeholder="输入评论"
+        [(ngModel)]="commentsInfo"></ion-input>
+      <span class="send_btn" (click)="toSendComments()">发送</span>
+    </div>
+  </div>
+
+  <div style="height:50px;"> </div>
+
+  <!-- <div class="btn-bottom">
+    <div class="btn-send" (click)="presentModal1()">+我也要发布</div>
+  </div> -->
+  
+</ion-content>
+<!-- 底部按钮 -->
+<div class="bottom-btn">
+  <div [ngClass]="{'bottom-left1': isCollect==true}"
+    style=" background-color: #fff;z-index: 1000000; display: flex;width: 30%;height: 50px;justify-content: center;align-items: center;"
+    (click)="goToCollect()">
+    <!-- <ion-icon name="heart-empty" *ngIf="isCollect==false"></ion-icon>
+    <ion-icon name="heart" *ngIf="isCollect==true"></ion-icon> -->
+    <img src="assets/icons/kongxin.png" alt="" *ngIf="isCollect === false" class="icon_collect_style">
+    <img src="assets/icons/kongixnp.png" alt="" *ngIf="isCollect === true" class="icon_collect_style">
+    <span class="collection_style">收藏</span>
+  </div>
+  <div class="bottom-right">
+    <div class="btn-left" (click)="presentModal1()"> 我也要发布</div>
+  </div>
+</div>

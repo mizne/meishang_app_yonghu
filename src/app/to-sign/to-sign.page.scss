@@ -1,0 +1,246 @@
+.body-sign
+{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    align-items: center;
+background-color: #FBF1F2;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+
+
+    .inform-btn{
+       width: 100%;
+       height: 35px;
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center;
+    right: 0;
+    .btn-left{
+        display: flex;
+    justify-content: flex-end; 
+    align-items: center;
+        width:80px;
+        font-size: 16px;
+        color: #929292;
+
+
+    }
+    .btn-right
+    {
+        width: 35px;
+        img{
+            width: 28px;
+            height:  28px;
+
+        }
+        
+    }
+
+
+    }
+    .con-turntable{
+        // margin-top: 20px;
+        width: 200px;
+        height: 200px;
+        padding: 5px;
+            display: flex;
+    justify-content: center;
+        img{
+            width: 35px;
+              height: 120px;
+
+        }
+        // background: url(../../assets/img/round.png) ;
+    
+   background: url(../../assets/img/round.png) no-repeat  center;
+   background-size: 100%  100%;
+ 
+    }
+    .points{
+        width: 55px;
+        height: 55px;
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+        border-radius: 50%;
+        align-items: center;
+         transform: translateY(-50px) translateX(-140px);
+            
+        
+
+        justify-content: center;
+        .points-top{
+             display: flex;
+            color: #F3367C;
+            font-size: 14px;
+             align-items: center;
+
+
+        }
+        .points-bottom{
+             display: flex;
+               align-items: center;
+            color:#929292;
+            font-size: 12px;
+
+        }
+
+    }
+
+    .btn-sign{
+        width: 90%;
+        height: 40px;;
+        margin: 10px;
+        color: #fff;
+        display: flex;
+        background-color: #F3367C;
+        border-radius: 5px 5px 5px 5px;
+        justify-content: center;
+        align-items: center;
+
+          margin-top: -35px;
+
+
+    }
+    .desc-sign{
+        margin-top: 20px;
+        width: 90%;
+        font-size: 16px;
+        background-color: #F89BBD;
+        color: #fff;
+        padding: 10px;
+
+
+
+
+    }
+
+    .progress-body{
+        margin-top: -2px;
+        background-color: #F89BBD;
+        display: flex;
+         overflow-x: scroll;
+         height: 45px;;
+         width: 90%;
+         justify-content: center;
+         
+        .progress-per{
+            padding-bottom: 5px;
+            width: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            
+               height: 45px;
+
+               .per-top{
+                   width:100%;
+                    display: flex;
+            justify-content: center;
+            align-items: center;
+                         
+            .per-left{
+                           
+    justify-content: center;
+    align-items: center;
+    display: flex;
+   
+                width: 70px;
+                height: 16px;
+                img{
+                    width: 70px;
+                    height: 5px;;
+
+                }
+
+            }
+            .per-right{
+                           
+    justify-content: center;
+    align-items: center;
+    display: flex;
+                 width: 18px;
+                height:18px;
+                img{
+                    width: 18px;
+                    height: 18px;;
+                    
+                }
+                
+            }
+
+               }
+
+               .per-bottom{
+                   height: 20px;
+                   justify-content: center;
+                   align-items: center;
+                    display: flex;
+                   font-size: 15px;
+                    color: #fff;
+
+               }
+         
+        }
+
+    }
+
+
+    // 中奖记录
+     .body-peoples{
+         margin-top: 20px;
+         flex-direction: column;
+         width: 90%;
+         display: flex;
+        background-color: #F89BBD;
+        align-items: center;
+
+         
+
+
+        .rewards-per{
+            display: flex;
+            // justify-content: center;
+            align-items: center;
+            margin-left: 25px;
+
+            width: 100%;
+           
+
+
+
+        }
+
+        .nick-name{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+             font-size: 18px;
+            color: #fff;
+            padding: 5px;
+            font-weight: 500;
+
+
+        }
+        .con-rewards{
+             display: flex;
+            justify-content: center;
+            align-items: center;
+             font-size: 14px;
+            color: #fff;
+             padding: 5px;
+
+        }
+
+
+
+    }
+
+
+
+
+}
+

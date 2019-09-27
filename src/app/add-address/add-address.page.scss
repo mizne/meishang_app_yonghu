@@ -1,0 +1,18 @@
+.bottom{
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    .button{
+        margin: 0 15%;
+        border: none;
+        font-size: 20px;
+        padding: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 70%;
+        border-radius: 20px 20px 20px 20px;
+        color: #fff;
+        background-color: #F3367C;
+    }
+}

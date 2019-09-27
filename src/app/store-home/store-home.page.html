@@ -1,0 +1,109 @@
+<ion-header>
+  <ion-toolbar>
+    <!-- <ion-icon style="float:left;width:50px;height:30px;color:#949492;" name="ios-arrow-back" (click)='canGoBack()'>
+    </ion-icon> -->
+    <img style="float:left;width:30px;height:30px;color:#949492;" src="assets/icons/back.png" (click)='canGoBack()'>
+    <ion-title id="animated">店铺详情</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="con-botom">
+    <div class="body-left">
+      <div class="body-logo">
+        <img [src]="shopLogo" alt="">
+        <!-- <img src="assets/img/friends.jpg" alt=""> -->
+      </div>
+      <div class="body-nickname">{{shopName}}</div>
+    </div>
+    <div class="body-right">
+      <div>浏览量：{{PVNumber}}</div>
+      <ion-icon [ngClass]="{'perStyleActive': (isCollectStore==true)}"
+        style=" display: flex; margin-right: 10px;justify-content:center;  align-items: center; font-size: 14px;   border-radius: 15px 15px 15px 15px ;width: 45px;height: 30px;"
+        name="heart" (click)="goToCollectStore()"></ion-icon>
+      <div class="add-like">收藏 </div>
+      <!-- <div class="add-like">关注店铺</div> -->
+      <!-- <div class="shopBtnStyle" >进入店铺</div> -->
+    </div>
+  </div>
+  <!--  -->
+  <div style="padding: 0.5rem;">
+    <span>店铺简介：</span><span>{{ StockIntroduce ? StockIntroduce : '暂无简介' }}</span>
+  </div>
+  <div class="body-tab">
+    <div [ngClass]="{'clickAlive': shopType=='0'}"
+      style="font-size: 14px;  display: flex;justify-content: center;width: 90px;margin-left: 5px"
+      (click)="checkTab('0')">商品</div>
+    <div [ngClass]="{'clickAlive': shopType=='1'}"
+      style="font-size: 14px;  display: flex;justify-content: center;width: 90px;margin-left: 5px"
+      (click)="checkTab('1')">课程</div>
+  </div>
+
+  <!--商品 -->
+  <div class="botomo-content" *ngIf="shopType=='0'">
+    <!-- 暂无内容 -->
+    <div class="bofy-none" *ngIf=(IsFirstList)>
+      <div class="img-none">
+        <img src="assets/img/none.jpg" alt="">
+      </div>
+      <div class="tips-none">暂无商品</div>
+    </div>
+
+    <!-- 瀑布流 -->
+    <div class="masonry">
+      <div class="item" *ngFor="let item of shopProductList" (click)="productDetail(item.RecordId)">
+        <div class="item_content content-lar">
+          <img [src]="item?.PicList[0].PicPath " alt="">
+          <div class="desc">{{item.productTitle}}</div>
+        </div>
+        <div class="price_style">￥{{item.ProductPrice}}</div>
+        <div class="bottom-info">
+          <div class="left-logo">
+            <img [src]="item.ExhibitorExhibitionInfoId.Logo || 'assets/img/shuang.png' " alt=""
+              *ngIf="item.ExhibitorExhibitionInfoId">
+          </div>
+          <div class="right-nickname" *ngIf="item.ExhibitorExhibitionInfoId">
+            {{item.ExhibitorExhibitionInfoId.StockName || item.CreatedBy}}</div>
+          <div class="body-eyes">
+            <ion-icon name="eye"></ion-icon>
+            浏览{{item.PVNumber}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--商品 -->
+  <div class="botomo-content" *ngIf="shopType=='1'">
+    <!-- 暂无内容 -->
+    <div class="bofy-none" *ngIf=(IsSecondList)>
+      <div class="img-none">
+        <img src="assets/img/none.jpg" alt="">
+      </div>
+      <div class="tips-none">暂无课程</div>
+    </div>
+
+    <!-- 瀑布流 -->
+    <div class="masonry">
+      <div class="item" *ngFor="let item of shopLessonList" (click)="lessonDetail(item.RecordId)">
+        <div class="item_content content-lar">
+          <img [src]="item.CourseFirstImage" alt="">
+          <div class="desc">{{item.CourseTitle}}</div>
+        </div>
+        <div class="price_style">￥{{item.ProductPrice}}</div>
+        <div class="bottom-info">
+          <div class="left-logo">
+            <img [src]="item.ExhibitorExhibitionInfoId.Logo || 'assets/img/shuang.png' " alt=""
+              *ngIf="item.ExhibitorExhibitionInfoId">
+          </div>
+          <div class="right-nickname" *ngIf="item.ExhibitorExhibitionInfoId">
+            {{item.ExhibitorExhibitionInfoId.StockName || item.CreatedBy}}</div>
+          <div class="body-eyes">
+            <ion-icon name="eye"></ion-icon>
+            浏览{{item.PVNumber}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

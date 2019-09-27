@@ -1,0 +1,132 @@
+<ion-content id="home" color="#fff">
+  <div>
+    <!--头部搜索栏-->
+    <div id="headerBar" class="headerBar">
+      <!-- <a class="headerBar-search" (click)="goToSearch()">
+        <ion-icon name="search" class="icon-search"></ion-icon>
+        <div class="search-input">
+
+          <input maxlength="20" autocomplete="true" value=" 搜索美妆课程" placeholder="搜索美妆课程" aria-placeholder="red" />
+        </div>
+
+      </a> -->
+      <a class="headerBar-search" (click)="goToSearch()">
+        <span class="input_style">搜索课程</span>
+      </a>
+    </div>
+  </div>
+  <div #lyScroll id="home-content" class="scroll-content">
+  <div class="ad" style="clear: both">
+    <!-- <ion-slides pager="true" autoplay="1000" loop="true"> -->
+      <ion-slides pager="true" autoplay="1000" loop="true" *ngIf="isBanner" [options]="slidesOptions">
+        <ion-slide *ngFor="let item of bannerList" (click)="goToCourseDetail(item.ProductId)">
+          <img [src]="item.Name" />
+        </ion-slide>
+      </ion-slides>
+      <ion-slides pager="true" autoplay="1000" loop="true" *ngIf="!isBanner">
+        <ion-slide>
+          <img src="https://baizhanke-1253522040.cos.ap-chengdu.myqcloud.com/141be1ba-a4a9-4058-9036-e1338c0f413b.png" />
+        </ion-slide>
+        <ion-slide>
+          <img src="https://baizhanke-1253522040.cos.ap-chengdu.myqcloud.com/18010b86-43c3-43aa-b399-c0c60d9fb147.jpg" />
+        </ion-slide>
+        <ion-slide>
+          <img src="https://baizhanke-1253522040.cos.ap-chengdu.myqcloud.com/da2ed3ea-ea0f-4254-b3b1-f391961d6cf3.jpg" />
+        </ion-slide>
+        <ion-slide>
+          <img src="https://baizhanke-1253522040.cos.ap-chengdu.myqcloud.com/88f1b860-93c6-46f4-93f4-3b17053a629f.jpg" />
+        </ion-slide>
+        <ion-slide>
+          <img src="https://baizhanke-1253522040.cos.ap-chengdu.myqcloud.com/bdba9803-c438-4921-bb62-6060fdf2cd2e.jpg" />
+        </ion-slide>
+      </ion-slides>
+    <!-- </ion-slides> -->
+  </div>
+
+    <div class="body-tab">
+
+      <div [ngClass]="{'clickAlive': isCourseAlive==false}"
+        style="font-size: 18px;  display: flex;justify-content: center;width: 50px;margin-left: 10px;"
+        (click)="goToChange()">课程</div>
+      <div [ngClass]="{'clickAlive': isCourseAlive==true}"
+        style="font-size: 18px;  display: flex;justify-content: center;width: 50px;margin-left: 10px;"
+        (click)="goToChange()">直播</div>
+    </div>
+    <div class="bofy-none" *ngIf="isCourseNull && !isCourseAlive">
+      <div class="img-none">
+        <img src="assets/img/none.jpg" alt="">
+      </div>
+      <div class="tips-none">暂无课程</div>
+    </div>
+    <!-- tab -->
+    <div class="botomo-content" *ngIf="!isCourseAlive">
+      <div class="masonry">
+        <div class="item" *ngFor="let item of CourseList" [ngClass]="{'right': item.float === 'right'}">
+          <div class="item_content content-lar" (click)="goToCourseDetail(item.RecordId)">
+            <img [src]="item.CourseFirstImage || 'assets/img/red.png' ">
+            <div class="desc">{{item.CourseTitle}}</div>
+            <div class="desc1" *ngIf="isTest">￥{{item.ProductPrice}}</div>
+          </div>
+          <div class="bottom-info">
+            <div class="left-logo" (click)="shopDetail(item.ExhibitorExhibitionInfoId.RecordId)">
+              <img
+                [src]="item.ExhibitorExhibitionInfoId.Logo!='' ? item.ExhibitorExhibitionInfoId.Logo : 'assets/img/shuang.png' "
+                alt="" *ngIf="item.ExhibitorExhibitionInfoId">
+              <img src="assets/img/shuang.png " alt=""
+                *ngIf="item.ExhibitorExhibitionInfoId==undefined || item.ExhibitorExhibitionInfoId==null">
+            </div>
+            <div class="right-nickname" *ngIf="item.ExhibitorExhibitionInfoId">
+              {{ item.ExhibitorExhibitionInfoId.StockName || item.ExhibitorExhibitionInfoId.CreatedBy }}</div>
+            <div class="right-nickname"
+              *ngIf="item.ExhibitorExhibitionInfoId==undefined || item.ExhibitorExhibitionInfoId==null">
+              {{ item.CreatedBy }}
+            </div>
+            <div class="body-eyes">
+              <!-- <ion-icon name="eye"></ion-icon> -->
+              <img src="assets/icons/eye.png" alt="" class="icon_check_style">
+              浏览{{item.PVNumber}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nomore" *ngIf="!isMoreCourse">
+        我也是有底线的
+      </div>
+      <ion-infinite-scroll *ngIf="isMoreCourse" threshold="100px" (ionInfinite)="loadData1($event)">
+        <ion-infinite-scroll-content
+          loadingSpinner="bubbles"
+          loadingText="加载中...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </div>
+    <div class="bofy-none" *ngIf="isLiveNull && isCourseAlive">
+      <div class="img-none">
+        <img src="assets/img/none.jpg" alt="">
+      </div>
+      <div class="tips-none">暂无直播，敬请期待</div>
+    </div>
+
+    <div class="btm-content" *ngIf="isCourseAlive">
+      <div class="livelist-content">
+        <div class="live-item" *ngFor="let item of LiveList;let i = index" (click)="goToLive(i)">
+          <div class="live-item-cover">
+            <img [src]="item?.CourseFirstImage || '../../assets/img/appointment.png' " alt="">
+          </div>
+          <div class="live-item-tit">
+            {{item?.Title ? item?.Title : "无Title"}}
+          </div>
+          <div class="live-item-btm">
+            <div class="live-btm-host">
+              <div class="live-btm-pic"><img
+                  [src]="item?.ExhibitorExhibitionInfoId?.Logo || '../../assets/img/comments.png' " alt=""></div>
+              <div>
+                {{item?.ExhibitorExhibitionInfoId?.StockName ? item.ExhibitorExhibitionInfoId.StockName : "无StockName"}}
+              </div>
+            </div>
+            <div class="live-btm-att">关注</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

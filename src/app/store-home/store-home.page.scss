@@ -1,0 +1,279 @@
+
+
+
+// store
+ .con-botom{
+     margin-top: 15px;
+     width:100%;
+    display: flex;
+    justify-content: center;
+
+      .body-left{
+    width: 75%;
+    // border:1px solid #f5f5f5;
+    display: flex;
+    // justify-content: center;
+    padding: 5px;
+        .body-logo{
+         
+         
+          img{
+            border:1px solid #f5f5f5;
+            //  border-radius: 50%;
+            width:60px;
+            height: 60px;
+          }
+
+        }
+
+        .body-nickname{
+          padding-left: 5px;
+   
+       display: flex;
+       font-size: 15px;
+       align-items: center;
+       justify-content: center;
+        }
+
+          }
+      .body-right{
+        margin-left:10px; 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+   flex-direction: column;
+   display: flex;
+   .shopBtnStyle {
+     height: 28px;
+    margin-right: 10px;
+     display: flex;
+    justify-content: center;
+    align-items: center;
+        // text-align: center;
+    // margin-top: 5px;
+    right: 15px;
+    // display: inline-block;
+    //  height: 40px;
+    // line-height: 40px;
+    // position: absolute;
+    border-radius: 26px;
+    color: #f3367c;
+    border: 1px solid #f3367c;
+    width: 80px;
+    font-size: 15px;
+    // margin-left: 60px;
+  }
+   .perStyleActive{
+      margin-right: 10px;
+       display: flex;
+       color: rgba(243,54,124,1);
+       justify-content:center;
+       align-items: center;
+       font-size: 14px;
+     border-radius: 15px 15px 15px 15px ;
+       width: 45px;
+       height: 30px; 
+    //  border: 1px solid rgba(243,54,124,1);
+   }
+   .add-like{
+       margin-right: 10px;
+       display: flex;
+       justify-content:center;
+       align-items: center;
+       font-size: 12px;
+    //  border-radius: 15px 15px 15px 15px ;
+       width: 50px;
+       height: 30px;
+    //  border: 1px solid rgba(243,54,124,1);
+        // border: 2px dashed #949492;
+
+
+   }
+icon{
+  width: 30px;
+  height: 30px;
+}
+.num{
+ 
+  color: #949492;
+  font-size: 12px;
+}
+      }
+
+ 
+   }
+
+.shopStyle {
+    margin-top: 10px;
+    img {
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+        margin-left: 15px;
+    }
+    .shopNameStyle {
+        display: inline-block;
+        height: 40px;
+        line-height: 40px;
+        position: absolute;
+        margin-left: 20px;
+    }
+}
+.body-tab {
+    padding-bottom: 8px;
+    border-bottom: 1px solid #f5f5f5;
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .clickAlive {
+        margin-left: 5px;
+        font-size: 14px;
+        color: #d8505c;
+        border-bottom:1px solid #d8505c;
+        width: 90px;
+        justify-content: center;
+        display: flex;
+    }
+}
+.price_style {
+    color: #F3367C;
+    font-size: 16px;
+}
+.botomo-content{
+    // margin-top: 15px;
+    width: 100%;
+    display: inline-block;
+    float: left;
+    .masonry {
+        // background-color: #f5f5f5;
+        -moz-column-count: 2;
+        /* Firefox */
+        -webkit-column-count: 2;
+        /* Safari 和 Chrome */
+        column-count: 2;
+        -moz-column-gap: 1em;
+        -webkit-column-gap: 1em;
+        column-gap: 0;
+        width: 99%;
+        margin: 10px;
+    }
+    .item {
+        background-color: #fff;
+        // border: 3px solid #f7f7f7;
+        border-radius: 10px 10px 10px 10px;
+        padding: 0.6em;
+        margin-bottom: 0.4em;
+        width: 95%;
+        -moz-page-break-inside: avoid;
+        -webkit-column-break-inside: avoid;
+        break-inside: avoid;
+        white-space: normal;
+        img {
+            max-width: 100%;
+        }
+        .desc {
+            color: #33342F;
+            font-size: 15px;
+        }
+        .bottom-info {
+            width: 100%;
+            display: flex;
+            .left-logo {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 30px;
+                height:30px;
+                img {
+                    border-radius: 50%;
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+            .right-nickname {
+                // display: flex;
+                padding-left: 5px;
+                justify-content: flex-start;
+                align-items: center;
+                font-size: 12px;
+                color: #949492;
+                width: 40%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                line-height: 1.8rem;
+            }
+            .body-eyes {
+                color: #33342f;
+                width:40%;
+                // margin-left: 30px;
+                font-size: 11px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                span {
+                    font-size: 11px;
+                }
+                icon {
+                    width: 30px;
+                    height: 30px;
+                    color: #33342f;
+                }
+            }
+        }
+    }
+    .bofy-none {
+        margin-top: 20px;
+        padding: 15px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .img-none {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            img{
+                width: 150px;
+                height: 150px;;
+            }
+        }
+        .tips-none {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            font-size: 16px;
+            color: #949492;
+        }
+    }
+    .body-pics {
+        width: 50%;
+        display: inline-flex;
+        flex-direction: column;
+        justify-content:center;
+        padding: 5px;
+        .img-con {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            // height: 220px;
+            img {
+                max-width: 90%;
+                max-height: 220px;
+            }
+        }
+        .desc {
+            width:100%;
+            padding-left: 10px;
+            color:#33342F;
+            font-size: 14px;
+        }
+    
+    }
+}

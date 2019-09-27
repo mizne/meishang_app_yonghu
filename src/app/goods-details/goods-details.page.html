@@ -1,0 +1,235 @@
+<ion-header>
+  <ion-toolbar class="toolbarback">
+    <!-- <ion-icon
+      style="float:left;width:50px;height:30px;color:#949492;"
+      name="ios-arrow-back"
+      (click)="canGoBack()"
+    >
+    </ion-icon> -->
+    <img style="float:left;width:30px;height:30px;color:#949492;" src="assets/icons/back.png" (click)='canGoBack()'>
+    <ion-title id="animated">商品详情</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <ion-fab vertical="top" horizontal="end" slot="fixed">
+      <ion-fab-button (click)="presentModalShare()">
+        <!-- <ion-icon name="share"></ion-icon> -->
+        <img src="assets/icons/share.png" alt="" class="icon_style">
+      </ion-fab-button>
+    </ion-fab>
+    <div class="video-top" *ngIf="isVideo">
+      <video
+        controlslist="nodownload"
+        id="myVideo"
+        [src]="productVideo[0]?.ViedoSrc"
+        style="width: 100%;max-height: 240px;background-color: #fff"
+        preload="auto"
+        controls
+        loop="loop"
+        playsinline
+        webkit-playsinline
+        aria-orientation="horizontal"
+        [poster]="bannerList"
+      ></video>
+    </div>
+    <div
+      class="ad1"
+      *ngIf="bannerList == undefined && !isVideo"
+      style="height: 450px"
+    ></div>
+    <div class="ad" *ngIf="bannerList != '' && !isVideo">
+      <img [src]="bannerList" />
+    </div>
+    <!-- 价格 -->
+    <div class="price-body">
+      <div class="price-now">￥{{ goodsDetaiInfo.ProductPrice }}</div>
+      <!-- <div class="price-old">￥298</div> -->
+      <!-- <div class="price-title">限时特价</div> -->
+      <span style="display: inline-block;line-height: 60px;">
+        浏览:{{ checkNum }} 分享：{{ shareNum }}
+      </span>
+    </div>
+    <!-- tips -->
+    <div class="tips-tax">
+      <div class="tax-con">销售地区 ：{{ goodsDetaiInfo?.SaleArea }}</div>
+    </div>
+    <!-- titile-goods -->
+    <div class="goods-name">
+      <div class="name-left">
+        {{ goodsDetaiInfo.productTitle }}
+      </div>
+      <div class="name-right" (click)="addLike()">
+        <div class="like-bottom">
+          <!-- <ion-icon
+            [ngClass]="{ perStyleActive: isCollect == true }"
+            style=" display: flex; margin-right: 10px;justify-content:center;  align-items: center; font-size: 14px;   border-radius: 15px 15px 15px 15px ;width: 45px;height: 30px;"
+            name="heart"
+            (click)="goToAddCollect()"
+          ></ion-icon> -->
+          <div style="text-align: center">
+            <img src="assets/icons/heart.png" alt="" *ngIf="isCollect === false" class="icon_collect_style" (click)="goToAddCollect()">
+            <img src="assets/icons/heartp.png" alt="" *ngIf="isCollect === true" class="icon_collect_style" (click)="goToAddCollect()">
+          </div>
+          
+          <span *ngIf="!isCollect">收藏</span>
+          <span *ngIf="isCollect">已收藏</span>
+        </div>
+      </div>
+    </div>
+    <!-- goods -->
+    <div class="body-buy">
+      <div class="num-buyer">
+        <div class="num-left">
+          {{ goodsDetaiInfo.SalesVolum }}
+        </div>
+        <div class="title-right">
+          人已买
+        </div>
+      </div>
+      <div class="num-buyer">
+        <div class="num-left">
+          库存 剩余
+        </div>
+        <div class="title-right">
+          {{ goodsDetaiInfo.StockNumber > 0 ? goodsDetaiInfo.StockNumber : 0 }}
+        </div>
+        <div class="num-left">
+          {{ goodsDetaiInfo.SKU }}
+        </div>
+      </div>
+    </div>
+    <!-- coupons -->
+    <div class="coupons-body" *ngIf="onShow">
+      <div class="con-left">
+        <div class="get-coupons">
+          领券
+        </div>
+      </div>
+      <div class="coupons-list">
+        <div class="list-per" *ngFor="let cou of couponsList; let i = index">
+          {{ cou }}
+        </div>
+      </div>
+  
+      <div class="con-right">
+        立即省钱>
+      </div>
+    </div>
+    <!-- tips service -->
+    <div class="service-content">
+      <div class="left-name">
+        服务
+      </div>
+      <div class="service-list">
+        ·坏了换·7天无理由退货·
+      </div>
+    </div>
+    <!-- 店铺 -->
+    <div class="con-botom">
+      <div class="body-left">
+        <div class="body-logo">
+          <img [src]="Logo || 'assets/img/shuang.png'" alt="" *ngIf="serviceID" />
+        </div>
+        <div class="body-nickname">{{ StockName || CreatedBy }}</div>
+      </div>
+  
+      <div class="body-right">
+        <div class="shopBtnStyle" (click)="shopDetail()">进入店铺</div>
+      </div>
+    </div>
+    <!-- comments -->
+    <div class="body-comments">
+      <div class="title-comments">
+        <div class="top-left">买家评价({{ goodsDetaiMessageCount }})</div>
+      </div>
+      <div class="types-comm" *ngIf="onShow">
+        <div class="types-per">
+          <div class="types-left">晒图(252)</div>
+          <!-- <div  class="types-left"></div> -->
+        </div>
+        <div class="types-per">
+          <div class="types-left">好评(252)</div>
+          <!-- <div class="types-left">(252)</div> -->
+        </div>
+        <div class="types-per"></div>
+        <div class="types-left">差评(252)</div>
+        <!-- <div class="types-left">(252)</div> -->
+      </div>
+    </div>
+    <div
+      class="per-comm"
+      *ngFor="let item of goodsDetaiMessageInfo; let i = index"
+      (press)="goTodelete1(i, item.RecordId)"
+    >
+      <div class="comm-top">
+        <div class="comm-logo">
+          <div class="left-nick" (click)="goToVisitorHome(item.VisitorId)">
+            <img [src]="item.Logo || 'assets/img/shuang.png'" alt="" />
+            <span style="font-size: 12px;font-size: 12px;padding-left: 6px;">{{
+              item.Name
+            }}</span>
+          </div>
+          <div class="right-pv">
+            <div class="pv-number">浏览{{ item.PVNumber || 0 }}次</div>
+            <div class="comm-icon" (click)="goToMore(item.RecordId)">
+              <img src="assets/img/mycomments.png" alt="" />
+            </div>
+            <!-- <div class="review-num" >
+            {{queryCommentsNum(item.RecordId)}}
+              </div> -->
+          </div>
+        </div>
+        <div class="comm-bottom">
+          <div class="comm-content">
+            {{ item.Content }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="comm-bottom1" (click)="goToAllComments()" *ngIf="showMoreBtn">
+      点击查看更多评论
+    </div>
+    <!-- 商品详情 -->
+    <div class="goods-detail" *ngIf="isQuill">商品详情</div>
+    <ion-row *ngIf="isQuill">
+      <app-quill-editor-wrapper
+        style="width: 100%;padding: 20px;"
+        [formControl]="richTextCtrl"
+        readOnly="true"
+        [modules]="modules"
+      ></app-quill-editor-wrapper>
+    </ion-row>
+    <div style="height:100px;"></div>
+    <!-- 底部操作 -->
+    <!-- 固定底边栏 -->
+  </div>
+</ion-content>
+<div class="body-bottom">
+  <div class="buyLeft">
+    <div class="left-service" (click)="goToService()">
+      <div class="service-top">
+        <img src="assets/img/custom-service.png" alt="" />
+      </div>
+      <div class="tips-servicce">
+        客服
+      </div>
+    </div>
+    <div class="left-service" (click)="goToCartPage()">
+      <div class="service-top">
+        <img src="assets/img/cart1.png" alt="" />
+      </div>
+      <div class="tips-servicce">
+        购物车
+      </div>
+    </div>
+    <!-- <div class="gouwuche" ui-sref="cart">
+        <span></span>
+      
+        <strong>购物车</strong>
+      </div> -->
+  </div>
+  <div class="buyCenter" (click)="presentModal(0)">加入购物车</div>
+  <div class="buyRight" (click)="presentModal(1)">立即购买</div>
+</div>

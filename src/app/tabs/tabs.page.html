@@ -1,0 +1,30 @@
+<ion-tabs>
+  <ion-tab-bar slot="bottom" (ionTabBarChanged)="change($event)">
+    <ion-tab-button tab="tab1">
+      <!-- <ion-icon name="home"></ion-icon> -->
+      <img src="assets/icons/house.png" alt="" *ngIf="actPage !== 'tab1'" class="icon_style">
+      <img src="assets/icons/housep.png" alt="" *ngIf="actPage === 'tab1'" class="icon_style">
+      <ion-label>首页</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab2">
+      <!-- <ion-icon name="basket"></ion-icon> -->
+      <img src="assets/icons/basket.png" alt="" *ngIf="actPage !== 'tab2'" class="icon_style">
+      <img src="assets/icons/basketp.png" alt="" *ngIf="actPage === 'tab2'" class="icon_style">
+      <ion-label>课程</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab3" icon-on="bar-msg-on" icon-off="bar-msg-off">
+      <!-- <ion-icon name="cart"></ion-icon> -->
+      <img src="assets/icons/tuiche.png" alt="" *ngIf="actPage !== 'tab3'" class="icon_style">
+      <img src="assets/icons/tuichep.png" alt="" *ngIf="actPage === 'tab3'" class="icon_style">
+      <ion-label>商城</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="my-collection">
+      <!-- <ion-icon name="person"></ion-icon> -->
+      <img src="assets/icons/man.png" alt="" *ngIf="actPage !== 'my-collection'" class="icon_style">
+      <img src="assets/icons/manp.png" alt="" *ngIf="actPage === 'my-collection'" class="icon_style">
+      <ion-label>我的</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

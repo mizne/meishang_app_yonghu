@@ -1,0 +1,44 @@
+.tips-autit{
+    margin-top: 150px;
+flex-direction:column;
+    // height: 100px;
+ width: 100%;
+    justify-content: center;
+    align-items: center;
+  display: flex;
+
+  .audit-img{
+      width: 100%;
+      align-items: center;
+      display: flex;
+      justify-content:center;
+      img{
+          width:100px;
+          height: 100px;
+         
+
+      }
+  }
+.company{
+    margin-top: 20px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+   display: flex;
+    color: #9D9D9D;
+    font-size: 16px;
+}
+.btn-back{
+    margin-top: 30px;
+    border-radius: 5px;
+      justify-content: center;
+    align-items: center;
+   display: flex;
+    width: 130px;
+    background-color:#F3367C;
+    color: #fff;
+    font-size: 18px;
+    height: 40px; 
+}
+}
+ 

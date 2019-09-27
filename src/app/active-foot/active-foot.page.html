@@ -1,0 +1,106 @@
+<ion-header>
+
+  <ion-toolbar class="toolbarback">
+    <!-- <ion-icon style="float:left;width:50px;height:30px;color:#949492;" name="ios-arrow-back" (click)='canGoBack()'>
+    </ion-icon> -->
+    <img style="float:left;width:30px;height:30px;color:#949492;" src="assets/icons/back.png" (click)='canGoBack()'>
+    <ion-title id="animated">互动足迹</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="content">
+    <div class="content-block">
+      <div class="body-tab">
+        <div [ngClass]="{'clickAlive': isTeachingType=='0'}"
+          style="font-size: 14px;  display: flex;justify-content: center;width: 90px;margin-left: 5px"
+          (click)="goToChange1('0')">教程</div>
+        <div [ngClass]="{'clickAlive': isTeachingType=='1'}"
+          style="font-size: 14px;  display: flex;justify-content: center;width: 90px;margin-left: 5px"
+          (click)="goToChange1('1')">课程</div>
+        <div [ngClass]="{'clickAlive': isTeachingType=='2'}"
+          style="font-size: 14px;  display: flex;justify-content: center;width:90px;margin-left:5px"
+          (click)="goToChange1('2')">商品</div>
+      </div>
+
+      <div class="botomo-content" *ngIf="isTeachingType=='0'">
+        <div class="masonry">
+          <div class="item" *ngFor="let item of teachList;let i=index">
+            <div class="item_content content-lar">
+              <div class="delete" (click)="goToDelete(item.RecordId,i)">
+                <img src='assets/img/deleteImg.png' alt="">
+              </div>
+              <img [src]='item.ProductId.PicList[0].PicPath' alt=""
+                (click)="goToTeachingDetails(item.ProductId.RecordId)">
+              <div class="desc">{{item.ProductId.ProductName}}</div>
+            </div>
+            <div class="bottom-info">
+              <div class="left-logo">
+                <img [src]="item.ProductVisitorId.Logo || 'assets/img/shuang.png'" alt=""
+                  *ngIf="item.VisitorId.RecordId">
+              </div>
+              <div class="right-nickname" *ngIf="item.ProductVisitorId.RecordId">
+                {{item.ProductVisitorId.NickName || item.ProductVisitorId.CreatedBy}}</div>
+              <div class="body-eyes">
+                <ion-icon name="eye"></ion-icon>
+                浏览 {{item.ProductId.PVNumber}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="botomo-content" *ngIf="isTeachingType=='1'">
+        <div class="masonry">
+          <div class="item" *ngFor="let item of lessonList;let i=index">
+            <div class="item_content content-lar">
+              <div class="delete" (click)="goToDelete(item.RecordId,i)">
+                <img src='assets/img/deleteImg.png' alt="">
+              </div>
+              <img [src]='item.ProductId.CourseFirstImage' alt="" (click)="goToCourseDetails(item.ProductId.RecordId)">
+              <div class="desc">{{item.ProductId.CourseTitle}}</div>
+            </div>
+            <div class="bottom-info">
+              <div class="left-logo">
+                <img [src]="item.ExhibitorExhibitionInfoId.Logo || 'assets/img/shuang.png'" alt="">
+              </div>
+              <div class="right-nickname">
+                {{item.ExhibitorExhibitionInfoId.StockName || item.ExhibitorExhibitionInfoId.CreatedBy}}</div>
+              <div class="body-eyes">
+                <ion-icon name="eye"></ion-icon>
+                浏览{{item.ProductId.PVNumber}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="botomo-content" *ngIf="isTeachingType=='2'">
+        <div class="masonry">
+          <div class="item" *ngFor="let item of productList;let i=index">
+            <div class="item_content content-lar">
+              <div class="delete" (click)="goToDelete(item.RecordId,i)">
+                <img src='assets/img/deleteImg.png' alt="">
+              </div>
+
+              <img [src]='item.ProductId.PicList[0].PicPath' alt="" (click)="goToGoodsDetails(item.ProductId.RecordId)">
+              <div class="desc">{{item.ProductId.productTitle}}</div>
+            </div>
+            <div class="bottom-info">
+              <div class="left-logo">
+                <img [src]="item.ExhibitorExhibitionInfoId.Logo || 'assets/img/shuang.png'" alt="">
+              </div>
+              <div class="right-nickname">
+                {{item.ExhibitorExhibitionInfoId.StockName || item.ExhibitorExhibitionInfoId.CreatedBy}}</div>
+              <div class="body-eyes">
+                <ion-icon name="eye"></ion-icon>
+                浏览{{item.ProductId.PVNumber}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</ion-content>

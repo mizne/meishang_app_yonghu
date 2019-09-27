@@ -1,0 +1,154 @@
+<ion-header>
+  <ion-toolbar class="toolbarback">
+    <!-- <ion-icon style="float:left;width:50px;height:30px;color:#949492;" name="ios-arrow-back" (click)='canGoBack()'>
+    </ion-icon> -->
+    <img style="float:left;width:30px;height:30px;color:#949492;" src="assets/icons/back.png" (click)='canGoBack()'>
+    <ion-title id="animated">课程详情</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="presentModalShare()">
+      <!-- <ion-icon name="share"></ion-icon> -->
+      <img src="assets/icons/share.png" alt="" class="icon_style">
+    </ion-fab-button>
+  </ion-fab>
+  <div class="ad1" *ngIf="undefined==banner" style="height: 500px">
+  </div>
+  <div class="ad" *ngIf="banner!=''">
+    <img [src]="banner">
+  </div>
+  <!-- 标题 -->
+  <div class="title-course1" *ngIf="isTest">
+    ￥ {{goodsList?.ProductPrice}}
+  </div>
+  <div class="body-eyes">
+    <!-- <ion-icon name="eye"></ion-icon> -->
+    浏览{{checkNum}} &nbsp;&nbsp;分享：{{shareNum}}
+  </div>
+  <div class="title-course">
+    {{goodsList?.CourseTitle}}
+  </div>
+  <div class="desc-course">
+    {{goodsList?.CourseIntroduction}}
+  </div>
+  <div class="con-botom">
+    <div class="body-left" (click)="shopDetail(goodsList?.ExhibitorExhibitionInfoId?.RecordId)">
+      <div class="body-logo">
+        <img [src]="goodsList?.ExhibitorExhibitionInfoId?.Logo" alt="">
+        <!-- <img src="assets/img/friends.jpg" alt=""> -->
+      </div>
+      <div class="body-nickname">{{goodsList?.ExhibitorExhibitionInfoId?.StockName}}</div>
+    </div>
+    <div class="body-right">
+      <div class="shopBtnStyle" (click)="shopDetail(goodsList?.ExhibitorExhibitionInfoId?.RecordId)">进入店铺</div>
+    </div>
+  </div>
+  <div class="tips">
+    <div class="title">
+      课程视频
+    </div>
+  </div>
+  <!-- 视频 -->
+  <div class="desc-video" *ngFor="let article of courseDetails; let i = index">
+    <div class="body-logo">
+      <!-- <img [src]="article.image" alt=""> -->
+      <div *ngIf="i.toString().length==1 " style="color: #F3367C;">0{{i+1}}</div>
+      <div *ngIf="i.toString().length!=1 " style="color: #F3367C;">{{i+1}}</div>
+    </div>
+    <div class="right-course" (click)="goToVideo(i)" *ngIf="!isTest">
+      <div class="desc-makeup" *ngIf="article.title==''">第{{i+1}}节</div>
+      <div class="desc-makeup" *ngIf="article.title!=''">{{article.title}}</div>
+      <!-- <img src="../../assets/icon/play.png" alt="" class="img_style"> -->
+      <span class="play_style">点击播放</span>
+    </div>
+    <div class="right-course" (click)="goToVideo(i)" *ngIf="isTest">
+      <div class="desc-makeup" *ngIf="article.title==''">第{{i+1}}节</div>
+      <div class="desc-makeup" *ngIf="article.title!=''">{{article.title}}</div>
+      <!-- <img src="../../assets/icon/play.png" alt="" class="img_style"> -->
+      <span class="play_style">点击播放</span>
+    </div>
+  </div>
+  <!-- 包含商品 -->
+  <div class="goods-body">
+    <!-- routesInfo -->
+    <div class="goods-per" *ngFor="let item of routesInfo; let i = index">
+      <div class="goods-left">
+        <!-- <img src="assets/img/red.png" alt=""> -->
+        <img src="assets/img/red.png" alt="">
+      </div>
+      <div class="goods-right">
+        <div class="goods-title">
+          {{item.productTitle}}
+        </div>
+        <div class="goods-type">
+          <div class="type-con">限时抢购</div>
+        </div>
+        <div class="goods-price">
+          <div class="price-new">￥{{item.ProductPrice}}</div>
+          <!-- <div class="price-old">￥299</div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="comments-body" *ngIf="!isComm">
+    <span>暂无评论</span>
+    <div>
+      <div class="bottom-send">
+        <img [src]="userLogo || 'assets/img/shuang.png'" alt="" class="logo_style">
+        <ion-input style="height:30px;margin-left: 10px;border-bottom: 1px solid #1b1b1ba8;" placeholder="输入评论"
+          [(ngModel)]="commentsInfo"></ion-input>
+        <span class="send_btn" (click)="toSendComments()">发送</span>
+      </div>
+    </div>
+  </div>
+  <!-- 评论 -->
+  <div class="comments-body" *ngIf="isComm">
+    <div class="">
+      <span>评论({{commentNum}})</span>
+    </div>
+    <div class="per-comm" *ngFor="let item of commentList;let i=index" (press)="goTodelete1(i,item.RecordId)">
+      <div class="comm-top">
+        <div class="comm-logo" (click)="goToVisitorHome(item.VisitorId)">
+          <img [src]="item.Logo || 'assets/img/shuang.png'" alt="">
+          <span style="font-size: 14px;padding-left: 6px;">{{item.Name}}</span>
+        </div>
+        <div class="comm-bottom">
+          <div class="comm-content">
+            {{item.Content}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="comm-bottom1" (click)="goToAllComments()" *ngIf="showMoreBtn">点击查看更多评论</div>
+    <div class="bottom-send">
+      <img [src]="userLogo || 'assets/img/shuang.png'" alt="" class="logo_style">
+      <ion-input style="height:30px;margin-left: 10px;border-bottom: 1px solid #1b1b1ba8;" placeholder="输入评论"
+        [(ngModel)]="commentsInfo"></ion-input>
+      <span class="send_btn" (click)="toSendComments()">发送</span>
+    </div>
+  </div>
+
+  <div style="height:100px;"> </div>
+  
+</ion-content>
+<!-- 底部按钮 -->
+<div class="bottom-btn">
+  <div [ngClass]="{'bottom-left1': isCollectCourse==true}"
+    style=" background-color: #fff;z-index: 1000000; display: flex;width: 30%;height: 50px;justify-content: center;align-items: center;"
+    (click)="goToCollectCourse()">
+    <!-- <ion-icon name="heart-empty"></ion-icon>
+    收藏 -->
+    <img src="assets/icons/kongxin.png" alt="" *ngIf="isCollectCourse === false" class="icon_collect_style">
+    <img src="assets/icons/kongixnp.png" alt="" *ngIf="isCollectCourse === true" class="icon_collect_style">
+    <span class="collection_style">收藏</span>
+  </div>
+  <div class="bottom-right" *ngIf="isTest && !isBuy">
+    <div class="btn-left" (click)="goToVideo1()"> 试看</div>
+    <div class="btn-price" (click)="toBuyCourse()"> 购买</div>
+  </div>
+  <div class="bottom-right" *ngIf="!isTest || isBuy">
+    <div class="btn-left11" (click)="goToVideo2()"> 查看</div>
+  </div>
+</div>

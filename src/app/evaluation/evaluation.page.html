@@ -1,0 +1,73 @@
+<ion-header>
+  <!-- <ion-toolbar>
+    <ion-title>评价</ion-title>
+  </ion-toolbar> -->
+  <ion-toolbar class="toolbarback">
+    <!-- <ion-icon style="float:left;width:50px;height:30px;color:#949492;" name="ios-arrow-back" (click)='canGoBack()'>
+    </ion-icon> -->
+    <img style="float:left;width:30px;height:30px;color:#949492;" src="assets/icons/back.png" (click)='canGoBack()'>
+    <ion-title id="animated">评价</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <div [ngStyle]="{padding: '10px'}">
+    <ion-row>
+      <ion-col size='3' text-right *ngIf="ProductInfo && ProductInfo.PicList && ProductInfo.PicList[0]">
+        <!-- <img src="../../assets/settings/food.png" alt=""> -->
+        <img [src]="ProductInfo.PicList[0].PicPath" alt="">
+      </ion-col>
+      <ion-col size='6'>
+        <div>
+          商品评分
+        </div>
+        <div>
+          <span *ngFor="let star of stars;" class="iconfont icon-start_c"></span>
+        </div>
+      </ion-col>
+      <ion-col text-right size='3'>
+        <button mat-raised-button color="accent" [ngStyle]="{borderRadius:'30px'}" (click)='submit()'>提交</button>
+      </ion-col>
+    </ion-row>
+  </div>
+  <mat-divider></mat-divider>
+
+  <div [ngStyle]="{padding: '10px',fontSize:'14px'}">
+    <ion-textarea rows="3" cols="10" [(ngModel)]="text" placeholder="您的评价会帮助到下一位犹豫不决的小伙伴哦~" style="resize:none"></ion-textarea>
+  </div>
+  <div class="nim">
+    <mat-divider></mat-divider>
+    <div class="nim-p">
+
+      <ion-row size='1.5'>
+        <ion-col>
+          <ion-checkbox></ion-checkbox>
+        </ion-col>
+        <ion-col size='10.5'>
+          <span>匿名评价</span>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+  <div class="blank"></div>
+  <!-- <div class="serve">
+    <ion-row>
+      <ion-col>
+        服务态度
+      </ion-col>
+      <ion-col>
+
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        服务态度
+      </ion-col>
+      <ion-col>
+
+      </ion-col>
+    </ion-row>
+  </div> -->
+  
+</ion-content>

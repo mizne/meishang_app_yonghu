@@ -1,0 +1,139 @@
+<ion-header>
+  <ion-toolbar class="toolbarback">
+    <!-- <ion-icon style="float:left;width:50px;height:30px;color:#949492;" name="ios-arrow-back" (click)='canGoBack()'>
+    </ion-icon> -->
+    <img style="float:left;width:30px;height:30px;color:#949492;" src="assets/icons/back.png" (click)='canGoBack()'>
+    <ion-title id="animated">编辑教程</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="body-set-first" (click)="presentActionSheet(1,10000)">
+    <div class="body-upload-img2">
+      <img [src]="PicList[0]?.PicPath">
+    </div>
+  </div>
+  <div class="teaching-name">
+    <input type="text" [(ngModel)]="ProductName" placeholder="输入教程名称" />
+  </div>
+  <div class="body-steps">
+    <div class="per-step" *ngFor="let item of StepsList;let i=index">
+      <div class="delete-steps">
+        <div class="top-img" (click)="deleteSteps(i)">
+          <img src="assets/img/delete.png">
+        </div>
+        <div class="tips-btn" (click)="deleteSteps(i)">删除步骤</div>
+      </div>
+      <div class="per-top">
+        <input type="text" [(ngModel)]="item.title" placeholder="输入步骤标题" />
+      </div>
+      <div class="video-upload">
+        <div class="title-video">
+          上传视频
+        </div>
+        <a href="javascript:;" class="file1">选择文件
+          <input type="file" name="" id="feature" accept="video/*" (change)="fileChange($event,i)">
+        </a>
+      </div>
+      <!-- 进度条 -->
+      <div class="progress" *ngIf="isUplodaing && progressIndex==i">
+        <div class="progress1">上传进度：{{progress1}}%</div>
+        <div class="body-progress">
+          <ion-progress-bar class="progress2" color="primary" [value]="progress"></ion-progress-bar>
+          <div class="btn-cancel" (click)="goToCancel()">取消上传</div>
+        </div>
+      </div>
+      <!-- 循环显示视频 -->
+      <div class="teach-video" *ngFor="let item of item.video;let k=index">
+        <div class="img-top">
+          <div class="tips-first" (click)="presentActionSheet(3,i)">更换封面</div>
+          <div class="to-delete" (click)="goToDeleteVideo(i,k)">
+            <img src="assets/img/delete.png">
+          </div>
+        </div>
+        <!-- <div class="" (click)="fileChange4(i)">更换封面</div>
+          <div class="to-delete" (click)="goToDeleteVideo(i,k)">
+            <img src="assets/img/delete.png">
+          </div> -->
+        <!--  -->
+        <!-- [poster]="item.img " -->
+        <!-- [poster]="item.img " -->
+        <video [poster]="item.img" [src]="item.url" class="video-per" #media id="singleVideo" preload="auto" controls
+          controlslist="nodownload">
+        </video>
+      </div>
+      <!-- 循环显示图片 -->
+      <div class="img-body">
+        <div class="per-img-style" *ngFor="let item of item.picList;let k=index">
+          <div class="img-top">
+            <!-- <div class="tips-first" (click)="goToSetFirst(i,k)">设为封面</div> -->
+            <div class="to-delete" (click)="goToDeleteImg(i,k)">
+              <img src="assets/img/delete.png">
+            </div>
+          </div>
+          <div class="img-style"><img [src]="item"></div>
+          <!-- <div class="to-be-poster" (click)="goToSetFirst(i,k)"><img src="assets/img/set_first.png"></div> -->
+        </div>
+      </div>
+
+      <!-- <div class="per-mid" >
+              <img [src]="testPicUrl">
+            </div> -->
+      <!-- {{videoUrl}} -->
+
+      <!-- 上传图片 -->
+      <div class="body-upload-img" (click)="presentActionSheet(2,i)">
+        <div class="img-ex">
+          <img src="assets/img/uploadImgNew.png">
+        </div>
+        <div class="tips-img">上传图片</div>
+      </div>
+      <div class="per-bottom">
+        <textarea placeholder="输入步骤描述信息" [(ngModel)]="item.desc"></textarea>
+      </div>
+    </div>
+    <div class="btn-add" (click)="goToAddSteps()">
+      <div class="tips-btn">添加步骤</div>
+    </div>
+    <ion-list>
+      <ion-list-header>推荐至分类</ion-list-header>
+      <!-- <button (click)="haha1()">haha</button> -->
+      <ion-item>
+        <ion-label>选择分类</ion-label>
+        <ion-select [(ngModel)]="selecText" cancelText="取消" okText="确定!">
+          <ion-select-option [value]="item.RecordId" *ngFor="let item of CategoriesFirstList;let i=index">{{item.Name}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngIf="isStore">
+      <ion-list-header>推荐课程</ion-list-header>
+      <ion-item>
+        <ion-label>选择课程</ion-label>
+        <ion-select [(ngModel)]="selecCourseId" cancelText="取消" okText="确定!" multiple="true">
+          <ion-select-option [value]="item.RecordId" *ngFor="let item of ChooseCourseList;let i=index">
+            {{item.CourseTitle}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngIf="isStore">
+      <ion-list-header>推荐商品</ion-list-header>
+      <ion-item>
+        <ion-label>选择商品</ion-label>
+        <ion-select [(ngModel)]="selecProductId" cancelText="取消" okText="确定!" multiple="true">
+          <ion-select-option [value]="item.RecordId" *ngFor="let item of chooseProductList;let i=index">
+            {{item.productTitle}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <!-- 宝贝分享 -->
+    <!-- 底部 添加话题 提及用户 -->
+    <div class="top-btn1">
+      <!-- <div class="btn-tips1" (click)="goToSave()"> 存为草稿</div> -->
+      <div class="btn-tips1" (click)="goToAddTeaching()"> 保存修改</div>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar class="toolbarback">
+    <!-- <ion-icon style="float:left;width:50px;height:30px;color:#949492;" name="ios-arrow-back" (click)='canGoBack()'>
+    </ion-icon> -->
+    <img style="float:left;width:30px;height:30px;color:#949492;" src="assets/icons/back.png" (click)='canGoBack()'>
+    <ion-title id="animated">教程分类</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="tips-categoory">全部分类</div>
+  <div class="content-top">
+    <div class="detail-icon" *ngFor="let item of CategoriesFirstList;let i=index" (click)="goToDetail(item.RecordId)">
+      <div class="top-icon">
+        <img [src]="item.Image || 'assets/img/clean.jpg' " alt="">
+      </div>
+      <div class="desc-icon">{{item.Name}}</div>
+    </div>
+    <!-- <div class="detail-icon" (click)="goToCategories()">
+      <div class="top-icon">
+        <img src="assets/img/more.png" alt="">
+      </div>
+      <div class="desc-icon">更多分类</div>
+    </div> -->
+  </div>
+</ion-content>

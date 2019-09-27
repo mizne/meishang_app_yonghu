@@ -1,0 +1,154 @@
+// @import "~@angular/material/theming";
+// @include mat-core();
+
+#container {
+  position: relative;
+  .box {
+    padding: 5px;
+    float: left;
+    .box_img {
+      padding: 5px;
+      border: 1px solid #cccccc;
+      box-shadow: 0 0 5px #ccc;
+      border-radius: 5px;
+      img {
+        width: 150px !important;
+        height: auto;
+      }
+    }
+  }
+}
+
+
+#fbexample {
+ 
+      display: -ms-flexbox;
+    }
+    #fbchild1 {
+       -ms-flex: 1;
+      // width:50%;
+      img{
+        max-width: 100%;
+        max-height: 220px;
+      }
+
+      background: blue;
+    }
+    #fbchild2 {
+      background: green;
+    }
+    #fbchild3 {
+      background: red;
+    }
+
+
+
+
+.masonry {
+display: flex;
+  // horizontal:true;
+  direction: ltr;
+  background-color: #f5f5f5;
+
+  -moz-column-count: 2;
+  /* Firefox */
+  -webkit-column-count: 2;
+  /* Safari 和 Chrome */
+  column-count: 2;
+  -moz-column-gap: 1em;
+  -webkit-column-gap: 1em;
+  column-gap: 0.1em;
+  width: 99%;
+  margin: 10px;
+
+   flex-flow: column wrap;
+}
+
+// .inner-scroll scroll-y overscroll{
+//      background-color: #f5f5f5;
+// }
+
+.scroll-x, .scroll-y {
+    -webkit-overflow-scrolling: touch;
+    will-change: scroll-position;
+    -ms-scroll-chaining: none;
+    overscroll-behavior: contain;
+     background-color: blue;
+}
+.scroll-y {
+    background-color: red;
+    -ms-touch-action: pan-y;
+    touch-action: pan-y;
+    overflow-y: var(--overflow);
+}
+.inner-scroll {
+    background-color: yellow;
+    padding-left: unset;
+    padding-right: unset;
+    -webkit-padding-start: var(--padding-start);
+    padding-inline-start: var(--padding-start);
+    -webkit-padding-end: var(--padding-end);
+    padding-inline-end: var(--padding-end);
+}
+.inner-scroll {
+    left: 0;
+    right: 0;
+    top: calc(var(--offset-top) * -1);
+    bottom: calc(var(--offset-bottom) * -1);
+    padding-left: var(--padding-start);
+    padding-right: var(--padding-end);
+    padding-top: calc(var(--padding-top) + var(--offset-top));
+    padding-bottom: calc(var(--padding-bottom) + var(--keyboard-offset) + var(--offset-bottom));
+    position: absolute;
+    background: var(--background);
+    color: var(--color);
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow: hidden;
+    background-color: green;
+}
+.item {
+    background-color: #fff;
+  border: 1px solid #f7f7f7;
+  border-radius: 10px 10px 10px 10px;
+  padding: 0.6em;
+  margin-bottom: 0.4em;
+  width: 95%;
+  -moz-page-break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  break-inside: avoid;
+  white-space: normal;
+  img {
+    max-width: 90%;
+  }
+
+  .bottom-info {
+    width: 100%;
+    display: flex;
+
+    .left-logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 30%;
+      height: 30px;
+      img {
+        border-radius: 50%;
+
+        width: 30px;
+        height: 30px;
+      }
+    }
+    .right-nickname {
+      // display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
+      color: #949492;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      line-height: 1.8rem;
+    }
+  }
+}

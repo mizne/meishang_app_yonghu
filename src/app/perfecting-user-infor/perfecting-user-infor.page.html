@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar class="toolbarback">
+    <ion-title id="animated">个人资料</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="list-block">
+    <div class="body-logo">
+      <div class="logo-left" (click)="presentActionSheet()"><img src="{{newLogo}}" alt="" class="personal-logo"></div>
+      <div class="logo-right" (click)="presentActionSheet()">上传头像</div>
+    </div>
+    <ion-list>
+      <ion-item>
+        <ion-label fixed>用户昵称</ion-label>
+        <ion-input class="item-title data" type="text" value="" [(ngModel)]="VisitortName" placeholder="请输入昵称"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>性别</ion-label>
+        <ion-select placeholder="选择性别" [(ngModel)]="sex" style="--padding-start:15px;" okText="确定" cancelText="取消">
+          <ion-select-option value="f">女</ion-select-option>
+          <ion-select-option value="m">男</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>职业</ion-label>
+        <ion-input class="item-title data" type="text" value="" [(ngModel)]="VisitortJob" placeholder="请输入职业"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed>地址</ion-label>
+        <ion-input type="text" class="item-title data" value="" [(ngModel)]="VisitortAddress" placeholder="请输入地址"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>生日</ion-label>
+        <ion-datetime display-format="YYYY-MM-DD  " [(ngModel)]="birthday" [(max)]="maxDate" doneText="完成" cancelText="取消"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>个人简介</ion-label>
+
+        <ion-textarea rows="2" cols="20" maxlength="100" [(ngModel)]="VisitortRemark"
+          style="width: 65%;padding: 5px;border: 1px solid #f5f5f5;color:black" placeholder="请输入您的个人简介">
+        </ion-textarea>
+      </ion-item>
+
+    </ion-list>
+  </div>
+
+  <div class="btn-submit" (click)=gotoSet()>
+    <div class="btn-body">保存</div>
+
+  </div>
+</ion-content>

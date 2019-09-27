@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar class="toolbarback">
+    <!-- <ion-icon style="float:left;width:50px;height:30px;color:#949492;" name="ios-arrow-back" (click)='canGoBack()'>
+    </ion-icon> -->
+    <img style="float:left;width:30px;height:30px;color:#949492;" src="assets/icons/back.png" (click)='canGoBack()'>
+    <ion-title id="animated">确认订单</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- 暂无地址 -->
+  <!-- *ngIf="isAddressSet" -->
+  <div class="content">
+    <div class="non-address" *ngIf="!isAddressSet">
+      <div class="address-left">暂无地址，点击按钮快去添加吧</div>
+      <div class="address-right" (click)="goToChoose()">添加地址</div>
+  
+    </div>
+  
+    <ion-row class="address" *ngIf="isAddressSet" (click)="goToChoose()">
+      <ion-col size="11">
+        <div class="address-head" style="padding-left:10px ">
+          <span> {{addressFirst.Name}} </span>
+          <span>{{addressFirst.Phone}}</span>
+  
+        </div>
+        <div class="address-foot" style="padding-left:10px ">
+          {{addressFirst.Province}} {{addressFirst.City}} {{addressFirst.Area}} {{addressFirst.AddressDetail}}
+        </div>
+  
+      </ion-col>
+      <ion-col size='1' text-right class="choose" style="padding-top:20px;">
+        >
+  
+      </ion-col>
+    </ion-row>
+    <div *ngElse>
+  
+    </div>
+    <div *ngFor="let item of shopcart, let i = index" style="background-color: white">
+  
+      <ion-item>
+        <ion-label>{{item.shops.shop_name}}</ion-label>
+        <!-- <ion-checkbox color="danger" checked={{item.shops.isSelect}} (ionChange)="AddRemoveRecipeToFavorite(item,i);"></ion-checkbox> -->
+      </ion-item>
+  
+      <ion-row *ngFor="let products_item of item.shops.products, let products_index = index"
+        style="border-bottom: 0.55px solid gray">
+        <ion-col col-3 style="display:flex;align-items: center">
+          <!-- <img src="assets/img/nanz5.jpg" alt=""/> -->
+          <img [src]="products_item.PicPath" alt="" />
+        </ion-col>
+        <ion-col col-9>
+          <h2>{{products_item.name}}</h2>
+          <p style="color: gray;margin: 10px 0;">规格: {{item.shops.Specification}}</p>
+          <div style="color: gray;margin: 10px 0;font-size: 16px;">发货时间：卖家承诺48小时</div>
+          <div style="display: flex;justify-content: space-between;">
+            <label style="color:#f44336;">￥{{products_item.price}}</label>
+            <div style="display: inline-flex;margin-left: 20px">
+              X{{item.shops.number}}
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+      <div style="display: flex;justify-content: flex-end;border-bottom: 0.55px solid gray">
+        <div style="float: right;margin: 10px;">
+          <label style="margin-right: 10px"> 共{{item.shops.number}}件商品 </label>
+          <label style="margin-right: 10px;color:#f44336;"> 小计:￥{{item.shops.allPrise}}</label>
+        </div>
+      </div>
+    </div>
+    <div style="height: 80px;"></div>
+    
+  </div>
+</ion-content>
+<!-- 固定底边栏 -->
+<div class="body-bottom">
+  <div class="buyLeft">
+    <!-- <div class="" (click)="paySuccess()">成功</div>
+      <div class="" (click)="payError()">失败</div> -->
+    <div class="left-service">
+      <!-- <div class="service-top">
+            <img src="assets/img/custom-service.png" alt="">
+          </div> -->
+      <div class="tips-servicce">
+        <span>(不包含运费)</span> 合计：{{ SumPrice || '0'}} 元
+      </div>
+    </div>
+  </div>
+  <div class="buyRight" (click)="submitOrder()">提交订单</div>
+</div>

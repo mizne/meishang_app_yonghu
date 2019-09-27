@@ -1,0 +1,45 @@
+<ion-header>
+  <!-- <ion-toolbar>
+    <ion-title>我的粉丝</ion-title>
+  </ion-toolbar> -->
+  <ion-toolbar class="toolbarback">
+    <!-- <ion-icon style="float:left;width:50px;height:30px;color:#949492;" name="ios-arrow-back" (click)='canGoBack()'>
+    </ion-icon> -->
+    <img style="float:left;width:30px;height:30px;color:#949492;" src="assets/icons/back.png" (click)='canGoBack()'>
+    <ion-title id="animated">我的粉丝</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="bofy-none" *ngIf=(!IsFirstList)>
+    <div class="img-none">
+      <img src="assets/img/none1.jpg" alt="">
+    </div>
+    <div class="tips-none">暂无粉丝</div>
+  </div>
+  <div class="content-bottom" *ngIf=(IsFirstList)>
+    <div class="con-details" *ngFor="let item of followersList;let i = index">
+      <div class="body-left">
+        <div class="body-logo" (click)="goToVisitorHome(item.VisitorId.RecordId)">
+          <img [src]="item.VisitorId.Logo" alt="">
+        </div>
+      </div>
+      <div class="body-right">
+        <div class="desc">
+          {{ item.VisitorId.NickName }}
+        </div>
+        <!-- <div class="title1" >
+          <div class="nickname">
+            <div class="num-followers">70</div>个教程
+          </div>
+          <div class="nick-right">
+            <div class="num-followers">70</div>个粉丝
+          </div>
+        </div> -->
+      </div>
+      <!-- <div class="time-msg" (click)="reFollow(item)">
+        回粉
+      </div> -->
+    </div>
+  </div>
+</ion-content>

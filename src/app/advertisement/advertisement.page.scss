@@ -1,0 +1,17 @@
+.ad_background_pic {
+    height: 100%;
+    width: 100%;
+    .img_style {
+        height: 100%;
+        width: 100%;
+    }
+    .skip {
+        position: fixed;
+        right: 2rem;
+        top: 2rem;
+        color: #ffffff;
+        padding: 0.2rem 0.8rem;
+        border-radius: 1rem;
+        background: rgba(0, 0, 0, 0.4);
+    }
+}

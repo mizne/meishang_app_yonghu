@@ -1,0 +1,79 @@
+.order-head img{
+    vertical-align: bottom;
+    
+}
+.address{
+    font-size: 14px;
+    color: #353535;
+}
+img{
+    border: 0 none
+}
+.order-card-head{
+    font-size: 14px;
+    color: #686868;
+    padding-bottom: 12px;
+   
+    .pic{
+         display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+
+    }
+      .tore-style{
+             display: flex;
+    // justify-content: center;
+    align-items: center;
+    height: 30px;
+        img{
+            width: 25px;
+            height: 25px;
+            border-radius: 5px;
+
+        }
+    }
+
+}
+.order-card-head .pic{
+    margin-right: 6px;
+}
+.email{
+    width: 30px;
+    height: 20px;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    line-height: 20px;
+    font-size: 12px;
+    background: #F3367C;
+    margin-right: 5px;
+}
+.type{
+    font-size: 12px;
+    color: #686868;
+    padding: 7px 0;
+}
+.btn .btn-pay
+{
+
+width: 80px;
+height: 35px;
+color: #fff;
+border-radius: 20px;
+    background: #F3367C;
+
+}
+.btn .mat-stroked-button{
+    background: red;
+    border-radius:30px;
+    margin-left: 5px;
+    
+}
+.total{
+    font-size: 16px;
+    color: #686868;
+}
+.view{
+    padding-top: 20px;
+}
