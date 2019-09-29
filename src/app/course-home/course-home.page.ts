@@ -37,7 +37,8 @@ export class CourseHomePage implements OnInit {
   public slidesOptions = {
     autoplay: {
       disableOnInteraction: false
-    }
+    },
+    autoHeight: true
   };
   constructor(
     private tabService: TabService,

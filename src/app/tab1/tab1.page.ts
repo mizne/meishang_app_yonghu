@@ -51,7 +51,8 @@ export class Tab1Page implements OnInit, OnDestroy, AfterViewInit {
   public slidesOptions = {
     autoplay: {
       disableOnInteraction: false
-    }
+    },
+    autoHeight: true
   };
   constructor(
     public toastController: ToastController,

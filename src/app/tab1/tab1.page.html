@@ -18,7 +18,8 @@
           <img [src]="item.Name" />
         </ion-slide>
       </ion-slides>
-      <ion-slides pager="true" autoplay="1000" loop="true" *ngIf="!isBanner">
+      <!-- *ngIf="!isBanner" -->
+      <ion-slides pager="true" autoplay="1000" loop="true" [options]="slidesOptions" *ngIf="!isBanner">
         <ion-slide>
           <img
             src="https://baizhanke-1253522040.cos.ap-chengdu.myqcloud.com/141be1ba-a4a9-4058-9036-e1338c0f413b.png" />
